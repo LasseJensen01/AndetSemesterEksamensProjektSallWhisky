@@ -33,6 +33,9 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
+    //TODO
+    //Locate cask tager lige PT alle casks. Skal kun tage enten fyldte eller tomme så skal splittes
+    //til to metoder locateFilledCasks() og locateEmptyCasks()
     public List<Cask> locateCask(Type t, double v){
         List<Cask> casks = storage.getCasks();
         List<Cask> goodCasks = new ArrayList<>();
