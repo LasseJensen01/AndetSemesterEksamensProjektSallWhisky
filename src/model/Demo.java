@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Demo {
     public static void main(String[] args) {
-        Cask cask1 = new Cask("Bourbon");
+        Cask cask1 = new Cask(type.VIRGIN_OAK);
 
         NewMake nm1 = new NewMake("nm1", 100);
         NewMake nm2 = new NewMake("nm2",100);

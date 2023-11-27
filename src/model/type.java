@@ -1,0 +1,30 @@
+package model;
+
+public enum type {
+    BOURBON,
+    AMONTILLADO,
+    FINO,
+    MANZANILLA,
+    MOSCATEL,
+    OLOROSO,
+    PALO_CORTADO,
+    PEDRO_XIMÉNEZ,
+    PORT,
+    RUBY_PORT,
+    TAWNY_PORT,
+    MADEIRA,
+    MARSALA,
+    AMARONE,
+    BAROLO,
+    BORDEAUX,
+    CHARDONNAY,
+    MUSCAT,
+    SAUTERNES,
+    TOKAY,
+    BURGUNDY,
+    RUM_WHITE,
+    RUM_DARK,
+    BEER,
+    VIRGIN_OAK,
+    MIZUNARA_OAK
+}
