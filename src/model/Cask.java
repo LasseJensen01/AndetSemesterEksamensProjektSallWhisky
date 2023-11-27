@@ -34,4 +34,12 @@ public class Cask {
                 Period.between(fillings.get(fillings.size()-1).getDate(), LocalDate.now()).toString();
         return s;
     }
+
+    public Type getType() {
+        return type;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
 }
