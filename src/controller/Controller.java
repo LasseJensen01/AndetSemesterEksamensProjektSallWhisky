@@ -6,6 +6,8 @@ import storage.ListStorage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 public abstract class Controller {
     private static ListStorage storage;
 
@@ -27,8 +29,29 @@ public abstract class Controller {
         List<Cask> casks = storage.getCasks();
         List<Cask> goodCasks = new ArrayList<>();
 
-        for (Cask c : casks){
-
+        //Both paramters fulfilled
+        if (t != null && !Objects.isNull(v)){
+            for (Cask c : casks){
+                if (c.getType().equals(t) && c.getVolume() == v){
+                    goodCasks.add(c);
+                }
+            }
+        }
+        // Only type fulfilled
+        else if (t != null && Objects.isNull(v)){
+            for (Cask c : casks){
+                if (c.getType().equals(t)){
+                    goodCasks.add(c);
+                }
+            }
+        }
+        //Only volume fulfilled
+        else if (t == null && !Objects.isNull(v)){
+            for (Cask c : casks){
+                if (c.getVolume() == v){
+                    goodCasks.add(c);
+                }
+            }
         }
         return goodCasks;
     }
