@@ -9,12 +9,13 @@ public class Cask {
     private Type type;
     private static int no = 0;
     private int id;
-    private int volume;
-    private int liters;
+    private double volume; // How big cask
+    private double liters;
     private List<Filling> fillings = new ArrayList<>();
 
-    public Cask(Type type) {
+    public Cask(Type type, double volume) {
         this.type = type;
+        this.volume = volume;
         no++;
         this.id = no;
     }
