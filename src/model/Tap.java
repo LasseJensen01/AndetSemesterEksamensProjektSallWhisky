@@ -15,6 +15,6 @@ public class Tap {
 
     @Override
     public String toString() {
-        return liters + "L of " + newMake.name;
+        return liters + "L of " + newMake.getName();
     }
 }
