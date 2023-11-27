@@ -6,9 +6,9 @@ public class Demo {
     public static void main(String[] args) {
         Cask cask1 = new Cask("Bourbon");
 
-        NewMake nm1 = new NewMake("nm1");
-        NewMake nm2 = new NewMake("nm2");
-        NewMake nm3 = new NewMake("nm3");
+        NewMake nm1 = new NewMake("nm1", 100);
+        NewMake nm2 = new NewMake("nm2",100);
+        NewMake nm3 = new NewMake("nm3", 100);
 
         Tap tap1 = new Tap(nm1, 10);
         Tap tap2 = new Tap(nm2, 15);
