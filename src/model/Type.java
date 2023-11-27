@@ -1,6 +1,6 @@
 package model;
 
-public enum type {
+public enum Type {
     BOURBON,
     AMONTILLADO,
     FINO,
