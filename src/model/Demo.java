@@ -1,9 +1,12 @@
 package model;
 
+import storage.ListStorage;
+
 import java.time.LocalDate;
 
 public class Demo {
     public static void main(String[] args) {
+        ListStorage storage = new ListStorage();
         Cask cask1 = new Cask(Type.VIRGIN_OAK, 30);
 
         NewMake nm1 = new NewMake("nm1", 100);
