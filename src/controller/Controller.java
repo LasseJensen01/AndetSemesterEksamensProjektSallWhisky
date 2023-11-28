@@ -4,6 +4,7 @@ import model.Cask;
 import model.Type;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import model.Cask;
@@ -14,6 +15,7 @@ import model.Tap;
 import java.time.LocalDate;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public abstract class Controller {
     private static Storage storage;
@@ -35,72 +37,51 @@ public abstract class Controller {
     //TODO
     //Locate cask tager lige PT alle casks. Skal kun tage enten fyldte eller tomme så skal splittes
     //til to metoder locateFilledCasks() og locateEmptyCasks()
-    public List<Cask> locateCask(Type t, double v){
+    public List<Cask> locateCask(Type type, double volume){
         List<Cask> casks = storage.getCasks();
-        List<Cask> goodCasks = new ArrayList<>();
-
+        // Starts filtering process of the values typed into the parameters, if parameters are null
+        // the parameter is ignored
+        List<Cask> goodCasks = casks.stream()
+                // Makes sure all casks are currently filled
+                .filter(cask -> cask.getLiters() > 0)
+               // Checks parameter type
+                .filter(cask -> cask.getType() == null || cask.getType() == type)
+               // Checks parameter volume
+                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
+               // Converts Stream to list
+                .collect(Collectors.toList());
         return goodCasks;
     }
 
     public List<Cask> locateFullCask(Type type, double volume){
         List<Cask> casks = storage.getCasks();
-        List<Cask> goodCasks = new ArrayList<>();
-
-        //Both paramters fulfilled
-        if (type != null && !Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() > 0 && c.getType().equals(type) && c.getVolume() == volume){
-                    goodCasks.add(c);
-                }
-            }
-        }
-        // Only type fulfilled
-        else if (type != null && Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() > 0 && c.getType().equals(type)){
-                    goodCasks.add(c);
-                }
-            }
-        }
-        //Only volume fulfilled
-        else if (type == null && !Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() > 0 && c.getVolume() == volume){
-                    goodCasks.add(c);
-                }
-            }
-        }
+        // Starts filtering process of the values typed into the parameters, if parameters are null
+        // the parameter is ignored
+        List<Cask> goodCasks = casks.stream()
+                // Makes sure all casks are currently filled
+                .filter(cask -> cask.getLiters() > 0)
+                // Checks parameter type
+                .filter(cask -> cask.getType() == null || cask.getType() == type)
+                // Checks parameter volume
+                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
+                // Converts Stream to list
+                .collect(Collectors.toList());
         return goodCasks;
     }
 
     public List<Cask> locateEmptyCask(Type type, double volume){
         List<Cask> casks = storage.getCasks();
-        List<Cask> goodCasks = new ArrayList<>();
-
-        //Both paramters fulfilled
-        if (type != null && !Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() == 0 && c.getType().equals(type) && c.getVolume() == volume){
-                    goodCasks.add(c);
-                }
-            }
-        }
-        // Only type fulfilled
-        else if (type != null && Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() == 0 && c.getType().equals(type)){
-                    goodCasks.add(c);
-                }
-            }
-        }
-        //Only volume fulfilled
-        else if (type == null && !Objects.isNull(volume)){
-            for (Cask c : casks){
-                if (c.getLiters() == 0 && c.getVolume() == volume){
-                    goodCasks.add(c);
-                }
-            }
-        }
+        // Starts filtering process of the values typed into the parameters, if parameters are null
+        // the parameter is ignored
+        List<Cask> goodCasks = casks.stream()
+                // Makes sure all casks are currently empty
+                .filter(cask -> cask.getLiters() == 0)
+                // Checks parameter type
+                .filter(cask -> cask.getType() == null || cask.getType() == type)
+                // Checks parameter volume
+                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
+                // Converts Stream to list
+                .collect(Collectors.toList());
         return goodCasks;
     }
     /**
