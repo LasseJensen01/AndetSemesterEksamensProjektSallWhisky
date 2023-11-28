@@ -39,26 +39,64 @@ public abstract class Controller {
         List<Cask> casks = storage.getCasks();
         List<Cask> goodCasks = new ArrayList<>();
 
+        return goodCasks;
+    }
+
+    public List<Cask> locateFullCask(Type type, double volume){
+        List<Cask> casks = storage.getCasks();
+        List<Cask> goodCasks = new ArrayList<>();
+
         //Both paramters fulfilled
-        if (t != null && !Objects.isNull(v)){
+        if (type != null && !Objects.isNull(volume)){
             for (Cask c : casks){
-                if (c.getType().equals(t) && c.getVolume() == v){
+                if (c.getLiters() > 0 && c.getType().equals(type) && c.getVolume() == volume){
                     goodCasks.add(c);
                 }
             }
         }
         // Only type fulfilled
-        else if (t != null && Objects.isNull(v)){
+        else if (type != null && Objects.isNull(volume)){
             for (Cask c : casks){
-                if (c.getType().equals(t)){
+                if (c.getLiters() > 0 && c.getType().equals(type)){
                     goodCasks.add(c);
                 }
             }
         }
         //Only volume fulfilled
-        else if (t == null && !Objects.isNull(v)){
+        else if (type == null && !Objects.isNull(volume)){
             for (Cask c : casks){
-                if (c.getVolume() == v){
+                if (c.getLiters() > 0 && c.getVolume() == volume){
+                    goodCasks.add(c);
+                }
+            }
+        }
+        return goodCasks;
+    }
+
+    public List<Cask> locateEmptyCask(Type type, double volume){
+        List<Cask> casks = storage.getCasks();
+        List<Cask> goodCasks = new ArrayList<>();
+
+        //Both paramters fulfilled
+        if (type != null && !Objects.isNull(volume)){
+            for (Cask c : casks){
+                if (c.getLiters() == 0 && c.getType().equals(type) && c.getVolume() == volume){
+                    goodCasks.add(c);
+                }
+            }
+        }
+        // Only type fulfilled
+        else if (type != null && Objects.isNull(volume)){
+            for (Cask c : casks){
+                if (c.getLiters() == 0 && c.getType().equals(type)){
+                    goodCasks.add(c);
+                }
+            }
+        }
+        //Only volume fulfilled
+        else if (type == null && !Objects.isNull(volume)){
+            for (Cask c : casks){
+                if (c.getLiters() == 0 && c.getVolume() == volume){
                     goodCasks.add(c);
                 }
             }
