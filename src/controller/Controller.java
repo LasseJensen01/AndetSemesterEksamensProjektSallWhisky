@@ -38,7 +38,7 @@ public abstract class Controller {
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
         List<Cask> goodCasks = casks.stream()
-                // Makes sure all casks are currently empty
+                // Makes sure all casks are currently in use
                 .filter(cask -> cask.getLiters() > 0)
                 // Checks parameter type
                 .filter(cask -> type == null || cask.getType() == type)
@@ -61,7 +61,7 @@ public abstract class Controller {
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
         List<Cask> goodCasks = casks.stream()
-                // Makes sure all casks are currently empty
+                // Makes sure all casks are currently NOT in use
                 .filter(cask -> cask.getLiters() == 0)
                 // Checks parameter type
                 .filter(cask -> type == null || cask.getType().equals(type))
