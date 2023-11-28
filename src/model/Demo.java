@@ -41,6 +41,10 @@ public class Demo {
         Filling fill2 = new Filling(cask1, oneWeekBack, "Lars");
         fill2.addAmount(amount3);
 
-        System.out.println(cask1.getContentsInfo());
+        List<Cask> l = Controller.locateEmptyCask(null, 45.0);
+        System.out.println(l.size());
+        for (Cask c : l){
+            System.out.println(c.toString());
+        }
     }
 }

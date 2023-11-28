@@ -28,12 +28,11 @@ public abstract class Controller {
     /**
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
+     * Will only sort the casks currently in use
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    //TODO
-    //Fix Volume så den kan registreres som Null uden Intellij kommer efter mig
     public static List<Cask> locateFullCask(Type type, @Nullable Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
@@ -49,9 +48,15 @@ public abstract class Controller {
                 .collect(Collectors.toList());
         return goodCasks;
     }
-    //TODO
-    //Fix Volume så den kan registreres som Null uden Intellij kommer efter mig
-    public static List<Cask> locateEmptyCask(Type type, @Nullable double volume){
+    /**
+     * This method will take paramterts type and volume, both nullable, and search storgage for elligible
+     * casks matching the paramters and return them in a list
+     * Will only sort the casks currently NOT in use
+     * @param type type of the cask
+     * @param volume the amount of liquid the cask can hold
+     * @return a list of cask meeting the criteria
+     */
+    public static List<Cask> locateEmptyCask(Type type, @Nullable Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
