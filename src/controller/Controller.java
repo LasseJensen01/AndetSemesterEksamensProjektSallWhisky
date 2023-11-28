@@ -6,10 +6,9 @@ import model.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Cask;
 import model.Filling;
 import model.NewMake;
-import model.Tap;
+import model.Amount;
 
 import java.time.LocalDate;
 
@@ -124,13 +123,13 @@ public abstract class Controller {
         Filling filling = new Filling(cask, LocalDate.now(), employee);
         return filling;
     }
-    public static Tap createTap(NewMake newMake, int liters){
-        Tap tap = new Tap(newMake, liters);
-        return tap;
+    public static Amount createTap(NewMake newMake, int liters){
+        Amount amount = new Amount(newMake, liters);
+        return amount;
     }
-    public static Tap addTapToFilling(Filling filling, Tap tap){
-        filling.addTap(tap);
-        return tap; //Maybe should be void or filling?
+    public static Amount addTapToFilling(Filling filling, Amount amount){
+        filling.addTap(amount);
+        return amount; //Maybe should be void or filling?
     }
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();

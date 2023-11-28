@@ -1,10 +1,10 @@
 package model;
 
-public class Tap {
+public class Amount {
     private NewMake newMake;
     private int liters;
 
-    public Tap(NewMake newMake, int liters) {
+    public Amount(NewMake newMake, int liters) {
         this.newMake = newMake;
         this.liters = liters;
     }
