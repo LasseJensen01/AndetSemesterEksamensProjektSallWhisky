@@ -125,14 +125,23 @@ public abstract class Controller {
         Filling filling = new Filling(cask, LocalDate.now(), employee);
         return filling;
     }
-    public static Amount createTap(NewMake newMake, int liters){
+    public static Amount createAmount(NewMake newMake, int liters){
         Amount amount = new Amount(newMake, liters);
         return amount;
     }
-    public static Amount addTapToFilling(Filling filling, Amount amount){
+    /**
+     * This method adds a amount to a filling
+     * @param filling the filling that the amount is to be added to.
+     * @param Amount the amount to be added.
+     */
+    public static Amount addAmountToFilling(Filling filling, Amount amount){
         filling.addAmount(amount);
         return amount; //Maybe should be void or filling?
     }
+    /**
+     * This method gives a string repesentation of the constents of a cask
+     * @param cask a cask.
+     */
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();
     }
