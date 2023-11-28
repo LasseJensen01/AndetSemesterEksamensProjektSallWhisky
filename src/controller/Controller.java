@@ -34,22 +34,6 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public List<Cask> locateCask(Type type, double volume){
-        List<Cask> casks = storage.getCasks();
-        // Starts filtering process of the values typed into the parameters, if parameters are null
-        // the parameter is ignored
-        List<Cask> goodCasks = casks.stream()
-                // Makes sure all casks are currently filled
-                .filter(cask -> cask.getLiters() > 0)
-               // Checks parameter type
-                .filter(cask -> cask.getType() == null || cask.getType() == type)
-               // Checks parameter volume
-                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
-               // Converts Stream to list
-                .collect(Collectors.toList());
-        return goodCasks;
-    }
-
     public List<Cask> locateFullCask(Type type, double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
