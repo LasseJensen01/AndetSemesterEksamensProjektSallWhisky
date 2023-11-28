@@ -22,13 +22,13 @@ public class Demo {
         LocalDate oneWeekBack = LocalDate.now().minusWeeks(1);
 
         Filling fill1 = new Filling(cask1, oneMonthBack, "Martin");
-        fill1.addTap(amount1);
-        fill1.addTap(amount2);
+        fill1.addAmount(amount1);
+        fill1.addAmount(amount2);
 
         System.out.println(cask1.getContentsInfo());
 
         Filling fill2 = new Filling(cask1, oneWeekBack, "Lars");
-        fill2.addTap(amount3);
+        fill2.addAmount(amount3);
 
         System.out.println(cask1.getContentsInfo());
     }

@@ -33,7 +33,7 @@ public class Filling {
         this.id = no;
         cask.addFilling(this);
     }
-    public void addTap(Amount amount){
+    public void addAmount(Amount amount){
         amounts.add(amount);
         liters += amount.getLiters();
     }
