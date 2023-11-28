@@ -13,6 +13,7 @@ public class Cask {
     private double liters; //How much newMake is filled in cask
     private List<Filling> fillings = new ArrayList<>();
 
+
     public Cask(Type type, double volume) {
         this.type = type;
         this.volume = volume;

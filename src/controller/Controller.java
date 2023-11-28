@@ -10,7 +10,7 @@ import java.util.List;
 import model.Cask;
 import model.Filling;
 import model.NewMake;
-import model.Tap;
+import model.Amount;
 
 import java.time.LocalDate;
 
@@ -86,8 +86,9 @@ public abstract class Controller {
     }
     /**
      * This method creates, stores and returns a newmake
-     * @param name name of the newmake, pre: not empty
-     * @param volume the amount of liquid produced from the distillation process, pre: must be positive
+     * @param name name of the newmake
+     * @param volume the amount of liquid produced from the distillation process
+     * @pre name not "", volume > 0
      * @return the newmake
      */
     public static NewMake createNewMake(String name, double volume){
@@ -97,21 +98,21 @@ public abstract class Controller {
     }
     /**
      * This method creates, stores and returns a filling
-     * @param Cask
-     * @param volume the amount of liquid produced from the distillation process, pre: must be positive
-     * @return the newmake
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "", cask.volume-cask.liters >= filling.liters
      */
     public Filling createFilling(Cask cask, String employee){
         Filling filling = new Filling(cask, LocalDate.now(), employee);
         return filling;
     }
-    public static Tap createTap(NewMake newMake, int liters){
-        Tap tap = new Tap(newMake, liters);
-        return tap;
+    public static Amount createTap(NewMake newMake, int liters){
+        Amount amount = new Amount(newMake, liters);
+        return amount;
     }
-    public static Tap addTapToFilling(Filling filling, Tap tap){
-        filling.addTap(tap);
-        return tap; //Maybe should be void or filling?
+    public static Amount addTapToFilling(Filling filling, Amount amount){
+        filling.addAmount(amount);
+        return amount; //Maybe should be void or filling?
     }
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();

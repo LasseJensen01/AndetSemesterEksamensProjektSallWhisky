@@ -14,21 +14,21 @@ public class Demo {
         NewMake nm2 = new NewMake("nm2",100);
         NewMake nm3 = new NewMake("nm3", 100);
 
-        Tap tap1 = new Tap(nm1, 10);
-        Tap tap2 = new Tap(nm2, 15);
-        Tap tap3 = new Tap(nm3, 15);
+        Amount amount1 = new Amount(nm1, 10);
+        Amount amount2 = new Amount(nm2, 15);
+        Amount amount3 = new Amount(nm3, 15);
 
         LocalDate oneMonthBack = LocalDate.now().minusMonths(1);
         LocalDate oneWeekBack = LocalDate.now().minusWeeks(1);
 
         Filling fill1 = new Filling(cask1, oneMonthBack, "Martin");
-        fill1.addTap(tap1);
-        fill1.addTap(tap2);
+        fill1.addAmount(amount1);
+        fill1.addAmount(amount2);
 
         System.out.println(cask1.getContentsInfo());
 
         Filling fill2 = new Filling(cask1, oneWeekBack, "Lars");
-        fill2.addTap(tap3);
+        fill2.addAmount(amount3);
 
         System.out.println(cask1.getContentsInfo());
     }

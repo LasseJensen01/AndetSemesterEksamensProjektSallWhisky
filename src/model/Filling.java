@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Filling {
-    private List<Tap> taps = new ArrayList<>();
+    private List<Amount> amounts = new ArrayList<>();
     private Cask cask;
     private int liters;
     private static int no = 0;
@@ -33,13 +33,13 @@ public class Filling {
         this.id = no;
         cask.addFilling(this);
     }
-    public void addTap(Tap tap){
-        taps.add(tap);
-        liters += tap.getLiters();
+    public void addAmount(Amount amount){
+        amounts.add(amount);
+        liters += amount.getLiters();
     }
     public String getContentsInfo(){
         String s = "";
-        for (Tap t : taps){
+        for (Amount t : amounts){
             s += t.toString() + " ";
         }
         s += "\nTapped by " + employee + " on " + date.toString() + "\n";
