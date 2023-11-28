@@ -105,8 +105,9 @@ public abstract class Controller {
     }
     /**
      * This method creates, stores and returns a newmake
-     * @param name name of the newmake, pre: not empty
-     * @param volume the amount of liquid produced from the distillation process, pre: must be positive
+     * @param name name of the newmake
+     * @param volume the amount of liquid produced from the distillation process
+     * @pre name not "", volume > 0
      * @return the newmake
      */
     public static NewMake createNewMake(String name, double volume){
@@ -116,22 +117,38 @@ public abstract class Controller {
     }
     /**
      * This method creates, stores and returns a filling
-     * @param Cask
-     * @param volume the amount of liquid produced from the distillation process, pre: must be positive
-     * @return the newmake
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "", cask.volume-cask.liters >= filling.liters
      */
     public Filling createFilling(Cask cask, String employee){
         Filling filling = new Filling(cask, LocalDate.now(), employee);
         return filling;
     }
+    /**
+     * This method creates, stores and returns a filling
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "", cask.volume-cask.liters >= filling.liters
+     */
     public static Tap createTap(NewMake newMake, int liters){
         Tap tap = new Tap(newMake, liters);
         return tap;
     }
+    /**
+     * This method creates, stores and returns a filling
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "", cask.volume-cask.liters >= filling.liters
+     */
     public static Tap addTapToFilling(Filling filling, Tap tap){
         filling.addTap(tap);
         return tap; //Maybe should be void or filling?
     }
+    /**
+     * @return a String representation of the content of the cask.
+     * @pram a cask
+     */
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();
     }
