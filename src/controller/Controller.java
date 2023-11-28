@@ -2,7 +2,6 @@ package controller;
 
 import model.Cask;
 import model.Type;
-import storage.ListStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public abstract class Controller {
-    private static ListStorage storage;
+    private static Storage storage;
 
-    public static void setStorage(ListStorage listStorage) {
+    public static void setStorage(Storage listStorage) {
         storage = listStorage;
     }
 
