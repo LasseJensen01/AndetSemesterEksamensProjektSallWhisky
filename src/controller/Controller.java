@@ -130,7 +130,7 @@ public abstract class Controller {
         return amount;
     }
     public static Amount addTapToFilling(Filling filling, Amount amount){
-        filling.addTap(amount);
+        filling.addAmount(amount);
         return amount; //Maybe should be void or filling?
     }
     public static String getCaskContent(Cask cask){
