@@ -4,11 +4,22 @@ import controller.Controller;
 import storage.ListStorage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Demo {
     public static void main(String[] args) {
         Controller.setStorage(new ListStorage());
         Cask cask1 = new Cask(Type.VIRGIN_OAK, 30);
+        Controller.addCaskToStorage(cask1);
+        Cask cask2 = new Cask(Type.VIRGIN_OAK, 30);
+        Controller.addCaskToStorage(cask2);
+        Cask cask3 = new Cask(Type.VIRGIN_OAK, 45);
+        Controller.addCaskToStorage(cask3);
+        Cask cask4 = new Cask(Type.VIRGIN_OAK, 30);
+        Controller.addCaskToStorage(cask4);
+        Cask cask5 = new Cask(Type.BOURBON, 30);
+        Controller.addCaskToStorage(cask5);
+
 
         NewMake nm1 = new NewMake("nm1", 100);
         NewMake nm2 = new NewMake("nm2",100);

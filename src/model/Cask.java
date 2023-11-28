@@ -10,7 +10,7 @@ public class Cask {
     private static int no = 0;
     private int id;
     private double volume; // How big cask
-    private double liters; //How much newMake is filled in cask
+    private double liters = 0; //How much newMake is filled in cask
     private List<Filling> fillings = new ArrayList<>();
 
 
@@ -46,5 +46,10 @@ public class Cask {
 
     public double getLiters() {
         return liters;
+    }
+
+    @Override
+    public String toString() {
+        return "Cask with ID: " + id + " Type: " + type + " Volume: " + volume;
     }
 }
