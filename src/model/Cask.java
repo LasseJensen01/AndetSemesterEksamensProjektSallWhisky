@@ -11,6 +11,7 @@ public class Cask {
     private int id;
     private double volume; // How big cask
     private double liters = 0; //How much newMake is filled in cask
+    private Location location = null;
     private List<Filling> fillings = new ArrayList<>();
 
 
@@ -50,6 +51,10 @@ public class Cask {
 
     public void setLiters(double liters) {
         this.liters = liters;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @Override
