@@ -103,7 +103,6 @@ public abstract class Controller {
      * @pre employee not "".
      */
     public static void registerCasks(Type type, double volume, int num){
-        List<Cask> casks = new ArrayList<>();
         for (int i = 0; i < num; i++){
             createCask(type, volume);
         }
@@ -177,6 +176,7 @@ public abstract class Controller {
         return newBatch;
     }
     public static void setCaskLiters(Cask cask, double liters){
+        if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
         cask.setLiters(liters); //Used to edit the cask incase of spills
     }
     public static List<Bottle> getBottels(){
