@@ -12,8 +12,8 @@ public class Main {
         Storage storage = ListStorage.loadStorage();
         if (storage == null)storage = new ListStorage();
         Controller.setStorage(storage);
+        Controller.loadIdsFromTracker();
         */
-
         Application.launch(Gui.class);
 
         //ListStorage.saveStorage(storage);

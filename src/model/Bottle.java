@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Bottle {
     private int id;
-    private int no;
+    private static int no = 0;
     private int noOfBottels;
     private double volume; //expresed in liters fx: 70cl = 0.7L
     private Filling filling;
@@ -49,4 +49,8 @@ public class Bottle {
     public String getWhiskyName() {
         return whiskyName;
     }
+    public static void setNo(int no) {
+        Bottle.no = no;
+    }
+
 }

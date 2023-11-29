@@ -10,6 +10,7 @@ import java.util.List;
 public class Cask {
     private Type type;
     private static int no = 0;
+
     private int id;
     private double volume; // How big cask
     private Filling filling = null;
@@ -87,5 +88,8 @@ public class Cask {
 
     public Location getLocation() {
         return location;
+    }
+    public static void setNo(int no) {
+        Cask.no = no;
     }
 }

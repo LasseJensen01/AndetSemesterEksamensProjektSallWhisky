@@ -16,4 +16,16 @@ public class IdTracker{
     public void setBottleId(int bottleId) {
         this.bottleId = bottleId;
     }
+
+    public int getCaskId() {
+        return caskId;
+    }
+
+    public int getFillingId() {
+        return fillingId;
+    }
+
+    public int getBottleId() {
+        return bottleId;
+    }
 }

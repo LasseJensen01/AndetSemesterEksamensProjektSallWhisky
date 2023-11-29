@@ -62,6 +62,17 @@ public abstract class Controller {
         return goodCasks;
     }
     /**
+     * This method loads the Ids from the the storage via the tracker.
+     * @throws IllegalStateException if storage has not been loaded from a local file.
+     */
+    public static void loadIdsFromTracker(){
+        if (storage == null) throw new IllegalStateException();
+        IdTracker idTracker = storage.getIdTracker();
+        Bottle.setNo(idTracker.getBottleId());
+        Filling.setNo(idTracker.getFillingId());
+        Cask.setNo(idTracker.getCaskId());
+    }
+    /**
      * This method creates, stores and returns a newmake
      * @param name name of the newmake
      * @param volume the amount of liquid produced from the distillation process
