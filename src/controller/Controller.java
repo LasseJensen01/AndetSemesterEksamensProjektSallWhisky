@@ -3,14 +3,12 @@ package controller;
 import model.Cask;
 import model.Type;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import model.Cask;
 import model.Filling;
 import model.NewMake;
 import model.Amount;
+import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
 
@@ -30,37 +28,45 @@ public abstract class Controller {
     /**
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
+     * Will only sort the casks currently in use
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public List<Cask> locateFullCask(Type type, double volume){
+    public static List<Cask> locateFullCask(Type type, @Nullable Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
         List<Cask> goodCasks = casks.stream()
-                // Makes sure all casks are currently filled
+                // Makes sure all casks are currently in use
                 .filter(cask -> cask.getLiters() > 0)
                 // Checks parameter type
-                .filter(cask -> cask.getType() == null || cask.getType() == type)
+                .filter(cask -> type == null || cask.getType() == type)
                 // Checks parameter volume
-                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
+                .filter(cask -> Objects.isNull(volume) || cask.getVolume() == volume)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
     }
-
-    public List<Cask> locateEmptyCask(Type type, double volume){
+    /**
+     * This method will take paramterts type and volume, both nullable, and search storgage for elligible
+     * casks matching the paramters and return them in a list
+     * Will only sort the casks currently NOT in use
+     * @param type type of the cask
+     * @param volume the amount of liquid the cask can hold
+     * @return a list of cask meeting the criteria
+     */
+    public static List<Cask> locateEmptyCask(Type type, @Nullable Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
         List<Cask> goodCasks = casks.stream()
-                // Makes sure all casks are currently empty
+                // Makes sure all casks are currently NOT in use
                 .filter(cask -> cask.getLiters() == 0)
                 // Checks parameter type
-                .filter(cask -> cask.getType() == null || cask.getType() == type)
+                .filter(cask -> type == null || cask.getType().equals(type))
                 // Checks parameter volume
-                .filter(cask -> Objects.isNull(cask.getVolume()) || cask.getVolume() == volume)
+                .filter(cask -> Objects.isNull(volume) || cask.getVolume() == volume)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
@@ -106,5 +112,8 @@ public abstract class Controller {
      */
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();
+    }
+    public static void addCaskToStorage(Cask c){
+        storage.storeCask(c);
     }
 }
