@@ -35,7 +35,7 @@ public class Cask {
     }
     public void emptyCask(){
         timesUsed++;
-        daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); //int - long
+        daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); // positive int minus a negative long
         filling = null;
         location = null;
     }
