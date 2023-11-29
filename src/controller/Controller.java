@@ -74,8 +74,8 @@ public abstract class Controller {
         return newMake;
     }
     /**
-     * This method creates, stores and returns a cask
-     * @param type the type of the employee
+     * This method creates, stores and returns a cask.
+     * @param type the type of the cask.
      * @param volume how many liters the cask can contain.
      * @pre employee not "".
      */
@@ -83,6 +83,19 @@ public abstract class Controller {
         Cask cask = new Cask(type, volume);
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
+    }
+    /**
+     * This method creates and stores a given number of casks.
+     * @param type the type of the cask.
+     * @param volume how many liters the cask can contain.
+     * @param num the number of casks.
+     * @pre employee not "".
+     */
+    public static void registerCasks(Type type, double volume, int num){
+        List<Cask> casks = new ArrayList<>();
+        for (int i = 0; i < num; i++){
+            createCask(type, volume);
+        }
     }
     /**
      * This method creates, stores and returns a filling
@@ -118,9 +131,6 @@ public abstract class Controller {
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();
     }
-    public static void setCaskLiters(Cask cask, double liters){
-        cask.setLiters(liters); //Used to edit the cask incase of spills
-    }
     /**
      * This method tap the content of a cask into a specified number of bottles and stores them in the storage.
      * @param cask a containg a filling.
@@ -154,6 +164,9 @@ public abstract class Controller {
         storage.getIdTracker().setBottleId(newBatch.getId());
         cask.emptyCask();
         return newBatch;
+    }
+    public static void setCaskLiters(Cask cask, double liters){
+        cask.setLiters(liters); //Used to edit the cask incase of spills
     }
     public static List<Bottle> getBottels(){
         return storage.getBottles();

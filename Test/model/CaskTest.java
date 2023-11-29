@@ -21,7 +21,7 @@ class CaskTest {
         // Assert
         assertTrue(message.equals("The cask is empty."));
 
-        // Case 2: The casket is empty because the filling.liters == 0.
+        // Case 2: The casket is empty because filling.liters == 0.
         // Arrange
         Filling filling = new Filling(cask, "Jesper");
         cask.setFilling(filling);
@@ -32,7 +32,7 @@ class CaskTest {
         // Assert
         assertTrue(message.equals("The cask is empty."));
 
-        // Case 3: The casket not empty.
+        // Case 3: The casket is not empty.
         // Arrange
         NewMake newMake = new NewMake("NM.77", 30);
         Amount amount = new Amount(newMake, 15);

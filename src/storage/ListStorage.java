@@ -6,7 +6,7 @@ import model.Cask;
 import model.IdTracker;
 import model.NewMake;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +16,30 @@ public class ListStorage implements Storage, Serializable {
         private final List<Bottle> bottles = new ArrayList<>();
         private IdTracker idTracker = new IdTracker();
 
+        public static ListStorage loadStorage(){
+                String fileName = "storage.save";
+                try (FileInputStream fileIn = new FileInputStream(fileName);
+                     ObjectInputStream objIn = new ObjectInputStream(fileIn);
+                ){
+                        Object obj = objIn.readObject();
+                        ListStorage storage = (ListStorage) obj;
+                        System.out.println("Storage loaded from file " + fileName);
+                        return storage;
+                } catch(Exception e) {
+                        System.out.println(e.getMessage());
+                        return null;
+                }
+        }
+        public static void saveStorage(Storage storage){
+                String fileName = "storage.save";
+                try (FileOutputStream fileOut = new FileOutputStream(fileName);
+                     ObjectOutputStream objOut = new ObjectOutputStream(fileOut)){
+                        objOut.writeObject(storage);
+                        System.out.println("Saved in file " + fileName);
+                } catch (Exception e){
+                        System.out.println(e.getMessage());
+                }
+        }
         @Override
         public List<Cask> getCasks() {
                 return new ArrayList<>(casks);
