@@ -2,6 +2,7 @@ package controller;
 
 import model.Cask;
 import model.NewMake;
+import model.Warehouse;
 
 import java.util.List;
 
@@ -10,4 +11,5 @@ public interface Storage {
     void storeCask(Cask cask);
     List<NewMake> getNewMakes();
     void storeNewMakes(NewMake newMake);
+    void storeWarehouse(Warehouse wh);
 }

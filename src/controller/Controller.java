@@ -1,13 +1,9 @@
 package controller;
 
-import model.Cask;
-import model.Type;
+import model.*;
 
 import java.util.List;
 
-import model.Filling;
-import model.NewMake;
-import model.Amount;
 import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
@@ -70,6 +66,19 @@ public abstract class Controller {
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
+    }
+
+    /**
+     * This method creates, stores and returns a warehouse
+     * @param id id of the warehouse
+     * @param name name of the warehouse
+     * @param adress adress of the warehouse
+     * @return the newly created warehouse
+     */
+    public static Warehouse createWarehouse(int id, String name, String adress){
+        Warehouse wh = new Warehouse(id, name, adress);
+        storage.storeWarehouse(wh);
+        return wh;
     }
     /**
      * This method creates, stores and returns a newmake

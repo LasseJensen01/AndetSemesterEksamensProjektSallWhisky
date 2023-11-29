@@ -57,6 +57,10 @@ public class Cask {
         this.location = location;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Cask with ID: " + id + " Type: " + type + " Volume: " + volume;

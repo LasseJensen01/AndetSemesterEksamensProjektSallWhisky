@@ -47,5 +47,17 @@ public class Demo {
         for (Cask c : l){
             System.out.println(c.toString());
         }
+
+        //Test for Warehouse
+        Warehouse wh1 = new Warehouse(1,"EAA","Strandvejen");
+        int count = 1;
+        for (int i = 0; i < 100; i++) {
+            Location lo = new Location(count);
+            Cask c = new Cask(Type.VIRGIN_OAK, count * 2);
+            c.setLiters(c.getVolume() / 2);
+            lo.setCask(c);
+            wh1.addLocation(lo);
+        }
+        wh1.extractOverview();
     }
 }
