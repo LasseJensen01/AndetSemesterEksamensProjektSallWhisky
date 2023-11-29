@@ -55,7 +55,8 @@ public class Cask {
     }
 
     public double getLiters() {
-        return filling.getLiters();
+        if (filling != null) return filling.getLiters();
+        return 0;
     }
     public void setFilling(Filling filling) {
         this.filling = filling;

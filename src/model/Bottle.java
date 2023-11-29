@@ -33,4 +33,20 @@ public class Bottle {
     public int getId() {
         return id;
     }
+
+    public int getNoOfBottels() {
+        return noOfBottels;
+    }
+
+    public Filling getFilling() {
+        return filling;
+    }
+
+    public LocalDate getFilledDate() {
+        return filledDate;
+    }
+
+    public String getWhiskyName() {
+        return whiskyName;
+    }
 }
