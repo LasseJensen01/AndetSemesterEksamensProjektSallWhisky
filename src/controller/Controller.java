@@ -1,16 +1,12 @@
 package controller;
 
-import model.Cask;
-import model.Type;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import model.Cask;
-import model.Filling;
-import model.NewMake;
-import model.Amount;
 
 import java.time.LocalDate;
 
@@ -83,8 +79,14 @@ public abstract class Controller {
      * @param cask the cask containing the filling
      * @pre employee not "", cask.volume-cask.liters >= filling.liters
      */
+    public Cask createCask(Type type, double volume){
+        Cask cask = new Cask(type, volume);
+        storage.getIdTracker().setCaskId(cask.getId());
+        return cask;
+    }
     public Filling createFilling(Cask cask, String employee){
-        Filling filling = new Filling(cask, LocalDate.now(), employee);
+        Filling filling = new Filling(cask, employee);
+        storage.getIdTracker().setFillingId(filling.getId());
         return filling;
     }
     public static Amount createAmount(NewMake newMake, int liters){
@@ -96,9 +98,9 @@ public abstract class Controller {
      * @param filling the filling that the amount is to be added to.
      * @param Amount the amount to be added.
      */
-    public static Amount addAmountToFilling(Filling filling, Amount amount){
+    public void addAmountToFilling(Filling filling, Amount amount){
+        if (filling.getLiters() + amount.getLiters() > filling.getCask().getLiters()) throw new IllegalArgumentException();
         filling.addAmount(amount);
-        return amount; //Maybe should be void or filling?
     }
     /**
      * This method gives a string repesentation of the constents of a cask
@@ -107,4 +109,26 @@ public abstract class Controller {
     public static String getCaskContent(Cask cask){
         return cask.getContentsInfo();
     }
+    public static void setCaskLiters(Cask cask, double liters){
+        cask.setLiters(liters); //Used to edit the cask incase of spills
+    }
+
+    public static void tapToXnumOfBottels(Cask cask, int numberOfBottels, double bottleVolume, String name){
+        Filling filling = cask.getFilling();
+        if (numberOfBottels * bottleVolume > filling.getLiters()) throw new IllegalArgumentException();
+        Bottle newBatch = new Bottle(bottleVolume, filling, name);
+        storage.storeBottles(newBatch);
+        storage.getIdTracker().setBottleId(newBatch.getId());
+        filling.setLiters(filling.getLiters() - numberOfBottels * bottleVolume);
+        if (filling.getLiters() <= 0) cask.emptyCask();
+    }
+    public static void tapWholeCaskToBottels(Cask cask, double bottleVolume, String name){
+        Filling filling = cask.getFilling();
+        int numberOfBottels = (int) (cask.getLiters()/bottleVolume);
+        Bottle newBatch = new Bottle(bottleVolume, filling, name);
+        storage.storeBottles(newBatch);
+        storage.getIdTracker().setBottleId(newBatch.getId());
+        cask.emptyCask();
+    }
+
 }

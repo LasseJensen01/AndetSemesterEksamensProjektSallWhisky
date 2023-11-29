@@ -1,7 +1,9 @@
 package model;
 
+import java.io.PipedReader;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,10 @@ public class Cask {
     private static int no = 0;
     private int id;
     private double volume; // How big cask
-    private double liters; // How much newMake is filled in cask
-    private List<Filling> fillings = new ArrayList<>();
-
+    private Filling filling = null;
+    private int timesUsed = 0;
+    private int daysUsed = 0;
+    private Location location;
 
     public Cask(Type type, double volume) {
         this.type = type;
@@ -20,22 +23,29 @@ public class Cask {
         no++;
         this.id = no;
     }
-
-    public void addFilling(Filling filling){
-        fillings.add(filling);
-        liters += filling.getLiters();
-    }
-
     public String getContentsInfo(){
-        String s = "Casket " + id + " has had the following fills:\n";
-        for (Filling f : fillings){
-            s += f.getContentsInfo();
+        String s = "";
+        if (filling == null || filling.getLiters() == 0) s += "The cask is empty.";
+        else {
+            s = "Casket " + id + " contains the following:\n";
+            s += filling.getContentsInfo();
         }
-        s += "Matured for " +
-                Period.between(fillings.get(fillings.size()-1).getDate(), LocalDate.now()).toString();
         return s;
     }
-
+    public void emptyCask(){
+        timesUsed++;
+        daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); //int - long
+        filling = null;
+        location = null;
+    }
+    public boolean containsWhisky(){
+        return filling.isWisky();
+    }
+    //-----------------------------------------------------------------------
+    public void setLiters(double liters){filling.setLiters(liters);}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
     public Type getType() {
         return type;
     }
@@ -45,6 +55,36 @@ public class Cask {
     }
 
     public double getLiters() {
-        return liters;
+        return filling.getLiters();
+    }
+    public void setFilling(Filling filling) {
+        this.filling = filling;
+    }
+
+    public Filling getFilling() {
+        return filling;
+    }
+
+    public int getTimesUsed() {
+        return timesUsed;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setTimesUsed(int timesUsed) {
+        this.timesUsed = timesUsed;
+    }
+
+    public int getDaysUsed() {
+        return daysUsed;
+    }
+
+    public void setDaysUsed(int daysUsed) {
+        this.daysUsed = daysUsed;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 }

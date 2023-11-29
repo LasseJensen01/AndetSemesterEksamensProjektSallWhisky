@@ -1,18 +1,21 @@
 package controller;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ControllerTest {
 
-    @org.junit.jupiter.api.Test
-    void createNewMake() {
+    @Test
+    void tapToXnumOfBottels() {
+
+
     }
 
-    @org.junit.jupiter.api.Test
-    void createFilling() {
-    }
+    @Test
+    void tapWholeCaskToBottels() {
 
-    @org.junit.jupiter.api.Test
-    void getCaskContent() {
+
     }
 }
