@@ -74,21 +74,30 @@ public abstract class Controller {
         return newMake;
     }
     /**
-     * This method creates, stores and returns a filling
-     * @param employee the name of the employee
-     * @param cask the cask containing the filling
-     * @pre employee not "", cask.volume-cask.liters >= filling.liters
+     * This method creates, stores and returns a cask
+     * @param type the type of the employee
+     * @param volume how many liters the cask can contain.
+     * @pre employee not "".
      */
     public Cask createCask(Type type, double volume){
         Cask cask = new Cask(type, volume);
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
     }
+    /**
+     * This method creates, stores and returns a filling
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "".
+     */
     public Filling createFilling(Cask cask, String employee){
         Filling filling = new Filling(cask, employee);
         storage.getIdTracker().setFillingId(filling.getId());
         return filling;
     }
+    /**
+     * Left for later... need newmake
+     */
     public static Amount createAmount(NewMake newMake, int liters){
         Amount amount = new Amount(newMake, liters);
         return amount;
@@ -97,9 +106,9 @@ public abstract class Controller {
      * This method adds a amount to a filling
      * @param filling the filling that the amount is to be added to.
      * @param Amount the amount to be added.
+     * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
      */
-    public void addAmountToFilling(Filling filling, Amount amount){
-        if (filling.getLiters() + amount.getLiters() > filling.getCask().getLiters()) throw new IllegalArgumentException();
+    public void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
         filling.addAmount(amount);
     }
     /**
@@ -112,20 +121,34 @@ public abstract class Controller {
     public static void setCaskLiters(Cask cask, double liters){
         cask.setLiters(liters); //Used to edit the cask incase of spills
     }
-
+    /**
+     * This method tap the content of a cask into a specified number of bottles and stores them in the storage.
+     * @param cask a containg a filling.
+     * @param numberOfBottels how many bottles the user would like to fill.
+     * @param bottleVolume the size of the bottles expressed in liters.
+     * @param name the desired name of the whisky on the bottle.
+     * @throws IllegalArgumentException if there is insufficient filling on the cask for the number of bottles.
+     */
     public static void tapToXnumOfBottels(Cask cask, int numberOfBottels, double bottleVolume, String name){
         Filling filling = cask.getFilling();
         if (numberOfBottels * bottleVolume > filling.getLiters()) throw new IllegalArgumentException();
-        Bottle newBatch = new Bottle(bottleVolume, filling, name);
+        Bottle newBatch = new Bottle(bottleVolume, filling, name, numberOfBottels);
         storage.storeBottles(newBatch);
         storage.getIdTracker().setBottleId(newBatch.getId());
         filling.setLiters(filling.getLiters() - numberOfBottels * bottleVolume);
         if (filling.getLiters() <= 0) cask.emptyCask();
     }
+    /**
+     * This method tap the whole content of a cask into bottles and stores them in the storage.
+     * @param cask a containg a filling.
+     * @param bottleVolume the size of the bottles expressed in liters.
+     * @param name the desired name of the whisky on the bottle.
+     * @throws IllegalArgumentException if there is insufficient filling on the cask for the number of bottles.
+     */
     public static void tapWholeCaskToBottels(Cask cask, double bottleVolume, String name){
         Filling filling = cask.getFilling();
         int numberOfBottels = (int) (cask.getLiters()/bottleVolume);
-        Bottle newBatch = new Bottle(bottleVolume, filling, name);
+        Bottle newBatch = new Bottle(bottleVolume, filling, name, numberOfBottels);
         storage.storeBottles(newBatch);
         storage.getIdTracker().setBottleId(newBatch.getId());
         cask.emptyCask();

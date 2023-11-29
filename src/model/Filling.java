@@ -14,7 +14,11 @@ public class Filling {
     private int id;
     private LocalDate date;
     private String employee;
-
+    /**
+     * Creats a filling and sets its relation to its cask
+     * @param cask an empty cask
+     * @param employee the name of the employee
+     */
     public Filling(Cask cask, String employee) {
         this.cask = cask;
         this.employee = employee;
@@ -24,11 +28,19 @@ public class Filling {
 
         cask.setFilling(this);
     }
+    /**
+     * @param amount an amount to be added.
+     * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
+     */
     public void addAmount(Amount amount){
         if ((liters + amount.getLiters()) > cask.getVolume()) throw new IllegalArgumentException();
         amounts.add(amount);
         liters += amount.getLiters();
     }
+    /**
+     * @returns a string representation of the content.
+     * @pre amounts have been added.
+     */
     public String getContentsInfo(){
         calcMaturiy();
         String s = ""; //Add single cask, sigle malt v1 and blend in v2
@@ -40,9 +52,15 @@ public class Filling {
                 + maturity.getDays() + " days on a " + cask.getType() + " cask.";
         return s;
     }
-    public void calcMaturiy(){
+    /**
+     * Updates the maturity of the filling to between the date of the filling and when the method is called.
+     */
+    private void calcMaturiy(){
         maturity = Period.between(date, LocalDate.now());
     }
+    /**
+     * @returns a boolean value representing if filling can legaly be considered whisky.
+     */
     public boolean isWisky(){
         calcMaturiy();
         return maturity.getYears() >= 3;
