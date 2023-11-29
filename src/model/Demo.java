@@ -41,7 +41,8 @@ public class Demo {
         Filling fill2 = new Filling(cask1, oneWeekBack, "Lars");
         fill2.addAmount(amount3);
 
-        List<Cask> l = Controller.locateEmptyCask(null, 45.0);
+        // Test for Locate metoder
+        List<Cask> l = Controller.locateEmptyCask(null, null);
         System.out.println(l.size());
         for (Cask c : l){
             System.out.println(c.toString());

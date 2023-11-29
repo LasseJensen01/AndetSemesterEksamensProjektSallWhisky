@@ -48,6 +48,10 @@ public class Cask {
         return liters;
     }
 
+    public void setLiters(double liters) {
+        this.liters = liters;
+    }
+
     @Override
     public String toString() {
         return "Cask with ID: " + id + " Type: " + type + " Volume: " + volume;
