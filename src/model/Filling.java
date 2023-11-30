@@ -9,7 +9,6 @@ public class Filling {
     private List<Amount> amounts = new ArrayList<>();
     private Cask cask;
     private double liters;
-    private Period maturity = null;
     private static int no = 0;
     private int id;
     private LocalDate date;
