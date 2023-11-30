@@ -6,12 +6,28 @@ public class MaltBatch {
     private String malteri;
 
     //---------------
-    private Grain grain;
+    private Field field;
 
-    public MaltBatch(int batchID, String rygeMateriale, String malteri, Grain grain) {
+    public MaltBatch(int batchID, String rygeMateriale, String malteri, Field field) {
         this.batchID = batchID;
         this.rygeMateriale = rygeMateriale;
         this.malteri = malteri;
-        this.grain = grain;
+        this.field = field;
+    }
+
+    public int getBatchID() {
+        return batchID;
+    }
+
+    public String getRygeMateriale() {
+        return rygeMateriale;
+    }
+
+    public String getMalteri() {
+        return malteri;
+    }
+
+    public Field getField() {
+        return field;
     }
 }

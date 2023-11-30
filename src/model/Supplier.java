@@ -16,4 +16,24 @@ public class Supplier {
         this.name = name;
         this.address = address;
     }
+
+    public int getSupplierID() {
+        return supplierID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public List<Field> getFields() {
+        return List.copyOf(fields);
+    }
+
+    public void addFields(Field field) {
+        fields.add(field);
+    }
 }
