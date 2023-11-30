@@ -1,6 +1,7 @@
 package model;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,18 +26,33 @@ public class Warehouse {
         try(PrintWriter writer = new PrintWriter("src\\model\\WarehouseOverveiw.txt")){
             writer.println("Warehouse extract for: " + this.name);
             writer.println("-------------------------------------");
-            writer.println("ID" + "   " + "Type" + "   ");
+            writer.println();
             for (Location l : lager){
                 Cask c = l.getCask();
                 if (c != null){
-                    writer.print(c.getId() + "   ");
-                    writer.print(c.getType() + "   ");
-                    writer.print(c.getVolume() + "   ");
-                    writer.print(c.getLiters() + "   ");
-                    writer.print(l.getLocationID() + "   ");
-                    writer.println("   " + "Fillings:");
-
+                    int id = c.getId();
+                    Type type = c.getType();
+                    double volume = c.getVolume();
+                    double liters = c.getLiters();
+                    int location = l.getLocationID();
+                   writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Location: %6d%n", id, type, volume, liters, location);
+                   writer.printf("     Fillings: %n");
+                   List<Filling> filling = c.getFillings();
+                   for (Filling f : filling){
+                       int fid = f.getId();
+                       double fliters = f.getLiters();
+                       String employee = f.getEmployee();
+                       LocalDate date = f.getDate();
+                       writer.printf("            ID: %3d, Liters: %1.2f, Employee: %-13s Date: %tF%n", fid, fliters,employee,date);
+                       List<Amount> amount = f.getAmounts();
+                       for (Amount a : amount){
+                           String nm = a.getNewMake().getName();
+                           double aliters = a.getLiters();
+                           writer.printf("            NewMake: %-13s Liters: %1.2f%n", nm,aliters);
+                       }
+                   }
                 }
+                writer.println();
             }
 
         } catch (FileNotFoundException e) {

@@ -61,6 +61,11 @@ public class Cask {
         return id;
     }
 
+    public List<Filling> getFillings() {
+        return new ArrayList<>(fillings) {
+        };
+    }
+
     @Override
     public String toString() {
         return "Cask with ID: " + id + " Type: " + type + " Volume: " + volume;

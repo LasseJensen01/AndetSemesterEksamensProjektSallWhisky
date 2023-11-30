@@ -7,7 +7,7 @@ import java.util.List;
 public class Filling {
     private List<Amount> amounts = new ArrayList<>();
     private Cask cask;
-    private int liters;
+    private double liters;
     private static int no = 0;
     private int id;
     private LocalDate date;
@@ -21,8 +21,16 @@ public class Filling {
         return employee;
     }
 
-    public int getLiters() {
+    public double getLiters() {
         return liters;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Amount> getAmounts() {
+        return new ArrayList<>(amounts);
     }
 
     public Filling(Cask cask, LocalDate date, String employee) {

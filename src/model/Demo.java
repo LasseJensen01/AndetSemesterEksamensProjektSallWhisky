@@ -57,6 +57,8 @@ public class Demo {
             c.setLiters(c.getVolume() / 2);
             lo.setCask(c);
             wh1.addLocation(lo);
+            Filling f = new Filling(c,LocalDate.now(),"Me");
+            Controller.addTapToFilling(f,new Amount(nm1,3));
         }
         wh1.extractOverview();
     }
