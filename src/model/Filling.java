@@ -9,7 +9,6 @@ public class Filling {
     private List<Amount> amounts = new ArrayList<>();
     private Cask cask;
     private double liters;
-    private Period maturity = null;
     private static int no = 0;
     private int id;
     private LocalDate date;
@@ -41,8 +40,8 @@ public class Filling {
      * @returns a string representation of the content.
      * @pre amounts have been added.
      */
-    public String getContentsInfo(){
-        Period maturity = calcMaturiy(LocalDate.now());
+    public String getContentsInfo(LocalDate periodEndDate){
+        Period maturity = calcMaturiy(periodEndDate);
         String s = ""; //Add single cask, sigle malt v1 and blend in v2
         for (Amount t : amounts){
             s += t.toString() + " ";

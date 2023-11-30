@@ -28,7 +28,7 @@ public class Bottle {
         String s = "";
         s += noOfBottels + ", " + volume + " of " + whiskyName + ". Containing :\n";
         for (Filling f : fillings){
-            s += f.getContentsInfo() + "\n";
+            s += f.getContentsInfo(filledDate) + "\n";
         }
         s += "Taped on " + filledDate + " with ID: " + id + ".";
         return s;
