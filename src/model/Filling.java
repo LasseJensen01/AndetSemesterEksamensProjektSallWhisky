@@ -42,7 +42,7 @@ public class Filling {
      * @pre amounts have been added.
      */
     public String getContentsInfo(){
-        calcMaturiy();
+        Period maturity = calcMaturiy(LocalDate.now());
         String s = ""; //Add single cask, sigle malt v1 and blend in v2
         for (Amount t : amounts){
             s += t.toString() + " ";
@@ -55,15 +55,14 @@ public class Filling {
     /**
      * Updates the maturity of the filling to between the date of the filling and when the method is called.
      */
-    private void calcMaturiy(){
-        maturity = Period.between(date, LocalDate.now());
+    private Period calcMaturiy(LocalDate date){
+        return Period.between(this.date, date);
     }
     /**
      * @returns a boolean value representing if filling can legaly be considered whisky.
      */
     public boolean isWisky(){
-        calcMaturiy();
-        return maturity.getYears() >= 3;
+        return calcMaturiy(LocalDate.now()).getYears() >= 3;
     }
     //---------------------------------------------------------------------------------------------------
     public void setLiters(double liters) {
@@ -79,11 +78,6 @@ public class Filling {
 
     public double getLiters() {
         return liters;
-    }
-
-    public Period getMaturity() {
-        calcMaturiy();
-        return maturity;
     }
 
     public Cask getCask() {

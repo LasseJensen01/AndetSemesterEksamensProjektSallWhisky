@@ -151,8 +151,9 @@ public abstract class Controller {
      */
     public static Bottle tapToXnumOfBottels(Cask cask, int numberOfBottels, double bottleVolume, String name){
         Filling filling = cask.getFilling();
+        List<Filling> fillings = new ArrayList<>();
         if (numberOfBottels * bottleVolume > filling.getLiters()) throw new IllegalArgumentException();
-        Bottle newBatch = new Bottle(bottleVolume, filling, name, numberOfBottels);
+        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
         storage.storeBottles(newBatch);
         storage.getIdTracker().setBottleId(newBatch.getId());
         filling.setLiters(filling.getLiters() - numberOfBottels * bottleVolume);
@@ -168,8 +169,9 @@ public abstract class Controller {
      */
     public static Bottle tapWholeCaskToBottels(Cask cask, double bottleVolume, String name){
         Filling filling = cask.getFilling();
+        List<Filling> fillings = new ArrayList<>();
         int numberOfBottels = (int) (cask.getLiters()/bottleVolume);
-        Bottle newBatch = new Bottle(bottleVolume, filling, name, numberOfBottels);
+        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
         storage.storeBottles(newBatch);
         storage.getIdTracker().setBottleId(newBatch.getId());
         cask.emptyCask();

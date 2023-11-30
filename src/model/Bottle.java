@@ -1,19 +1,20 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Bottle {
     private int id;
     private static int no = 0;
     private int noOfBottels;
     private double volume; //expresed in liters fx: 70cl = 0.7L
-    private Filling filling;
+    private List<Filling> fillings;
     private LocalDate filledDate;
     private String whiskyName;
 
-    public Bottle(double volume, Filling filling, String name, int noOfBottels) {
+    public Bottle(double volume, List<Filling> fillings, String name, int noOfBottels) {
         this.volume = volume;
-        this.filling = filling;
+        this.fillings = fillings;
         this.noOfBottels = noOfBottels;
         filledDate = LocalDate.now();
         whiskyName = name;
@@ -26,7 +27,9 @@ public class Bottle {
     public String getContentInfo(){
         String s = "";
         s += noOfBottels + ", " + volume + " of " + whiskyName + ". Containing :\n";
-        s += filling.getContentsInfo();
+        for (Filling f : fillings){
+            s += f.getContentsInfo() + "\n";
+        }
         s += "Taped on " + filledDate + " with ID: " + id + ".";
         return s;
     }
@@ -38,8 +41,8 @@ public class Bottle {
         return noOfBottels;
     }
 
-    public Filling getFilling() {
-        return filling;
+    public List<Filling> getFillings() {
+        return fillings;
     }
 
     public LocalDate getFilledDate() {
