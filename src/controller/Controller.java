@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Filling;
@@ -89,8 +90,9 @@ public abstract class Controller {
      * @pre name not "", volume > 0
      * @return the newmake
      */
-    public static NewMake createNewMake(String name, double volume){
-        NewMake newMake = new NewMake(name, volume);
+    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
+        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
         storage.storeNewMakes(newMake);
         return newMake;
     }
