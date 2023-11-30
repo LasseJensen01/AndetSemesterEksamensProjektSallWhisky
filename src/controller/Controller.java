@@ -2,8 +2,7 @@ package controller;
 
 import model.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import model.Filling;
 import model.NewMake;
@@ -13,7 +12,6 @@ import model.Cask;
 
 import java.time.LocalDate;
 
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class Controller {
@@ -163,7 +161,8 @@ public abstract class Controller {
      */
     public static Bottle tapToXnumOfBottels(Cask cask, int numberOfBottels, double bottleVolume, String name){
         Filling filling = cask.getFilling();
-        List<Filling> fillings = new ArrayList<>();
+        Map<Filling,Double> fillings = new HashMap<Filling, Double>();
+        fillings.put(filling,Double.valueOf(1));
         if (numberOfBottels * bottleVolume > filling.getLiters()) throw new IllegalArgumentException();
         Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
         storage.storeBottles(newBatch);
@@ -177,17 +176,54 @@ public abstract class Controller {
      * @param cask a containg a filling.
      * @param bottleVolume the size of the bottles expressed in liters.
      * @param name the desired name of the whisky on the bottle.
-     * @throws IllegalArgumentException if there is insufficient filling on the cask for the number of bottles.
      */
     public static Bottle tapWholeCaskToBottels(Cask cask, double bottleVolume, String name){
         Filling filling = cask.getFilling();
-        List<Filling> fillings = new ArrayList<>();
+        Map<Filling,Double> fillings = new HashMap<Filling, Double>();
+        fillings.put(filling,Double.valueOf(1)); // There has to be a better way...
         int numberOfBottels = (int) (cask.getLiters()/bottleVolume);
         Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
         storage.storeBottles(newBatch);
         storage.getIdTracker().setBottleId(newBatch.getId());
         cask.emptyCask();
         return newBatch;
+    }
+    /**
+     * This method tap the whole content of a cask into bottles and stores them in the storage.
+     * @param casks a set of casks with a double representing the number of liter to be taped for each cask.
+     * @param bottleVolume the size of the bottles expressed in liters, must be positive.
+     * @param name the desired name of the whisky on the bottle.
+     */
+    public static Bottle tapFromMultipleCasksToBottels(HashMap<Cask, Double> casks, double bottleVolume, String name){
+        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+        HashMap<Filling, Double> fillings = new HashMap<>();
+        double totalLiters = 0;
+        for (Double d : casks.values()){totalLiters += d;}
+        for (Cask cask : casks.keySet()){
+            fillings.put(cask.getFilling(),(casks.get(cask)/totalLiters));
+            if (cask.getLiters() == casks.get(cask)){
+                cask.emptyCask();
+            } else {
+                cask.setLiters(cask.getLiters()-casks.get(cask));
+            }
+            //Should a cask be empty if it is below a threshold?
+        }
+        int numberOfBottels = (int) (totalLiters/bottleVolume);
+        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
+        storage.storeBottles(newBatch);
+        storage.getIdTracker().setBottleId(newBatch.getId());
+        return newBatch;
+    }
+    /**
+     * Helpermethod. It cheeks if the individual casks contain enought liters for the desired tap.
+     * @param casks a set of casks with a double representing the number of liter to be taped for each cask.
+     */
+    private static boolean validateCaskSet(HashMap<Cask, Double> casks){
+        boolean valid = true;
+        for (Cask cask : casks.keySet()){
+            if (cask.getLiters() < casks.get(cask)) valid = false;
+        }
+        return valid;
     }
     public static void setCaskLiters(Cask cask, double liters){
         if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
