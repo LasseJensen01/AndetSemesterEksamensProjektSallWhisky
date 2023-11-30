@@ -83,12 +83,20 @@ public abstract class Controller {
         Filling.setNo(idTracker.getFillingId());
         Cask.setNo(idTracker.getCaskId());
     }
+
     /**
      * This method creates, stores and returns a newmake
+     * @param newMakeID id of newmake
      * @param name name of the newmake
+     * @param startDate day production started
+     * @param endDate day production ended
      * @param volume the amount of liquid produced from the distillation process
+     * @param workerID id of responsible worker
+     * @param comment optional comment
+     * @param alcPercent alcohol percentage of new make
+     * @param maltBatches the malt batches involved in making the new make
      * @pre name not "", volume > 0
-     * @return the newmake
+     * @return the NewMake object
      */
     public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
                                         String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
