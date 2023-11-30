@@ -84,6 +84,12 @@ public abstract class Controller {
         cask.setLocation(newLocation);
     }
 
+    /**
+     * Creates a warehouse. Will have an Id assigned.
+     * @param name - Name of the warehouse
+     * @param adress - Adress for the warehouse
+     * @return
+     */
     public static Warehouse createWarehouse(String name, String adress){
         Warehouse wh = new Warehouse(name, adress);
         storage.storeWarehouses(wh);
@@ -91,6 +97,14 @@ public abstract class Controller {
     }
     //TODO
     //Fungere men skal forfines, overvej at bruge array
+
+    /**
+     * Creates Locations in a warehouse based on the information given
+     * @param wh - Warehouse which is getting location created
+     * @param rows - Nr. of rows in the location
+     * @param shelfUnitsPerRow - Number og shelf units pr. row
+     * @param shelfsPerUnit - Nr. of shelfs pr. shelf unit
+     */
     public static void createLocationsInWarehouse(Warehouse wh, int rows, int shelfUnitsPerRow, int shelfsPerUnit){
         String row = "" + rows;
         String shelfUnit = "" + shelfUnitsPerRow;
