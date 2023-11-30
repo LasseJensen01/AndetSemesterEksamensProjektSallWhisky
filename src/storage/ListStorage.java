@@ -1,16 +1,14 @@
 package storage;
 
 import controller.Storage;
-import model.Bottle;
-import model.Cask;
-import model.IdTracker;
-import model.NewMake;
+import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
+        private final List<Supplier> suppliers = new ArrayList<>();
         private final List<Cask> casks = new ArrayList<>();
         private final List<NewMake> newMakes = new ArrayList<>();
         private final List<Bottle> bottles = new ArrayList<>();
@@ -39,6 +37,17 @@ public class ListStorage implements Storage, Serializable {
                 } catch (Exception e){
                         System.out.println(e.getMessage());
                 }
+        }
+
+        //Supplier
+        @Override
+        public List<Supplier> getSuppliers(){
+                return new ArrayList<>(suppliers);
+        }
+
+        @Override
+        public void storeSupplier(Supplier supplier){
+                suppliers.add(supplier);
         }
 
         //Cask

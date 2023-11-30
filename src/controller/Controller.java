@@ -210,4 +210,10 @@ public abstract class Controller {
     public static List<Cask> getCasks(){
         return storage.getCasks();
     }
+
+    public static Supplier createSupplier(int supplierID, String name, String address){
+        Supplier supplier = new Supplier(supplierID, name, address);
+        storage.storeSupplier(supplier);
+        return supplier;
+    }
 }
