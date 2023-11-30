@@ -26,7 +26,7 @@ public class Cask {
         if (filling == null || filling.getLiters() == 0) s += "The cask is empty.";
         else {
             s = "Casket " + id + " contains the following:\n";
-            s += filling.getContentsInfo();
+            s += filling.getContentsInfo(LocalDate.now());
         }
         return s;
     }
@@ -88,10 +88,6 @@ public class Cask {
     }
     public static void setNo(int no) {
         Cask.no = no;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     @Override
