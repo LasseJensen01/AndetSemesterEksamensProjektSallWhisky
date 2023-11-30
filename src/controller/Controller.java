@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Filling;
@@ -102,6 +103,7 @@ public abstract class Controller {
      */
     public static Cask createCask(Type type, double volume){
         Cask cask = new Cask(type, volume);
+        storage.storeCask(cask);
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
     }
