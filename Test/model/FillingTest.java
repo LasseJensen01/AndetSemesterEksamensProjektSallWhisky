@@ -7,14 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class FillingTest {
 
     @Test
-    void getLiters() {
-    }
-
-    @Test
     void addAmount() {
+
     }
 
     @Test
-    void getContentsInfo() {
+    void calcMaturiy() {
+
     }
 }
