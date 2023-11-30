@@ -90,9 +90,6 @@ public class Cask {
         Cask.no = no;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
 
     @Override
     public String toString() {
