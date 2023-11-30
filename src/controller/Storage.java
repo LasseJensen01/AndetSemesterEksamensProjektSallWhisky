@@ -1,9 +1,6 @@
 package controller;
 
-import model.Bottle;
-import model.Cask;
-import model.IdTracker;
-import model.NewMake;
+import model.*;
 
 import java.util.List;
 
@@ -16,4 +13,6 @@ public interface Storage {
     void storeBottles(Bottle bottle);
     void storeIdTracker(IdTracker idTracker);
     IdTracker getIdTracker();
+    List<Warehouse> getWarehouses();
+    void storeWarehouses(Warehouse warehouse);
 }

@@ -91,6 +91,10 @@ public class Filling {
         this.date = date;
     }
 
+    public List<Amount> getAmounts() {
+        return new ArrayList<>(amounts);
+    }
+
     public static void setNo(int no) {
         Filling.no = no;
     }

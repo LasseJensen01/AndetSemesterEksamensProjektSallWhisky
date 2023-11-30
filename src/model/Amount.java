@@ -13,6 +13,10 @@ public class Amount {
         return liters;
     }
 
+    public NewMake getNewMake() {
+        return newMake;
+    }
+
     @Override
     public String toString() {
         return liters + "L of " + newMake.getName();

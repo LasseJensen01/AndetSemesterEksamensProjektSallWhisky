@@ -1,10 +1,7 @@
 package storage;
 
 import controller.Storage;
-import model.Bottle;
-import model.Cask;
-import model.IdTracker;
-import model.NewMake;
+import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,6 +11,7 @@ public class ListStorage implements Storage, Serializable {
         private final List<Cask> casks = new ArrayList<>();
         private final List<NewMake> newMakes = new ArrayList<>();
         private final List<Bottle> bottles = new ArrayList<>();
+        private final List<Warehouse> warehouses = new ArrayList<>();
         private IdTracker idTracker = new IdTracker();
 
         public static ListStorage loadStorage(){
@@ -77,5 +75,15 @@ public class ListStorage implements Storage, Serializable {
         @Override
         public IdTracker getIdTracker() {
                 return idTracker;
+        }
+
+        @Override
+        public List<Warehouse> getWarehouses() {
+                return new ArrayList<>(warehouses);
+        }
+
+        @Override
+        public void storeWarehouses(Warehouse warehouse) {
+                warehouses.add(warehouse);
         }
 }

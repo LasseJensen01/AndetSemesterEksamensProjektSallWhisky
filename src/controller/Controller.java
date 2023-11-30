@@ -72,6 +72,34 @@ public abstract class Controller {
                 .collect(Collectors.toList());
         return goodCasks;
     }
+
+    /**
+     * Take a cask and move it to a new location
+     * Clears up the old location for new storage
+     * @param cask - The cask to be moved
+     * @param newLocation - The new location
+     */
+    public static void moveCask(Cask cask, Location newLocation){
+        cask.getLocation().setCask(null);
+        cask.setLocation(newLocation);
+    }
+
+    public static Warehouse createWarehouse(String name, String adress){
+        Warehouse wh = new Warehouse(name, adress);
+        storage.storeWarehouses(wh);
+        return wh;
+    }
+    //TODO
+    //Fungere men skal forfines, overvej at bruge array
+    public static void createLocationsInWarehouse(Warehouse wh, int rows, int shelfUnitsPerRow, int shelfsPerUnit){
+        String row = "" + rows;
+        String shelfUnit = "" + shelfUnitsPerRow;
+        String shelf = "" + shelfsPerUnit;
+        String lo = row + shelfUnitsPerRow + shelfsPerUnit;
+        System.out.println(lo);
+        int location = Integer.parseInt(lo);
+        System.out.println(location);
+    }
     /**
      * This method loads the Ids from the the storage via the tracker.
      * @throws IllegalStateException if storage has not been loaded from a local file.
