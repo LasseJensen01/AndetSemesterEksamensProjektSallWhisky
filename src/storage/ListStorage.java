@@ -40,6 +40,8 @@ public class ListStorage implements Storage, Serializable {
                         System.out.println(e.getMessage());
                 }
         }
+
+        //Cask
         @Override
         public List<Cask> getCasks() {
                 return new ArrayList<>(casks);
@@ -50,6 +52,7 @@ public class ListStorage implements Storage, Serializable {
                 casks.add(cask);
         }
 
+        //NewMake
         @Override
         public List<NewMake> getNewMakes() {
                 return new ArrayList<>(newMakes);
@@ -60,6 +63,7 @@ public class ListStorage implements Storage, Serializable {
                 newMakes.add(newMake);
         }
 
+        //Bottle
         @Override
         public List<Bottle> getBottles() {
                 return new ArrayList<>(bottles);
@@ -70,6 +74,7 @@ public class ListStorage implements Storage, Serializable {
                 bottles.add(bottle);
         }
 
+        //IdTracker
         @Override
         public void storeIdTracker(IdTracker idTracker) {
                 this.idTracker = idTracker;
