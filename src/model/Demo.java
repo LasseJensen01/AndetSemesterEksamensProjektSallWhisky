@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Demo {
     public static void main(String[] args) {
-
+        Controller.setStorage(new ListStorage());
+        Warehouse wh = Controller.createWarehouse("sall", "sall");
+        Controller.createLocationsInWarehouse(wh, 01, 01, 01);
     }
 }
