@@ -195,9 +195,6 @@ public abstract class Controller {
         cask.getLocation().setCask(null);
         cask.setLocation(newLocation);
     }
-
-    //TODO
-    //Fungere men skal forfines, overvej at bruge array
     /**
      * Creates Locations in a warehouse based on the information given
      * @param wh - Warehouse which is getting location created
