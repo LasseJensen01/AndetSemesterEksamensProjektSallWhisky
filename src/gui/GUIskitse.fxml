@@ -32,7 +32,7 @@
                <children>
                   <Text fx:id="txtSuppliers" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers" />
                   <Text fx:id="txtInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
-                  <Button fx:id="btnSupplier" mnemonicParsing="false" text="Add supplier" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnSupplier" mnemonicParsing="false" text="Add farmer" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <ListView fx:id="lvwSuppliers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                   <ListView fx:id="lvwSupplierInfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
                </children>

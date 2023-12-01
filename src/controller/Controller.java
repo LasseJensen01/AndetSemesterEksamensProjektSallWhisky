@@ -24,6 +24,11 @@ public abstract class Controller {
     //hej
     //hi
 
+    //CRUD
+
+
+
+
     /**
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
@@ -290,9 +295,9 @@ public abstract class Controller {
         return storage.getCasks();
     }
 
-    public static Supplier createSupplier(int supplierID, String name, String address){
-        Supplier supplier = new Supplier(supplierID, name, address);
-        storage.storeSupplier(supplier);
-        return supplier;
+    public static Farmer createFarmer(String name, String address){
+        Farmer farmer = new Farmer(name, address);
+        storage.storeFarmer(farmer);
+        return farmer;
     }
 }

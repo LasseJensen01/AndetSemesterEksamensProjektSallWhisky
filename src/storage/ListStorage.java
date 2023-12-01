@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
-        private final List<Supplier> suppliers = new ArrayList<>();
+        private final List<Farmer> farmers = new ArrayList<>();
         private final List<Cask> casks = new ArrayList<>();
         private final List<NewMake> newMakes = new ArrayList<>();
         private final List<Bottle> bottles = new ArrayList<>();
@@ -42,13 +42,13 @@ public class ListStorage implements Storage, Serializable {
 
         //Supplier
         @Override
-        public List<Supplier> getSuppliers(){
-                return new ArrayList<>(suppliers);
+        public List<Farmer> getFarmers(){
+                return new ArrayList<>(farmers);
         }
 
         @Override
-        public void storeSupplier(Supplier supplier){
-                suppliers.add(supplier);
+        public void storeFarmer(Farmer farmer){
+                farmers.add(farmer);
         }
 
         //Cask

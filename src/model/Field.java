@@ -6,13 +6,13 @@ public class Field {
     private String grainType;
 
     //-----------
-    private Supplier supplier;
+    private Farmer farmer;
 
-    public Field(int fieldID, String name, String grainType, Supplier supplier) {
+    public Field(int fieldID, String name, String grainType, Farmer farmer) {
         this.fieldID = fieldID;
         this.name = name;
         this.grainType = grainType;
-        this.supplier = supplier;
+        this.farmer = farmer;
     }
 
     public int getFieldID() {
@@ -26,7 +26,7 @@ public class Field {
         return grainType;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Farmer getSupplier() {
+        return farmer;
     }
 }

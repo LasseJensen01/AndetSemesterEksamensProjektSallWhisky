@@ -5,8 +5,8 @@ import model.*;
 import java.util.List;
 
 public interface Storage {
-    List<Supplier> getSuppliers();
-    void storeSupplier(Supplier supplier);
+    List<Farmer> getFarmers();
+    void storeFarmer(Farmer farmer);
 
 
     List<Cask> getCasks();
@@ -23,6 +23,8 @@ public interface Storage {
 
     void storeIdTracker(IdTracker idTracker);
     IdTracker getIdTracker();
+
+
     List<Warehouse> getWarehouses();
     void storeWarehouses(Warehouse warehouse);
 }
