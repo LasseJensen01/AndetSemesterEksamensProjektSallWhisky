@@ -10,7 +10,7 @@ public class MaltBatch {
     //---------------
     private Field field;
 
-    public MaltBatch(String rygeMateriale, String malteri, Field field) {
+    public MaltBatch(String rygeMateriale, String malteri, String grain, Field field) {
         no++;
         this.batchID = no;
         this.rygeMateriale = rygeMateriale;

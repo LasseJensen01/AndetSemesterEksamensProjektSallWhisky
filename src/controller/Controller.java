@@ -37,8 +37,8 @@ public abstract class Controller {
         return field;
     }
 
-    public static MaltBatch createMaltBatch(int batchID, String rygeMateriale, String malteri, String grain, Field field){
-        MaltBatch maltBatch = new MaltBatch(batchID, rygeMateriale, malteri, grain, field);
+    public static MaltBatch createMaltBatch(String rygeMateriale, String malteri, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(rygeMateriale, malteri, grain, field);
         storage.storeMaltBatch(maltBatch);
         return maltBatch;
     }
@@ -57,9 +57,9 @@ public abstract class Controller {
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
-    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
-                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
-        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
+    public static NewMake createNewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
+                                        String workerID, String comment, double alcPercent, MaltBatch maltBatch){
+        NewMake newMake = new NewMake(name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatch);
         storage.storeNewMakes(newMake);
         return newMake;
     }
@@ -197,20 +197,8 @@ public abstract class Controller {
         cask.setLocation(newLocation);
     }
 
-    /**
-     * Creates a warehouse. Will have an Id assigned.
-     * @param name - Name of the warehouse
-     * @param adress - Adress for the warehouse
-     * @return
-     */
-    public static Warehouse createWarehouse(String name, String adress){
-        Warehouse wh = new Warehouse(name, adress);
-        storage.storeWarehouses(wh);
-        return wh;
-    }
     //TODO
     //Fungere men skal forfines, overvej at bruge array
-
     /**
      * Creates Locations in a warehouse based on the information given
      * @param wh - Warehouse which is getting location created
@@ -239,39 +227,6 @@ public abstract class Controller {
         Cask.setNo(idTracker.getCaskId());
         NewMake.setNo(idTracker.getNewMakeID());
         MaltBatch.setNo(idTracker.getMaltBatchId());
-    }
-
-    /**
-     * This method creates, stores and returns a newmake
-     * @param newMakeID id of newmake
-     * @param name name of the newmake
-     * @param startDate day production started
-     * @param endDate day production ended
-     * @param volume the amount of liquid produced from the distillation process
-     * @param workerID id of responsible worker
-     * @param comment optional comment
-     * @param alcPercent alcohol percentage of new make
-     * @param maltBatches the malt batches involved in making the new make
-     * @pre name not "", volume > 0
-     * @return the NewMake object
-     */
-    public static NewMake createNewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
-                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
-        NewMake newMake = new NewMake(name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
-        storage.storeNewMakes(newMake);
-        return newMake;
-    }
-    /**
-     * This method creates, stores and returns a cask.
-     * @param type the type of the cask.
-     * @param volume how many liters the cask can contain.
-     * @pre employee not "".
-     */
-    public static Cask createCask(Type type, double volume){
-        Cask cask = new Cask(type, volume);
-        storage.storeCask(cask);
-        storage.getIdTracker().setCaskId(cask.getId());
-        return cask;
     }
     /**
      * This method creates and stores a given number of casks.
@@ -359,24 +314,5 @@ public abstract class Controller {
             if (cask.getLiters() < casks.get(cask)) valid = false;
         }
         return valid;
-    }
-    public static void setCaskLiters(Cask cask, double liters){
-        if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
-        cask.setLiters(liters); //Used to edit the cask incase of spills
-    }
-    public static List<Bottle> getBottels(){
-        return storage.getBottles();
-    }
-    public static List<NewMake> getNewMakes(){
-        return storage.getNewMakes();
-    }
-    public static List<Cask> getCasks(){
-        return storage.getCasks();
-    }
-
-    public static Supplier createSupplier(int supplierID, String name, String address){
-        Supplier supplier = new Supplier(supplierID, name, address);
-        storage.storeSupplier(supplier);
-        return supplier;
     }
 }

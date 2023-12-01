@@ -23,10 +23,10 @@ public class NewMake {
     }
 
     //----------------
-    private List<MaltBatch> maltBatches;
+    private MaltBatch maltBatch;
 
     public NewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
-                   String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches) {
+                   String workerID, String comment, double alcPercent, MaltBatch maltBatch) {
         no++;
         this.newMakeID = no;
         this.name = name;
@@ -36,7 +36,7 @@ public class NewMake {
         this.workerID = workerID;
         this.comment = comment;
         this.alcPercent = alcPercent;
-        this.maltBatches = maltBatches;
+        this.maltBatch = maltBatch;
     }
 
     public String getName() {
