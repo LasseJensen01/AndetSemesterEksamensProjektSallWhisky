@@ -2,14 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +34,7 @@
                <children>
                   <Text fx:id="txtSuppliers" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers" />
                   <Text fx:id="txtInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
-                  <Button fx:id="btnSupplier" mnemonicParsing="false" text="Add farmer" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnSupplier" mnemonicParsing="false" text="Add supplier" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <ListView fx:id="lvwSuppliers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                   <ListView fx:id="lvwSupplierInfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
                </children>
@@ -92,26 +91,49 @@
          </content></Tab>
       <Tab text="Casks">
          <content>
-            <GridPane hgap="20.0" vgap="10.0">
+            <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="131.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="328.0" minHeight="10.0" prefHeight="328.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Casks" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
-                  <Button mnemonicParsing="false" text="Add cask" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="30.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+                        <Text layoutX="22.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volume:" />
+                        <ChoiceBox id="caskType" layoutX="126.0" layoutY="55.0" prefWidth="150.0" />
+                        <Text layoutX="21.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number:" />
+                        <TextField layoutX="126.0" layoutY="108.0" promptText="In liters" />
+                        <TextField layoutX="126.0" layoutY="154.0" promptText="How many" />
+                        <Text layoutX="141.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register new casks" />
+                        <CheckBox id="confirmRegistrationData" layoutX="161.0" layoutY="208.0" mnemonicParsing="false" text="Confirm" />
+                        <Button layoutX="126.0" layoutY="272.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Register casks" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <Text layoutX="159.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maintain cask" />
+                        <Text layoutX="73.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                        <TextField id="MaintainCaskID" layoutX="126.0" layoutY="55.0" />
+                        <Text layoutX="238.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current values" />
+                        <Text layoutX="266.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters" />
+                        <Text layoutX="253.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohod%" />
+                        <Text layoutX="257.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation" />
+                        <Text layoutX="103.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New values" />
+                        <TextField layoutX="98.0" layoutY="150.0" prefHeight="26.0" prefWidth="77.0" />
+                        <TextField layoutX="98.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" />
+                        <TextField layoutX="98.0" layoutY="199.0" prefHeight="26.0" prefWidth="77.0" />
+                        <Text layoutX="25.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters:" />
+                        <Text layoutX="23.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALC.%:" />
+                        <Text layoutX="25.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation:" />
+                        <CheckBox layoutX="156.0" layoutY="310.0" mnemonicParsing="false" text="CheckBox" />
+                        <Button layoutX="121.0" layoutY="359.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Register casks" />
+                     </children>
+                  </AnchorPane>
                </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
             </GridPane>
          </content>
       </Tab>
@@ -159,12 +181,7 @@
                         <Text layoutX="16.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bottle volume:" />
                      </children>
                   </AnchorPane>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </content>
