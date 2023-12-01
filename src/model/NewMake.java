@@ -14,10 +14,6 @@ public class NewMake {
     private String comment;
     private double alcPercent;
 
-    public double getAlcPercent() {
-        return alcPercent;
-    }
-
     public static void setNo(int no) {
         NewMake.no = no;
     }
@@ -25,21 +21,64 @@ public class NewMake {
     //----------------
     private MaltBatch maltBatch;
 
-    public NewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
-                   String workerID, String comment, double alcPercent, MaltBatch maltBatch) {
+    public NewMake(String name, LocalDate startDate, String workerID, MaltBatch maltBatch) {
         no++;
         this.newMakeID = no;
         this.name = name;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.volume = volume;
         this.workerID = workerID;
-        this.comment = comment;
-        this.alcPercent = alcPercent;
         this.maltBatch = maltBatch;
+    }
+
+    public int getNewMakeID() {
+        return newMakeID;
     }
 
     public String getName() {
         return name;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public String getWorkerID() {
+        return workerID;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public double getAlcPercent() {
+        return alcPercent;
+    }
+
+    public MaltBatch getMaltBatch() {
+        return maltBatch;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setAlcPercent(double alcPercent) {
+        this.alcPercent = alcPercent;
     }
 }

@@ -57,9 +57,8 @@ public abstract class Controller {
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
-    public static NewMake createNewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
-                                        String workerID, String comment, double alcPercent, MaltBatch maltBatch){
-        NewMake newMake = new NewMake(name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatch);
+    public static NewMake createNewMake(String name, LocalDate startDate, String workerID, MaltBatch maltBatch){
+        NewMake newMake = new NewMake(name, startDate, workerID, maltBatch);
         storage.storeNewMakes(newMake);
         return newMake;
     }
