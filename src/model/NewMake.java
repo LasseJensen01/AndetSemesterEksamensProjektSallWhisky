@@ -5,6 +5,7 @@ import java.util.List;
 
 public class NewMake {
     private int newMakeID;
+    private static int no = 0;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -13,12 +14,21 @@ public class NewMake {
     private String comment;
     private double alcPercent;
 
+    public double getAlcPercent() {
+        return alcPercent;
+    }
+
+    public static void setNo(int no) {
+        NewMake.no = no;
+    }
+
     //----------------
     private List<MaltBatch> maltBatches;
 
-    public NewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+    public NewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
                    String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches) {
-        this.newMakeID = newMakeID;
+        no++;
+        this.newMakeID = no;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;

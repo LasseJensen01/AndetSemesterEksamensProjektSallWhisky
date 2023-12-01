@@ -3,6 +3,7 @@ package model;
 public class Amount {
     private NewMake newMake;
     private int liters;
+    private double alcoholPercent;
 
     public Amount(NewMake newMake, int liters) {
         this.newMake = newMake;
@@ -11,6 +12,9 @@ public class Amount {
 
     public int getLiters() {
         return liters;
+    }
+    public double getAlcoholPercent() {
+        return alcoholPercent;
     }
 
     public NewMake getNewMake() {

@@ -1,9 +1,29 @@
 package model;
 
+
+
 public class IdTracker{
     private int caskId;
     private int fillingId;
     private int bottleId;
+    private int newMakeID;
+    private int maltBatchId;
+
+    public int getMaltBatchId() {
+        return maltBatchId;
+    }
+
+    public void setMaltBatchId(int maltBatchId) {
+        this.maltBatchId = maltBatchId;
+    }
+
+    public int getNewMakeID() {
+        return newMakeID;
+    }
+
+    public void setNewMakeID(int newMakeID) {
+        this.newMakeID = newMakeID;
+    }
 
     public void setCaskId(int caskId) {
         this.caskId = caskId;

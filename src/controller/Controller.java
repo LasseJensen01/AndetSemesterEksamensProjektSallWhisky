@@ -122,6 +122,8 @@ public abstract class Controller {
         Bottle.setNo(idTracker.getBottleId());
         Filling.setNo(idTracker.getFillingId());
         Cask.setNo(idTracker.getCaskId());
+        NewMake.setNo(idTracker.getNewMakeID());
+        MaltBatch.setNo(idTracker.getMaltBatchId());
     }
 
     /**
@@ -138,9 +140,9 @@ public abstract class Controller {
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
-    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+    public static NewMake createNewMake(String name, LocalDate startDate, LocalDate endDate, double volume,
                                         String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
-        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
+        NewMake newMake = new NewMake(name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
         storage.storeNewMakes(newMake);
         return newMake;
     }
