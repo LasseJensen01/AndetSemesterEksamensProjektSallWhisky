@@ -35,4 +35,8 @@ public interface Storage {
 
     void storeIdTracker(IdTracker idTracker);
     IdTracker getIdTracker();
+
+    List<WhiskyProduct> getWhiskyProducts();
+    void storeWhiskyProduct(WhiskyProduct whiskyProduct);
+
 }

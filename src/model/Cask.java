@@ -12,7 +12,7 @@ public class Cask {
     private double volume; // How big cask
     private Filling filling = null;
     private int timesUsed = 0;
-    private int daysUsed = 0;
+    private int daysUsed = 0; // Consider deleting this.
     private Location location = null;
 
     public Cask(Type type, double volume) {

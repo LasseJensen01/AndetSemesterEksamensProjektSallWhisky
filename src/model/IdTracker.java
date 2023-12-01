@@ -8,6 +8,7 @@ public class IdTracker{
     private int bottleId;
     private int newMakeID;
     private int maltBatchId;
+    private int whiskyProductId;
 
     public int getMaltBatchId() {
         return maltBatchId;
@@ -47,5 +48,13 @@ public class IdTracker{
 
     public int getBottleId() {
         return bottleId;
+    }
+
+    public int getWhiskyProductId() {
+        return whiskyProductId;
+    }
+
+    public void setWhiskyProductId(int whiskyProductId) {
+        this.whiskyProductId = whiskyProductId;
     }
 }

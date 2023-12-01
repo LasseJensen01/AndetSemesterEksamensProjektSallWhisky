@@ -15,6 +15,7 @@ public class ListStorage implements Storage, Serializable {
         private final List<NewMake> newMakes = new ArrayList<>();
         private final List<Bottle> bottles = new ArrayList<>();
         private final List<Warehouse> warehouses = new ArrayList<>();
+        private final List<WhiskyProduct> whiskyProducts = new ArrayList<>();
         private IdTracker idTracker = new IdTracker();
 
         public static ListStorage loadStorage(){
@@ -105,6 +106,16 @@ public class ListStorage implements Storage, Serializable {
         @Override
         public IdTracker getIdTracker() {
                 return idTracker;
+        }
+
+        @Override
+        public List<WhiskyProduct> getWhiskyProducts() {
+                return new ArrayList<>(this.whiskyProducts);
+        }
+
+        @Override
+        public void storeWhiskyProduct(WhiskyProduct whiskyProduct) {
+                whiskyProducts.add(whiskyProduct);
         }
 
         @Override

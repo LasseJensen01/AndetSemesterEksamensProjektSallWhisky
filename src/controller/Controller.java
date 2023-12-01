@@ -231,53 +231,18 @@ public abstract class Controller {
     }
 
     /**
-     * This method tap the content of a cask into a specified number of bottles and stores them in the storage.
-     * @param cask a containg a filling.
-     * @param numberOfBottels how many bottles the user would like to fill.
-     * @param bottleVolume the size of the bottles expressed in liters.
-     * @param name the desired name of the whisky on the bottle.
-     * @throws IllegalArgumentException if there is insufficient filling on the cask for the number of bottles.
+     * This method creates a finished whisky.
+     * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
+     * @pram whiskyName the name of the finished whisky.
      */
-    public static Bottle tapToXnumOfBottels(Cask cask, int numberOfBottels, double bottleVolume, String name){
-        Filling filling = cask.getFilling();
-        Map<Filling,Double> fillings = new HashMap<Filling, Double>();
-        fillings.put(filling,Double.valueOf(1));
-        if (numberOfBottels * bottleVolume > filling.getLiters()) throw new IllegalArgumentException();
-        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
-        storage.storeBottles(newBatch);
-        storage.getIdTracker().setBottleId(newBatch.getId());
-        filling.setLiters(filling.getLiters() - numberOfBottels * bottleVolume);
-        if (filling.getLiters() <= 0) cask.emptyCask();
-        return newBatch;
-    }
-    /**
-     * This method tap the whole content of a cask into bottles and stores them in the storage.
-     * @param cask a containg a filling.
-     * @param bottleVolume the size of the bottles expressed in liters.
-     * @param name the desired name of the whisky on the bottle.
-     */
-    public static Bottle tapWholeCaskToBottels(Cask cask, double bottleVolume, String name){
-        Filling filling = cask.getFilling();
-        Map<Filling,Double> fillings = new HashMap<Filling, Double>();
-        fillings.put(filling,Double.valueOf(1)); // There has to be a better way...
-        int numberOfBottels = (int) (cask.getLiters()/bottleVolume);
-        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
-        storage.storeBottles(newBatch);
-        storage.getIdTracker().setBottleId(newBatch.getId());
-        cask.emptyCask();
-        return newBatch;
-    }
-    /**
-     * This method tap the whole content of a cask into bottles and stores them in the storage.
-     * @param casks a set of casks with a double representing the number of liter to be taped for each cask.
-     * @param bottleVolume the size of the bottles expressed in liters, must be positive.
-     * @param name the desired name of the whisky on the bottle.
-     */
-    public static Bottle tapFromMultipleCasksToBottels(HashMap<Cask, Double> casks, double bottleVolume, String name){
+    public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
         if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+
         HashMap<Filling, Double> fillings = new HashMap<>();
+
         double totalLiters = 0;
-        for (Double d : casks.values()){totalLiters += d;}
+        for (Double liters : casks.values()){totalLiters += liters;}
+
         for (Cask cask : casks.keySet()){
             fillings.put(cask.getFilling(),(casks.get(cask)/totalLiters));
             if (cask.getLiters() == casks.get(cask)){
@@ -287,11 +252,18 @@ public abstract class Controller {
             }
             //Should a cask be empty if it is below a threshold?
         }
-        int numberOfBottels = (int) (totalLiters/bottleVolume);
-        Bottle newBatch = new Bottle(bottleVolume, fillings, name, numberOfBottels);
-        storage.storeBottles(newBatch);
-        storage.getIdTracker().setBottleId(newBatch.getId());
-        return newBatch;
+
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        storage.storeWhiskyProduct(whiskyProduct);
+        return whiskyProduct;
+    }
+    /**
+     * Adds water to a whisky.
+     * @param whiskyProduct the whisky.
+     * @param liters how much water.
+     */
+    public static void addWaterToWhisky(WhiskyProduct whiskyProduct, double liters){
+        whiskyProduct.addWater(liters);
     }
     /**
      * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
@@ -303,5 +275,12 @@ public abstract class Controller {
             if (cask.getLiters() < casks.get(cask)) valid = false;
         }
         return valid;
+    }
+    public void putOnBottle(WhiskyProduct whiskyProduct, int noOfBottels, double bottleSize){
+        if (noOfBottels*bottleSize > whiskyProduct.getLiters()) throw new IllegalArgumentException();
+        for (int i = 0; i < noOfBottels; i++){
+            Bottle bottle = new Bottle(bottleSize, whiskyProduct);
+            storage.storeBottles(bottle);
+        }
     }
 }
