@@ -9,7 +9,7 @@ import java.util.List;
 public class Warehouse {
     private String name;
     private String adress;
-    private List<Location> lager = new ArrayList<>();
+    private List<Location> locations = new ArrayList<>();
 
     public Warehouse(String name, String adress) {
         this.name = name;
@@ -21,14 +21,14 @@ public class Warehouse {
             writer.println("Warehouse extract for: " + this.name);
             writer.println("-------------------------------------");
             writer.println();
-            for (Location l : lager){
+            for (Location l : locations){
                 Cask c = l.getCask();
                 if (c != null){
                     int id = c.getId();
                     Type type = c.getType();
                     double volume = c.getVolume();
                     double liters = c.getLiters();
-                    int location = l.getLocationID();
+                    String location = l.getLocationID();
                     writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Location: %6d%n", id, type, volume, liters, location);
                     writer.printf("     Fillings: %n");
                     Filling f = c.getFilling();
@@ -49,5 +49,12 @@ public class Warehouse {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void addLocation(Location location){
+        locations.add(location);
+    }
+
+    public List<Location> getLocations() {
+        return new ArrayList<>(locations);
     }
 }
