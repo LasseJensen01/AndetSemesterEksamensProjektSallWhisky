@@ -63,6 +63,18 @@ public abstract class Controller {
         return newMake;
     }
 
+    public static void updateNewMakeWithComment(NewMake newMake, String comment){
+        if(newMake.getComment().isEmpty()){
+            newMake.setComment(comment);
+        }
+    }
+
+    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent){
+        newMake.setVolume(volume);
+        newMake.setAlcPercent(alcoholPercent);
+        newMake.setEndDate(LocalDate.now());
+    }
+
     public static void setCaskLiters(Cask cask, double liters){
         if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
         cask.setLiters(liters); //Used to edit the cask incase of spills
