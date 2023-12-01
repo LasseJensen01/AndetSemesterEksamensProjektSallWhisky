@@ -27,7 +27,7 @@ public class Farmer {
         return List.copyOf(fields);
     }
 
-    public void addFields(Field field) {
+    public void addField(Field field) {
         fields.add(field);
     }
 }

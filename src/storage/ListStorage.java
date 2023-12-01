@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
         private final List<Farmer> farmers = new ArrayList<>();
+        private final List<Field> fields = new ArrayList<>();
+        private final List<MaltBatch> maltBatches = new ArrayList<>();
         private final List<Cask> casks = new ArrayList<>();
         private final List<NewMake> newMakes = new ArrayList<>();
         private final List<Bottle> bottles = new ArrayList<>();
@@ -45,11 +47,22 @@ public class ListStorage implements Storage, Serializable {
         public List<Farmer> getFarmers(){
                 return new ArrayList<>(farmers);
         }
-
         @Override
         public void storeFarmer(Farmer farmer){
                 farmers.add(farmer);
         }
+
+        //Field
+        @Override
+        public List<Field> getFields(){return new ArrayList<>(fields);}
+        @Override
+        public void storeField(Field field){fields.add(field);}
+
+        //MaltBatch
+        @Override
+        public List<MaltBatch> getMaltBatches(){return new ArrayList<>(maltBatches);}
+        @Override
+        public void storeMaltBatch(MaltBatch maltBatch){maltBatches.add(maltBatch);}
 
         //Cask
         @Override

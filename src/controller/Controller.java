@@ -30,6 +30,40 @@ public abstract class Controller {
         storage.storeFarmer(farmer);
         return farmer;
     }
+    public static Field createField(String name, Farmer farmer){
+        Field field = new Field(name, farmer);
+        farmer.addField(field);
+        storage.storeField(field);
+        return field;
+    }
+
+    public static MaltBatch createMaltBatch(int batchID, String rygeMateriale, String malteri, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(batchID, rygeMateriale, malteri, grain, field);
+        storage.storeMaltBatch(maltBatch);
+        return maltBatch;
+    }
+
+    /**
+     * This method creates, stores and returns a newmake
+     * @param newMakeID id of newmake
+     * @param name name of the newmake
+     * @param startDate day production started
+     * @param endDate day production ended
+     * @param volume the amount of liquid produced from the distillation process
+     * @param workerID id of responsible worker
+     * @param comment optional comment
+     * @param alcPercent alcohol percentage of new make
+     * @param maltBatches the malt batches involved in making the new make
+     * @pre name not "", volume > 0
+     * @return the NewMake object
+     */
+    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
+        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
+        storage.storeNewMakes(newMake);
+        return newMake;
+    }
+
     public static void setCaskLiters(Cask cask, double liters){
         if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
         cask.setLiters(liters); //Used to edit the cask incase of spills
@@ -73,7 +107,7 @@ public abstract class Controller {
         return amount;
     }
     /**
-     * This method adds a amount to a filling
+     * This method adds an amount to a filling
      * @param filling the filling that the amount is to be added to.
      * @param Amount the amount to be added.
      * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
@@ -192,27 +226,6 @@ public abstract class Controller {
         Bottle.setNo(idTracker.getBottleId());
         Filling.setNo(idTracker.getFillingId());
         Cask.setNo(idTracker.getCaskId());
-    }
-
-    /**
-     * This method creates, stores and returns a newmake
-     * @param newMakeID id of newmake
-     * @param name name of the newmake
-     * @param startDate day production started
-     * @param endDate day production ended
-     * @param volume the amount of liquid produced from the distillation process
-     * @param workerID id of responsible worker
-     * @param comment optional comment
-     * @param alcPercent alcohol percentage of new make
-     * @param maltBatches the malt batches involved in making the new make
-     * @pre name not "", volume > 0
-     * @return the NewMake object
-     */
-    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
-                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
-        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
-        storage.storeNewMakes(newMake);
-        return newMake;
     }
 
     /**
