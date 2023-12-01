@@ -1,32 +1,20 @@
 package model;
 
 public class Field {
-    private int fieldID;
     private String name;
-    private String grainType;
 
     //-----------
-    private Supplier supplier;
+    private Farmer farmer;
 
-    public Field(int fieldID, String name, String grainType, Supplier supplier) {
-        this.fieldID = fieldID;
+    public Field(String name, Farmer farmer) {
         this.name = name;
-        this.grainType = grainType;
-        this.supplier = supplier;
+        this.farmer = farmer;
     }
-
-    public int getFieldID() {
-        return fieldID;
-    }
-
     public String getName() {
         return name;
     }
-    public String getGrainType() {
-        return grainType;
-    }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public Farmer getSupplier() {
+        return farmer;
     }
 }

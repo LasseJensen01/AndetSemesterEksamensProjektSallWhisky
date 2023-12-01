@@ -24,6 +24,121 @@ public abstract class Controller {
     //hej
     //hi
 
+    //CRUD
+    public static Farmer createFarmer(String name, String address){
+        Farmer farmer = new Farmer(name, address);
+        storage.storeFarmer(farmer);
+        return farmer;
+    }
+    public static Field createField(String name, Farmer farmer){
+        Field field = new Field(name, farmer);
+        farmer.addField(field);
+        storage.storeField(field);
+        return field;
+    }
+
+    public static MaltBatch createMaltBatch(int batchID, String rygeMateriale, String malteri, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(batchID, rygeMateriale, malteri, grain, field);
+        storage.storeMaltBatch(maltBatch);
+        return maltBatch;
+    }
+
+    /**
+     * This method creates, stores and returns a newmake
+     * @param newMakeID id of newmake
+     * @param name name of the newmake
+     * @param startDate day production started
+     * @param endDate day production ended
+     * @param volume the amount of liquid produced from the distillation process
+     * @param workerID id of responsible worker
+     * @param comment optional comment
+     * @param alcPercent alcohol percentage of new make
+     * @param maltBatches the malt batches involved in making the new make
+     * @pre name not "", volume > 0
+     * @return the NewMake object
+     */
+    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
+        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
+        storage.storeNewMakes(newMake);
+        return newMake;
+    }
+
+    public static void setCaskLiters(Cask cask, double liters){
+        if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
+        cask.setLiters(liters); //Used to edit the cask incase of spills
+    }
+    public static List<Bottle> getBottels(){
+        return storage.getBottles();
+    }
+    public static List<NewMake> getNewMakes(){
+        return storage.getNewMakes();
+    }
+    public static List<Cask> getCasks(){
+        return storage.getCasks();
+    }
+    /**
+     * Creates a warehouse. Will have an Id assigned.
+     * @param name - Name of the warehouse
+     * @param adress - Adress for the warehouse
+     * @return
+     */
+    public static Warehouse createWarehouse(String name, String adress){
+        Warehouse wh = new Warehouse(name, adress);
+        storage.storeWarehouses(wh);
+        return wh;
+    }
+    /**
+     * This method creates, stores and returns a filling
+     * @param employee the name of the employee
+     * @param cask the cask containing the filling
+     * @pre employee not "".
+     */
+    public static Filling createFilling(Cask cask, String employee){
+        Filling filling = new Filling(cask, employee);
+        storage.getIdTracker().setFillingId(filling.getId());
+        return filling;
+    }
+    /**
+     * Left for later... need newmake
+     */
+    public static Amount createAmount(NewMake newMake, int liters){
+        Amount amount = new Amount(newMake, liters);
+        return amount;
+    }
+    /**
+     * This method adds an amount to a filling
+     * @param filling the filling that the amount is to be added to.
+     * @param Amount the amount to be added.
+     * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
+     */
+    public static void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
+        filling.addAmount(amount);
+    }
+    /**
+     * This method gives a string repesentation of the constents of a cask
+     * @param cask a cask.
+     */
+    public static String getCaskContent(Cask cask){
+        return cask.getContentsInfo();
+    }
+
+    /**
+     * This method creates, stores and returns a cask.
+     * @param type the type of the cask.
+     * @param volume how many liters the cask can contain.
+     * @pre employee not "".
+     */
+    public static Cask createCask(Type type, double volume){
+        Cask cask = new Cask(type, volume);
+        storage.storeCask(cask);
+        storage.getIdTracker().setCaskId(cask.getId());
+        return cask;
+    }
+
+    //---------------------------------------------------------
+    //Business logic
+
     /**
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
@@ -82,17 +197,6 @@ public abstract class Controller {
         cask.setLocation(newLocation);
     }
 
-    /**
-     * Creates a warehouse. Will have an Id assigned.
-     * @param name - Name of the warehouse
-     * @param adress - Adress for the warehouse
-     * @return
-     */
-    public static Warehouse createWarehouse(String name, String adress){
-        Warehouse wh = new Warehouse(name, adress);
-        storage.storeWarehouses(wh);
-        return wh;
-    }
     //TODO
     //Fungere men skal forfines, overvej at bruge array
 
@@ -125,38 +229,6 @@ public abstract class Controller {
     }
 
     /**
-     * This method creates, stores and returns a newmake
-     * @param newMakeID id of newmake
-     * @param name name of the newmake
-     * @param startDate day production started
-     * @param endDate day production ended
-     * @param volume the amount of liquid produced from the distillation process
-     * @param workerID id of responsible worker
-     * @param comment optional comment
-     * @param alcPercent alcohol percentage of new make
-     * @param maltBatches the malt batches involved in making the new make
-     * @pre name not "", volume > 0
-     * @return the NewMake object
-     */
-    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
-                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
-        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
-        storage.storeNewMakes(newMake);
-        return newMake;
-    }
-    /**
-     * This method creates, stores and returns a cask.
-     * @param type the type of the cask.
-     * @param volume how many liters the cask can contain.
-     * @pre employee not "".
-     */
-    public static Cask createCask(Type type, double volume){
-        Cask cask = new Cask(type, volume);
-        storage.storeCask(cask);
-        storage.getIdTracker().setCaskId(cask.getId());
-        return cask;
-    }
-    /**
      * This method creates and stores a given number of casks.
      * @param type the type of the cask.
      * @param volume how many liters the cask can contain.
@@ -168,40 +240,7 @@ public abstract class Controller {
             createCask(type, volume);
         }
     }
-    /**
-     * This method creates, stores and returns a filling
-     * @param employee the name of the employee
-     * @param cask the cask containing the filling
-     * @pre employee not "".
-     */
-    public static Filling createFilling(Cask cask, String employee){
-        Filling filling = new Filling(cask, employee);
-        storage.getIdTracker().setFillingId(filling.getId());
-        return filling;
-    }
-    /**
-     * Left for later... need newmake
-     */
-    public static Amount createAmount(NewMake newMake, int liters){
-        Amount amount = new Amount(newMake, liters);
-        return amount;
-    }
-    /**
-     * This method adds a amount to a filling
-     * @param filling the filling that the amount is to be added to.
-     * @param Amount the amount to be added.
-     * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
-     */
-    public static void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
-        filling.addAmount(amount);
-    }
-    /**
-     * This method gives a string repesentation of the constents of a cask
-     * @param cask a cask.
-     */
-    public static String getCaskContent(Cask cask){
-        return cask.getContentsInfo();
-    }
+
     /**
      * This method tap the content of a cask into a specified number of bottles and stores them in the storage.
      * @param cask a containg a filling.
@@ -266,8 +305,8 @@ public abstract class Controller {
         return newBatch;
     }
     /**
-     * Helpermethod. It cheeks if the individual casks contain enought liters for the desired tap.
-     * @param casks a set of casks with a double representing the number of liter to be taped for each cask.
+     * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
+     * @param casks a set of casks with a double representing the number of liter to be tapped for each cask.
      */
     private static boolean validateCaskSet(HashMap<Cask, Double> casks){
         boolean valid = true;
@@ -276,23 +315,5 @@ public abstract class Controller {
         }
         return valid;
     }
-    public static void setCaskLiters(Cask cask, double liters){
-        if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
-        cask.setLiters(liters); //Used to edit the cask incase of spills
-    }
-    public static List<Bottle> getBottels(){
-        return storage.getBottles();
-    }
-    public static List<NewMake> getNewMakes(){
-        return storage.getNewMakes();
-    }
-    public static List<Cask> getCasks(){
-        return storage.getCasks();
-    }
 
-    public static Supplier createSupplier(int supplierID, String name, String address){
-        Supplier supplier = new Supplier(supplierID, name, address);
-        storage.storeSupplier(supplier);
-        return supplier;
-    }
 }
