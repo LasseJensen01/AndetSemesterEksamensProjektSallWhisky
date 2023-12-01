@@ -2,7 +2,8 @@ package controller;
 
 import model.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Filling;
 import model.NewMake;
@@ -123,15 +124,24 @@ public abstract class Controller {
         Filling.setNo(idTracker.getFillingId());
         Cask.setNo(idTracker.getCaskId());
     }
+
     /**
      * This method creates, stores and returns a newmake
+     * @param newMakeID id of newmake
      * @param name name of the newmake
+     * @param startDate day production started
+     * @param endDate day production ended
      * @param volume the amount of liquid produced from the distillation process
+     * @param workerID id of responsible worker
+     * @param comment optional comment
+     * @param alcPercent alcohol percentage of new make
+     * @param maltBatches the malt batches involved in making the new make
      * @pre name not "", volume > 0
-     * @return the newmake
+     * @return the NewMake object
      */
-    public static NewMake createNewMake(String name, double volume){
-        NewMake newMake = new NewMake(name, volume);
+    public static NewMake createNewMake(int newMakeID, String name, LocalDate startDate, LocalDate endDate, double volume,
+                                        String workerID, String comment, double alcPercent, List<MaltBatch> maltBatches){
+        NewMake newMake = new NewMake(newMakeID, name, startDate, endDate, volume, workerID, comment, alcPercent, maltBatches);
         storage.storeNewMakes(newMake);
         return newMake;
     }
@@ -279,5 +289,11 @@ public abstract class Controller {
     }
     public static List<Cask> getCasks(){
         return storage.getCasks();
+    }
+
+    public static Supplier createSupplier(int supplierID, String name, String address){
+        Supplier supplier = new Supplier(supplierID, name, address);
+        storage.storeSupplier(supplier);
+        return supplier;
     }
 }
