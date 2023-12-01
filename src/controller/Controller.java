@@ -205,14 +205,19 @@ public abstract class Controller {
      * @param shelfUnitsPerRow - Number og shelf units pr. row
      * @param shelfsPerUnit - Nr. of shelfs pr. shelf unit
      */
-    public static void createLocationsInWarehouse(Warehouse wh, int rows, int shelfUnitsPerRow, int shelfsPerUnit){
-        String row = "" + rows;
-        String shelfUnit = "" + shelfUnitsPerRow;
-        String shelf = "" + shelfsPerUnit;
-        String lo = row + shelfUnitsPerRow + shelfsPerUnit;
-        System.out.println(lo);
-        int location = Integer.parseInt(lo);
-        System.out.println(location);
+    public static void createLocationsInWarehouse(Warehouse wh, int rows, int shelfUnitsPerRow, int shelfsPerUnit, int pallet){
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= shelfUnitsPerRow; j++) {
+                for (int k = 1; k <= shelfsPerUnit; k++) {
+                    for (int l = 1; l <= pallet ; l++) {
+                        Location lo = new Location(Integer.toString(i)+
+                                "-"+ Integer.toString(j) +"-"+ Integer.toString(k)
+                                +"-"+ Integer.toString(l));
+                        wh.addLocation(lo);
+                    }
+                }
+            }
+        }
     }
     /**
      * This method loads the Ids from the the storage via the tracker.

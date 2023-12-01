@@ -2,11 +2,12 @@ package model;
 
 public class Location {
     private Cask cask = null;
-    private int locationID; // LocationID functions as follows,
+    private String locationID; // LocationID functions as follows,
     //The first two numbers symbolises what Row
     //The next two which shelf unit
-    //The last two which shelf
-    //An example is 040302, which is row 4, shelf unit 3, shelf 2.
+    //The next two which shelf
+    //The Last tow which pallet
+    //An example is 4-3-2-1, which is row 4, shelf unit 3, shelf 2, pallet 1.
     //From here employee should be able to disinct from the barrels by the use of ID
 
     /**
@@ -16,7 +17,7 @@ public class Location {
      * Last two to a specific shelf
      * @param locationID
      */
-    public Location(int locationID) {
+    public Location(String locationID) {
         this.locationID = locationID;
     }
 
@@ -28,7 +29,12 @@ public class Location {
         return cask;
     }
 
-    public int getLocationID() {
+    public String getLocationID() {
+        return locationID;
+    }
+
+    @Override
+    public String toString() {
         return locationID;
     }
 }
