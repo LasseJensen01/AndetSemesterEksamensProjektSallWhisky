@@ -12,6 +12,7 @@ public class Bottle {
     private Map<Filling,Double> fillings; //Fillings and what percent of the mix they make up.
     private LocalDate filledDate;
     private String whiskyName;
+    private double alcoholPercent;
 
     public Bottle(double volume, Map<Filling,Double> fillings, String name, int noOfBottels) {
         this.volume = volume;
@@ -19,8 +20,20 @@ public class Bottle {
         this.noOfBottels = noOfBottels;
         filledDate = LocalDate.now();
         whiskyName = name;
+        calcAlcoholPercentage();
         no++;
         id = no;
+    }
+    public void calcAlcoholPercentage(){
+        double totalLitersOfWater = 0;
+        double totalLitersOfAlcohol = 0;
+        for (Filling filling : fillings.keySet()){
+            double fillingLitersOfAlcohol = fillings.get(filling) * filling.getAlcoholPercent();
+            double fillingLitersOfWater = fillings.get(filling) - fillingLitersOfAlcohol;
+            totalLitersOfAlcohol += fillingLitersOfAlcohol;
+            totalLitersOfWater += fillingLitersOfWater;
+        }
+        alcoholPercent = totalLitersOfAlcohol/totalLitersOfAlcohol;
     }
     /**
      * @returns a string representation of the content.

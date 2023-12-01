@@ -14,6 +14,11 @@ public class Filling {
     private LocalDate date;
     private String employee;
     private double alcoholPercent;
+
+    public double getAlcoholPercent() {
+        return alcoholPercent;
+    }
+
     /**
      * Creats a filling and sets its relation to its cask
      * @param cask an empty cask
