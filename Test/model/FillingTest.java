@@ -15,4 +15,17 @@ class FillingTest {
     void calcMaturiy() {
 
     }
+
+    @Test
+    void updateAlcoholPercentage() {
+        // Assert
+        Cask cask = new Cask(Type.BORDEAUX, 200);
+        Filling filling = new Filling(cask, "Steven");
+        //NewMake newMake = new NewMake()
+
+        // Act
+
+
+        // Assert
+    }
 }

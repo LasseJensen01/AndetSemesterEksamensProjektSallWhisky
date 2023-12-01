@@ -13,6 +13,7 @@ public class Filling {
     private int id;
     private LocalDate date;
     private String employee;
+    private double alcoholPercent;
     /**
      * Creats a filling and sets its relation to its cask
      * @param cask an empty cask
@@ -33,6 +34,7 @@ public class Filling {
      */
     public void addAmount(Amount amount){
         if ((liters + amount.getLiters()) > cask.getVolume()) throw new IllegalArgumentException();
+        updateAlcoholPercentage(amount.getLiters(), amount.getAlcoholPercent());
         amounts.add(amount);
         liters += amount.getLiters();
     }
@@ -62,6 +64,16 @@ public class Filling {
      */
     public boolean isWisky(){
         return calcMaturiy(LocalDate.now()).getYears() >= 3;
+    }
+    /**
+     * Helpermethod that updates the alcohol percentage when adding a new liquid.
+     */
+    public void updateAlcoholPercentage(double liters, double percent){
+        double currentLitersOfAlcohol = this.liters * alcoholPercent;
+        double currentLitersOfWater = this.liters - currentLitersOfAlcohol;
+        double litersAlcoholAdded = liters * percent;
+        double litersWaterAdded = liters - litersAlcoholAdded;
+        alcoholPercent = (currentLitersOfAlcohol + litersAlcoholAdded) / (this.liters + litersWaterAdded);
     }
     //---------------------------------------------------------------------------------------------------
     public void setLiters(double liters) {
