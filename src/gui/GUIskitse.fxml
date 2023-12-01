@@ -8,8 +8,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -131,14 +134,38 @@
          <content>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="401.5999755859375" minWidth="10.0" prefWidth="296.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.7999877929688" minWidth="10.0" prefWidth="504.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="431.1999877929687" minHeight="10.0" prefHeight="376.8" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="294.80000000000007" minHeight="10.0" prefHeight="65.59999999999997" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="221.0" prefWidth="277.0">
+                     <children>
+                        <TextField layoutX="131.0" layoutY="14.0" prefHeight="26.0" prefWidth="138.0" />
+                        <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CaskID:" />
+                        <Text layoutX="20.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters:" />
+                        <Button layoutX="173.0" layoutY="102.0" mnemonicParsing="false" text="Add" />
+                        <TextField layoutX="131.0" layoutY="52.0" prefHeight="26.0" prefWidth="138.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <TextField layoutX="131.0" layoutY="14.0" prefHeight="26.0" prefWidth="138.0" />
+                        <TextField layoutX="129.0" layoutY="63.0" prefHeight="26.0" prefWidth="141.0" />
+                        <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky name:" />
+                        <Text layoutX="16.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bottle volume:" />
+                     </children>
+                  </AnchorPane>
+                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+               </children>
             </GridPane>
          </content>
       </Tab>

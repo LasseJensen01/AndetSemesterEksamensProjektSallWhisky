@@ -227,18 +227,6 @@ public abstract class Controller {
         NewMake.setNo(idTracker.getNewMakeID());
         MaltBatch.setNo(idTracker.getMaltBatchId());
     }
-    /**
-     * This method creates and stores a given number of casks.
-     * @param type the type of the cask.
-     * @param volume how many liters the cask can contain.
-     * @param num the number of casks.
-     * @pre employee not "".
-     */
-    public static void registerCasks(Type type, double volume, int num){
-        for (int i = 0; i < num; i++){
-            createCask(type, volume);
-        }
-    }
 
     /**
      * This method tap the content of a cask into a specified number of bottles and stores them in the storage.
