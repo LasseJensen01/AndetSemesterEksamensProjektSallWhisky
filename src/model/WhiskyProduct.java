@@ -54,7 +54,7 @@ public class WhiskyProduct {
 
     @Override
     public String toString() {
-        return whiskyName + " alc:" + alcoholPercent + " Liters: " + liters;
+        return whiskyName + " Alc: " + alcoholPercent + " Liters: " + liters;
     }
 
     public double getLiters() {

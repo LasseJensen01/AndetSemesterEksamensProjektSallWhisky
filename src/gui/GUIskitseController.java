@@ -7,17 +7,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import model.WhiskyProduct;
+
+import java.awt.event.MouseEvent;
 
 public class GUIskitseController {
 
-    @FXML
-    private Button btnAddCask;
 
     @FXML
     private Button btnRegister;
-
-    @FXML
-    private Button btnSearch;
 
     @FXML
     private Button btnSupplier;
@@ -35,22 +33,10 @@ public class GUIskitseController {
     private ChoiceBox<?> cboxSmokeMaterial;
 
     @FXML
-    private ComboBox<?> cboxType;
-
-    @FXML
     private DatePicker datePickerEnd;
 
     @FXML
     private DatePicker datePickerStart;
-
-    @FXML
-    private ListView<?> lvwCaskInfo;
-
-    @FXML
-    private ListView<?> lvwCasks;
-
-    @FXML
-    private ListView<?> lvwResults;
 
     @FXML
     private ListView<?> lvwSupplierInfo;
@@ -59,19 +45,13 @@ public class GUIskitseController {
     private ListView<?> lvwSuppliers;
 
     @FXML
+    private ListView<?> lvwWhiskyList;
+
+    @FXML
     private TextArea txaComment;
 
     @FXML
     private TextField txfAlcoholPercent;
-
-    @FXML
-    private TextField txfCaskID;
-
-    @FXML
-    private TextField txfCaskSize;
-
-    @FXML
-    private TextField txfFillNo;
 
     @FXML
     private TextField txfIDNewMake;
@@ -80,31 +60,16 @@ public class GUIskitseController {
     private TextField txfProducedAmount;
 
     @FXML
-    private TextField txfSupplier;
+    private TextArea txfWhiskyInfo;
 
     @FXML
     private Text txtAlcoholPercent;
-
-    @FXML
-    private Text txtCaskID;
-
-    @FXML
-    private Text txtCaskInfo;
-
-    @FXML
-    private Text txtCaskSize;
-
-    @FXML
-    private Text txtCasks;
 
     @FXML
     private Text txtComment;
 
     @FXML
     private Text txtEndDate;
-
-    @FXML
-    private Text txtFillNo;
 
     @FXML
     private Text txtGrain;
@@ -131,12 +96,12 @@ public class GUIskitseController {
     private Text txtStartDate;
 
     @FXML
-    private Text txtSupplier;
-
-    @FXML
     private Text txtSuppliers;
 
     @FXML
-    private Text txtType;
-
+    void selectWhiskyFromList(MouseEvent event) {
+        int i = lvwWhiskyList.getSelectionModel().getSelectedIndex();
+        WhiskyProduct whiskyProduct = (WhiskyProduct) lvwWhiskyList.getItems().get(i);
+        txfWhiskyInfo.setText(whiskyProduct.toString());
+    }
 }
