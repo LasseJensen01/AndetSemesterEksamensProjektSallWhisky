@@ -1,18 +1,24 @@
+import controller.Controller;
+import javafx.beans.Observable;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import jdk.jfr.Event;
 import model.WhiskyProduct;
 
 import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class GUIskitseController {
+public class GUIskitseController implements Initializable{
+    public GUIskitseController() {
 
+    }
 
     @FXML
     private Button btnRegister;
@@ -45,7 +51,7 @@ public class GUIskitseController {
     private ListView<?> lvwSuppliers;
 
     @FXML
-    private ListView<?> lvwWhiskyList;
+    private ListView<WhiskyProduct> lvwWhiskyList;
 
     @FXML
     private TextArea txaComment;
@@ -98,10 +104,25 @@ public class GUIskitseController {
     @FXML
     private Text txtSuppliers;
 
-    @FXML
-    void selectWhiskyFromList(MouseEvent event) {
-        int i = lvwWhiskyList.getSelectionModel().getSelectedIndex();
-        WhiskyProduct whiskyProduct = (WhiskyProduct) lvwWhiskyList.getItems().get(i);
-        txfWhiskyInfo.setText(whiskyProduct.toString());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<WhiskyProduct> whiskyProducts = FXCollections.observableArrayList(Controller.getWhiskyProducts());
+        lvwWhiskyList.setItems(whiskyProducts);
+        lvwWhiskyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        //lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(this::selectionChange);
+        ChangeListener<WhiskyProduct> listener = (ov, o, n) -> this.wiskySelected();
+        lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(listener);
     }
+
+    private void selectionChange(Observable observable, WhiskyProduct ov, WhiskyProduct nv){
+        WhiskyProduct whiskyProducts = lvwWhiskyList.getSelectionModel().getSelectedItem();
+        String wiskyDescription = (whiskyProducts == null) ? "Select a wisky." : whiskyProducts.toString();
+        txfWhiskyInfo.clear();
+    }
+    private void wiskySelected(){
+        WhiskyProduct whiskyProduct = lvwWhiskyList.getSelectionModel().getSelectedItem();
+        String wiskyDescription = (whiskyProduct == null) ? "Select a wisky." : whiskyProduct.toString();
+        txfWhiskyInfo.setText(wiskyDescription);
+    }
+
 }

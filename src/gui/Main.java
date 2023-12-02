@@ -8,12 +8,13 @@ import storage.ListStorage;
 
 public class Main {
     public static void main(String[] args) {
-        /*
+
         Storage storage = ListStorage.loadStorage();
         if (storage == null)storage = new ListStorage();
         Controller.setStorage(storage);
         Controller.loadIdsFromTracker();
-        */
+        Controller.initTestStorage();
+
         Application.launch(Gui.class);
 
         //ListStorage.saveStorage(storage);

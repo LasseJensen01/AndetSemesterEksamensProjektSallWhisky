@@ -157,9 +157,9 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Button id="RigisterNewWhiskey" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" text="Register new whiskey" />
-                  <ListView id="WhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
                   <Text layoutX="101.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw" />
-                  <TextArea id="WhiskyInfo" disable="true" layoutX="290.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" promptText="Select a whiskey to the left to display info here." />
+                  <TextArea id="txfWhiskyInfo" fx:id="txfWhiskyInfo" disable="true" layoutX="290.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
                   <Text layoutX="356.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky info" />
                   <Button id="BottleWhisky" layoutX="581.0" layoutY="82.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Bottle whisky" />
                   <Button id="StoreWhisky" layoutX="581.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Store whisky" />
