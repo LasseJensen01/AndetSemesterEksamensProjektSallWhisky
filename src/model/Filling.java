@@ -15,10 +15,6 @@ public class Filling {
     private String employee;
     private double alcoholPercent;
 
-    public double getAlcoholPercent() {
-        return alcoholPercent;
-    }
-
     /**
      * Creats a filling and sets its relation to its cask
      * @param cask an empty cask
@@ -39,7 +35,13 @@ public class Filling {
      */
     public void addAmount(Amount amount){
         if ((liters + amount.getLiters()) > cask.getVolume()) throw new IllegalArgumentException();
-        updateAlcoholPercentage(amount.getLiters(), amount.getAlcoholPercent());
+        if (amounts.isEmpty()) {
+            this.alcoholPercent = amount.getNewMake().getAlcPercent();
+        } else {
+            this.alcoholPercent = calcAlcPercent(this.liters, this.alcoholPercent ,
+                    amount.getLiters(), amount.getNewMake().getAlcPercent());
+        }
+
         amounts.add(amount);
         liters += amount.getLiters();
     }
@@ -73,12 +75,8 @@ public class Filling {
     /**
      * Helpermethod that updates the alcohol percentage when adding a new liquid.
      */
-    public void updateAlcoholPercentage(double liters, double percent){
-        double currentLitersOfAlcohol = this.liters * alcoholPercent;
-        double currentLitersOfWater = this.liters - currentLitersOfAlcohol;
-        double litersAlcoholAdded = liters * percent;
-        double litersWaterAdded = liters - litersAlcoholAdded;
-        alcoholPercent = (currentLitersOfAlcohol + litersAlcoholAdded) / (this.liters + litersWaterAdded);
+    public double calcAlcPercent(double currentLiters, double currentAlcPercent, double litersAdded, double percentAdded){
+        return  ((currentLiters * currentAlcPercent) + (litersAdded * percentAdded)) / (currentLiters + litersAdded);
     }
     //---------------------------------------------------------------------------------------------------
     public void setLiters(double liters) {
@@ -114,5 +112,8 @@ public class Filling {
 
     public static void setNo(int no) {
         Filling.no = no;
+    }
+    public double getAlcoholPercent() {
+        return alcoholPercent;
     }
 }

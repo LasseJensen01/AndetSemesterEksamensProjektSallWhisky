@@ -23,7 +23,6 @@ class CaskTest {
         // Case 2: The casket is empty because filling.liters == 0.
         // Arrange
         Filling filling = new Filling(cask, "Jesper");
-        cask.setFilling(filling);
 
         // Act
         message = cask.getContentsInfo();
@@ -33,8 +32,12 @@ class CaskTest {
 
         // Case 3: The casket is not empty.
         // Arrange
-        NewMake newMake = new NewMake("NM.77", 30);
-        Amount amount = new Amount(newMake, 15);
+        Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
+        Field field = new Field("By the river.", farmer);
+        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
+        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        newMake77.setAlcPercent(0.80);
+        Amount amount = new Amount(newMake77, 15);
         filling.addAmount(amount);
 
         // Act
@@ -61,8 +64,8 @@ class CaskTest {
         // Assert
         assertNull(currentfill);
         assertNull(location);
-        assertEquals(1,timesUsed);
-        assertEquals(1095,daysUsed);
+        assertEquals(1, timesUsed);
+        assertEquals(1095, daysUsed);
     }
 
     @Test
@@ -71,9 +74,12 @@ class CaskTest {
         // Arrange
         Cask cask = new Cask(Type.BORDEAUX, 125);
         Filling filling = new Filling(cask, "Maria");
-        cask.setFilling(filling);
-        NewMake newMake = new NewMake("NM.49", 60);
-        Amount amount = new Amount(newMake, 50);
+        Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
+        Field field = new Field("By the river.", farmer);
+        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
+        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        newMake77.setAlcPercent(0.80);
+        Amount amount = new Amount(newMake77, 15);
         filling.addAmount(amount);
         filling.setDate(LocalDate.now().minusYears(3));
 

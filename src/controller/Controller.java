@@ -76,6 +76,9 @@ public abstract class Controller {
     public static List<Cask> getCasks(){
         return storage.getCasks();
     }
+    public static List<WhiskyProduct> getWhiskyProducts(){
+        return storage.getWhiskyProducts();
+    }
     /**
      * Creates a warehouse. Will have an Id assigned.
      * @param name - Name of the warehouse
@@ -233,6 +236,7 @@ public abstract class Controller {
     /**
      * This method creates a finished whisky.
      * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
+     * The reason for using cask and not filling in the map is that we need to call cask.empty() if we drain them entirely.
      * @pram whiskyName the name of the finished whisky.
      */
     public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
@@ -240,11 +244,9 @@ public abstract class Controller {
 
         HashMap<Filling, Double> fillings = new HashMap<>();
 
-        double totalLiters = 0;
-        for (Double liters : casks.values()){totalLiters += liters;}
-
         for (Cask cask : casks.keySet()){
-            fillings.put(cask.getFilling(),(casks.get(cask)/totalLiters));
+            fillings.put(cask.getFilling(),(casks.get(cask)));
+
             if (cask.getLiters() == casks.get(cask)){
                 cask.emptyCask();
             } else {
@@ -276,11 +278,12 @@ public abstract class Controller {
         }
         return valid;
     }
-    public void putOnBottle(WhiskyProduct whiskyProduct, int noOfBottels, double bottleSize){
+    public static void putOnBottle(WhiskyProduct whiskyProduct, int noOfBottels, double bottleSize){
         if (noOfBottels*bottleSize > whiskyProduct.getLiters()) throw new IllegalArgumentException();
         for (int i = 0; i < noOfBottels; i++){
             Bottle bottle = new Bottle(bottleSize, whiskyProduct);
             storage.storeBottles(bottle);
         }
+        whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
 }

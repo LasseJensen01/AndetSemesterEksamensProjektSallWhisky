@@ -11,8 +11,9 @@ public class WhiskyProduct {
     private double liters;
     private double water = 0; // If this is 0 the product is "cask strength"
     private double alcoholPercent;
-    private String type = "Single Cask"; // In V1 every liquid is a single cask.
-    private int numberOfMalts;
+    private String type;
+    private int numberOfMalts; // Find a better way
+    private Cask cask;
 
     public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName) {
         this.fillings = fillings;
@@ -39,7 +40,7 @@ public class WhiskyProduct {
             totalLitersOfWater += fillingLitersOfWater;
         }
         liters = totalLitersOfWater+totalLitersOfAlcohol;
-        alcoholPercent = totalLitersOfAlcohol/totalLitersOfWater;
+        alcoholPercent = totalLitersOfAlcohol/(totalLitersOfWater+totalLitersOfAlcohol);
     }
     public String getLabelText(){
         String s = "";
@@ -60,5 +61,17 @@ public class WhiskyProduct {
 
     public double getWater() {
         return water;
+    }
+
+    public double getAlcoholPercent() {
+        return alcoholPercent;
+    }
+
+    public Cask getCask() {
+        return cask;
+    }
+
+    public void setCask(Cask cask) {
+        this.cask = cask;
     }
 }

@@ -14,10 +14,6 @@ public class NewMake {
     private String comment;
     private double alcPercent;
 
-    public static void setNo(int no) {
-        NewMake.no = no;
-    }
-
     //----------------
     private MaltBatch maltBatch;
 
@@ -80,5 +76,8 @@ public class NewMake {
 
     public void setAlcPercent(double alcPercent) {
         this.alcPercent = alcPercent;
+    }
+    public static void setNo(int no) {
+        NewMake.no = no;
     }
 }
