@@ -194,7 +194,11 @@ public abstract class Controller {
      * @param cask - The cask to be moved
      * @param newLocation - The new location
      */
-    public static void moveCask(Cask cask, Location newLocation){
+    public static void moveCask(Warehouse warehouse, Cask cask, Location newLocation){
+        // Throws exception if location already has a cask
+        if (newLocation.getCask() != null){
+            throw new IllegalArgumentException();
+        }
         cask.getLocation().setCask(null);
         cask.setLocation(newLocation);
     }
