@@ -35,5 +35,11 @@ public class Demo {
 
         Warehouse wh = new Warehouse("Sall","Sall");
         Controller.createLocationsInWarehouse(wh,10,6,3,3);
+
+        wh.getLocations().get(0).setCask(cask1);
+        wh.getLocations().get(1).setCask(cask2);
+        wh.getLocations().get(2).setCask(cask3);
+
+        wh.extractOverview();
     }
 }

@@ -29,7 +29,7 @@ public class Warehouse {
                     double volume = c.getVolume();
                     double liters = c.getLiters();
                     String location = l.getLocationID();
-                    writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Location: %6d%n", id, type, volume, liters, location);
+                    writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Location: %6s%n", id, type, volume, liters, location);
                     writer.printf("     Fillings: %n");
                     Filling f = c.getFilling();
                     int fid = f.getId();
