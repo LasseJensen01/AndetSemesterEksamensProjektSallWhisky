@@ -60,9 +60,27 @@ public class WarehouseTabController {
                 ID = Integer.parseInt(txtCaskID.getText());
             }
         } catch (Exception e){
-            lblErrorLabel.setText("ID Skal være et helt tal");
+            lblErrorLabel.setText("ID skal være et helt tal");
         }
 
+        if(cbCaskType.getItems() != null){
+            type = cbCaskType.getSelectionModel().getSelectedItem();
+        }
 
+        try {
+            if (!txtCaskVolume.getText().isEmpty()){
+                volume = Double.parseDouble(txtCaskVolume.getText());
+            }
+        } catch (Exception e){
+            lblErrorLabel.setText("Cask Volume skal være et tal");
+        }
+
+        try {
+            if (!txtTimesUsed.getText().isEmpty()){
+                timesUsed = Integer.parseInt(txtTimesUsed.getText());
+            }
+        } catch (Exception e){
+            lblErrorLabel.setText("Times used skal være et helt tal");
+        }
     }
 }
