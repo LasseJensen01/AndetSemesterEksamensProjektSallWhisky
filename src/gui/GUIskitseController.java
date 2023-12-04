@@ -1,4 +1,10 @@
+import gui.AddFarmerPane;
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -7,6 +13,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.NoSuchElementException;
 
 public class GUIskitseController {
 
@@ -14,13 +26,13 @@ public class GUIskitseController {
     private Button btnAddCask;
 
     @FXML
+    private Button btnAddFarmer;
+
+    @FXML
     private Button btnRegister;
 
     @FXML
     private Button btnSearch;
-
-    @FXML
-    private Button btnSupplier;
 
     @FXML
     private ChoiceBox<?> cboxGrain;
@@ -104,6 +116,9 @@ public class GUIskitseController {
     private Text txtEndDate;
 
     @FXML
+    private Text txtFarmers;
+
+    @FXML
     private Text txtFillNo;
 
     @FXML
@@ -134,9 +149,17 @@ public class GUIskitseController {
     private Text txtSupplier;
 
     @FXML
-    private Text txtSuppliers;
+    private Text txtType;
 
     @FXML
-    private Text txtType;
+    private void addFarmerAction() throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddFarmerGUI.fxml"));
+        Parent root = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setOpacity(1);
+        stage.setScene(new Scene(root, 450, 450));
+        stage.showAndWait();
+    }
 
 }

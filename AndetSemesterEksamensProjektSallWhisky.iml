@@ -45,6 +45,17 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="lib" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/annotations-24.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="javafx.base" level="project" />
+    <orderEntry type="library" name="javafx.base" level="project" />
     <orderEntry type="library" name="javafx.base" level="project" />
   </component>
 </module>
