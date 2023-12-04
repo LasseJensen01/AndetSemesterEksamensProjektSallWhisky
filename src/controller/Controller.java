@@ -166,7 +166,7 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateFullCask(Type type, Double volume, Integer ID, Integer timesUsed){
+    public static List<Cask> locateFullCask(boolean isWhisky, Type type, Double volume, Integer ID, Integer timesUsed){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
@@ -181,6 +181,8 @@ public abstract class Controller {
                 .filter(cask -> ID == null || cask.getId() == ID)
                 //Check parameter timesUsed
                 .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
+                //Check if isWhisky is Enabled
+                .filter(cask -> isWhisky == false || cask.containsWhisky() == true)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;

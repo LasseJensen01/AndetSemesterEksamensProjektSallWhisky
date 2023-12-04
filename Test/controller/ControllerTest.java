@@ -239,16 +239,16 @@ class ControllerTest {
         cask1.setLiters(10);
 
         //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(Type.BEER,null,null,null).get(0));
+        assertEquals(cask1, Controller.locateFullCask(false,Type.BEER,null,null,null).get(0));
         //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(Type.BEER,null,null,null).size());
+        assertEquals(1, Controller.locateFullCask(false,Type.BEER,null,null,null).size());
 
         //Check with volume instead of Type
 
         //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(null,55.0,null,null).get(0));
+        assertEquals(cask1, Controller.locateFullCask(false,null,55.0,null,null).get(0));
         //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(null,55.0,null,null).size());
+        assertEquals(1, Controller.locateFullCask(false,null,55.0,null,null).size());
 
     }
 }
