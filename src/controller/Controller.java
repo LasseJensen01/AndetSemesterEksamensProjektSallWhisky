@@ -162,8 +162,11 @@ public abstract class Controller {
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
      * Will only sort the casks currently in use
+     * @param isWhisky whether not content has aged 3 years
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
+     * @param ID cask ID
+     * @param timesUsed times casked has been used
      * @return a list of cask meeting the criteria
      */
     public static List<Cask> locateFullCask(boolean isWhisky, Type type, Double volume, Integer ID, Integer timesUsed){
