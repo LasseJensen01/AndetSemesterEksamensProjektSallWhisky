@@ -148,6 +148,12 @@ public abstract class Controller {
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
     }
+    public static Cask getCaskByID(int id){
+        for (Cask cask : storage.getCasks()){
+            if (cask.getId() == id) return cask;
+        }
+        return null;
+    }
 
     //---------------------------------------------------------
     //Business logic
