@@ -54,6 +54,20 @@ public class Warehouse {
         locations.add(location);
     }
 
+    /**
+     * Take a cask and move it to a new location
+     * Clears up the old location for new storage
+     * @param cask - The cask to be moved
+     * @param newLocation - The new location
+     */
+    public static void moveCask(Cask cask, Location newLocation){
+        if (newLocation.getCask() != null){
+            throw new IllegalArgumentException();
+        }
+        cask.getLocation().setCask(null);
+        cask.setLocation(newLocation);
+    }
+
     public List<Location> getLocations() {
         return new ArrayList<>(locations);
     }

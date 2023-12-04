@@ -200,20 +200,6 @@ public abstract class Controller {
     }
 
     /**
-     * Take a cask and move it to a new location
-     * Clears up the old location for new storage
-     * @param cask - The cask to be moved
-     * @param newLocation - The new location
-     */
-    public static void moveCask(Warehouse warehouse, Cask cask, Location newLocation){
-        // Throws exception if location already has a cask
-        if (newLocation.getCask() != null){
-            throw new IllegalArgumentException();
-        }
-        cask.getLocation().setCask(null);
-        cask.setLocation(newLocation);
-    }
-    /**
      * Creates Locations in a warehouse based on the information given
      * @param wh - Warehouse which is getting location created
      * @param rows - Nr. of rows in the location
