@@ -8,7 +8,6 @@ import model.Filling;
 import model.NewMake;
 import model.Amount;
 import model.Cask;
-import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
 
@@ -161,7 +160,7 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateFullCask(Type type, @Nullable Double volume){
+    public static List<Cask> locateFullCask(Type type, Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
@@ -184,7 +183,7 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateEmptyCask(Type type, @Nullable Double volume){
+    public static List<Cask> locateEmptyCask(Type type, Double volume){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
