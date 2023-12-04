@@ -313,6 +313,7 @@ public abstract class Controller {
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
 
+    //Update this as the last few CRUD details are added to the controler
     public static void initTestStorage(){
         Farmer Lars = Controller.createFarmer("Lars T", "Hvor kragerne vender.");
         Field fieldOne = Controller.createField("By the hill", Lars);
@@ -326,22 +327,53 @@ public abstract class Controller {
         NewMake newMake79 = Controller.createNewMake("NM.79", LocalDate.now(), "Ashley", maltBatchTwo);
         newMake79.setAlcPercent(0.60);
 
+        Warehouse warehouse = new Warehouse("warehouse", "Storeage street");
+
         Cask caskA = Controller.createCask(Type.AMARONE, 200);
         Filling fillingA = Controller.createFilling(caskA, "Jonas");
-        Amount amountA = Controller.createAmount(newMake77, 100);
+        Amount amountA = Controller.createAmount(newMake77, 120);
         Controller.addAmountToFilling(fillingA,amountA);
+        Location locationA = new Location("1-1-1-1");
+        caskA.setLocation(locationA);
 
         Cask caskB = Controller.createCask(Type.BAROLO, 200);
         Filling fillingB = Controller.createFilling(caskB, "Jonas");
-        Amount amountB = Controller.createAmount(newMake78, 100);
+        Amount amountB = Controller.createAmount(newMake78, 80);
         Controller.addAmountToFilling(fillingB,amountB);
-        Amount amountC = new Amount(newMake79, 100);
-        Controller.addAmountToFilling(fillingB,amountC);
+        Amount amountB1 = new Amount(newMake79, 120);
+        Controller.addAmountToFilling(fillingB,amountB1);
+        Location locationB = new Location("1-1-1-2");
+        caskA.setLocation(locationB);
 
-        HashMap<Cask, Double> casks = new HashMap<>();
-        casks.put(caskA,Double.valueOf(80));
-        casks.put(caskB,Double.valueOf(200));
+        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200);
+        Filling fillingC = Controller.createFilling(caskA, "Jonas");
+        Amount amountC1 = Controller.createAmount(newMake79, 175);
+        Controller.addAmountToFilling(fillingC,amountC1);
+        Location locationC = new Location("1-1-1-3");
+        caskA.setLocation(locationC);
 
-        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200);
+        Filling fillingD = Controller.createFilling(caskB, "Jonas");
+        Amount amountD = Controller.createAmount(newMake78, 50);
+        Amount amountD1 = Controller.createAmount(newMake77, 150);
+        Controller.addAmountToFilling(fillingD,amountD);
+        Controller.addAmountToFilling(fillingD,amountD1);
+        Location locationD = new Location("1-1-2-1");
+        caskA.setLocation(locationD);
+
+        Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
+
+        Cask caskF = Controller.createCask(Type.FINO, 200);
+
+        HashMap<Cask, Double> whiskersCasks = new HashMap<>();
+        whiskersCasks.put(caskA,Double.valueOf(80));
+        whiskersCasks.put(caskB,Double.valueOf(200));
+        WhiskyProduct whiskyProduct1 = Controller.CreateWhiskyProduct(whiskersCasks,"Whiskers whisky");
+
+
+        HashMap<Cask, Double> whimsyWhiskyCasks = new HashMap<>();
+        whimsyWhiskyCasks.put(caskC,Double.valueOf(75));
+        whimsyWhiskyCasks.put(caskD,Double.valueOf(100));
+        WhiskyProduct whiskyProduct2 = Controller.CreateWhiskyProduct(whimsyWhiskyCasks,"Whimsy whisky");
     }
 }
