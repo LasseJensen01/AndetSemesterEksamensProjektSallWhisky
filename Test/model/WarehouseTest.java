@@ -66,4 +66,14 @@ public class WarehouseTest {
             System.err.println("Error when testing Warehouse extractOverview: " + e.getMessage());
         }
     }
+
+    @Test
+    void warehouseMoveCask(){
+        Cask cask1 = Controller.createCask(Type.VIRGIN_OAK, 30);
+
+        Warehouse wh = Controller.createWarehouse("Sall", "Sall");
+        Controller.createLocationsInWarehouse(wh,10,6,3,3);
+
+
+    }
 }
