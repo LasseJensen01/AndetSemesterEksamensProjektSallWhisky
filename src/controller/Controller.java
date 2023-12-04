@@ -346,14 +346,14 @@ public abstract class Controller {
         caskA.setLocation(locationB);
 
         Cask caskC = Controller.createCask(Type.CHARDONNAY, 200);
-        Filling fillingC = Controller.createFilling(caskA, "Jonas");
+        Filling fillingC = Controller.createFilling(caskC, "Jonas");
         Amount amountC1 = Controller.createAmount(newMake79, 175);
         Controller.addAmountToFilling(fillingC,amountC1);
         Location locationC = new Location("1-1-1-3");
         caskA.setLocation(locationC);
 
         Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200);
-        Filling fillingD = Controller.createFilling(caskB, "Jonas");
+        Filling fillingD = Controller.createFilling(caskD, "Jonas");
         Amount amountD = Controller.createAmount(newMake78, 50);
         Amount amountD1 = Controller.createAmount(newMake77, 150);
         Controller.addAmountToFilling(fillingD,amountD);
