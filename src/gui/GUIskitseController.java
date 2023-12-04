@@ -5,13 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,9 +20,6 @@ public class GUIskitseController {
     }
 
     @FXML
-    private Button btnAddCask;
-
-    @FXML
     private Button btnAddFarmer;
 
     @FXML
@@ -36,6 +27,9 @@ public class GUIskitseController {
 
     @FXML
     private Button btnSearch;
+
+    @FXML
+    private CheckBox cbIsCaskFull;
 
     @FXML
     private ChoiceBox<?> cboxGrain;
@@ -59,19 +53,13 @@ public class GUIskitseController {
     private DatePicker datePickerStart;
 
     @FXML
-    private ListView<?> lvwCaskInfo;
-
-    @FXML
-    private ListView<?> lvwCasks;
-
-    @FXML
-    private ListView<?> lvwResults;
-
-    @FXML
     private ListView<?> lvwSupplierInfo;
 
     @FXML
     private ListView<?> lvwSuppliers;
+
+    @FXML
+    private ListView<?> lvwWhiskyList;
 
     @FXML
     private TextArea txaComment;
@@ -80,37 +68,22 @@ public class GUIskitseController {
     private TextField txfAlcoholPercent;
 
     @FXML
-    private TextField txfCaskID;
-
-    @FXML
-    private TextField txfCaskSize;
-
-    @FXML
-    private TextField txfFillNo;
-
-    @FXML
     private TextField txfIDNewMake;
 
     @FXML
     private TextField txfProducedAmount;
 
     @FXML
-    private TextField txfSupplier;
+    private TextArea txfWhiskyInfo;
 
     @FXML
     private Text txtAlcoholPercent;
 
     @FXML
-    private Text txtCaskID;
+    private TextField txtCaskID2;
 
     @FXML
-    private Text txtCaskInfo;
-
-    @FXML
-    private Text txtCaskSize;
-
-    @FXML
-    private Text txtCasks;
+    private TextField txtCaskSize2;
 
     @FXML
     private Text txtComment;
@@ -122,7 +95,7 @@ public class GUIskitseController {
     private Text txtFarmers;
 
     @FXML
-    private Text txtFillNo;
+    private TextField txtFillNo2;
 
     @FXML
     private Text txtGrain;
@@ -149,10 +122,7 @@ public class GUIskitseController {
     private Text txtStartDate;
 
     @FXML
-    private Text txtSupplier;
-
-    @FXML
-    private Text txtType;
+    private TextField txtVolume;
 
     @FXML
     private void addFarmerAction() throws Exception{
