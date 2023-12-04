@@ -24,7 +24,7 @@ class ControllerTest {
         // Case 1: Simple create
         // Arrange
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
-        Field field = new Field("By the river.", farmer);
+        Field field = new Field("Of green.", farmer);
         MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
         NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
         newMake77.setAlcPercent(0.80);

@@ -287,4 +287,36 @@ public abstract class Controller {
         }
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
+
+    public static void initTestStorage(){
+        Farmer Lars = Controller.createFarmer("Lars T", "Hvor kragerne vender.");
+        Field fieldOne = Controller.createField("By the hill", Lars);
+        Field fieldTwo = Controller.createField("By the river", Lars);
+        MaltBatch maltBatchOne = Controller.createMaltBatch("Søren Ryge","Nord Jylland","Byg", fieldOne);
+        MaltBatch maltBatchTwo = Controller.createMaltBatch("Søren Ryge","Syd Jylland","Byg", fieldTwo);
+        NewMake newMake77 = Controller.createNewMake("NM.77", LocalDate.now(), "Jonas", maltBatchOne);
+        newMake77.setAlcPercent(0.80);
+        NewMake newMake78 = Controller.createNewMake("NM.78", LocalDate.now(), "Maria", maltBatchOne);
+        newMake78.setAlcPercent(0.70);
+        NewMake newMake79 = Controller.createNewMake("NM.79", LocalDate.now(), "Ashley", maltBatchTwo);
+        newMake79.setAlcPercent(0.60);
+
+        Cask caskA = Controller.createCask(Type.AMARONE, 200);
+        Filling fillingA = Controller.createFilling(caskA, "Jonas");
+        Amount amountA = Controller.createAmount(newMake77, 100);
+        Controller.addAmountToFilling(fillingA,amountA);
+
+        Cask caskB = Controller.createCask(Type.BAROLO, 200);
+        Filling fillingB = Controller.createFilling(caskB, "Jonas");
+        Amount amountB = Controller.createAmount(newMake78, 100);
+        Controller.addAmountToFilling(fillingB,amountB);
+        Amount amountC = new Amount(newMake79, 100);
+        Controller.addAmountToFilling(fillingB,amountC);
+
+        HashMap<Cask, Double> casks = new HashMap<>();
+        casks.put(caskA,Double.valueOf(80));
+        casks.put(caskB,Double.valueOf(200));
+
+        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+    }
 }

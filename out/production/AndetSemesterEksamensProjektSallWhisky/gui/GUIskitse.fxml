@@ -122,7 +122,7 @@
                         <TextField id="MaintainCaskID" layoutX="126.0" layoutY="55.0" />
                         <Text layoutX="238.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current values" />
                         <Text layoutX="266.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters" />
-                        <Text layoutX="253.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohod%" />
+                        <Text layoutX="264.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alc.%" />
                         <Text layoutX="257.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation" />
                         <Text layoutX="103.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New values" />
                         <TextField layoutX="98.0" layoutY="150.0" prefHeight="26.0" prefWidth="77.0" />
@@ -132,7 +132,7 @@
                         <Text layoutX="23.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALC.%:" />
                         <Text layoutX="25.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation:" />
                         <CheckBox layoutX="156.0" layoutY="310.0" mnemonicParsing="false" text="CheckBox" />
-                        <Button layoutX="121.0" layoutY="359.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Register casks" />
+                        <Button layoutX="121.0" layoutY="359.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="157.0" text="Update" />
                      </children>
                   </AnchorPane>
                </children>
@@ -157,38 +157,19 @@
             </GridPane>
          </content>
       </Tab>
-      <Tab text="Bottles">
+      <Tab text="Whisky">
          <content>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="401.5999755859375" minWidth="10.0" prefWidth="296.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.7999877929688" minWidth="10.0" prefWidth="504.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="431.1999877929687" minHeight="10.0" prefHeight="376.8" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="294.80000000000007" minHeight="10.0" prefHeight="65.59999999999997" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <AnchorPane prefHeight="221.0" prefWidth="277.0">
-                     <children>
-                        <TextField layoutX="131.0" layoutY="14.0" prefHeight="26.0" prefWidth="138.0" />
-                        <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CaskID:" />
-                        <Text layoutX="20.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters:" />
-                        <Button layoutX="173.0" layoutY="102.0" mnemonicParsing="false" text="Add" />
-                        <TextField layoutX="131.0" layoutY="52.0" prefHeight="26.0" prefWidth="138.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <children>
-                        <TextField layoutX="131.0" layoutY="14.0" prefHeight="26.0" prefWidth="138.0" />
-                        <TextField layoutX="129.0" layoutY="63.0" prefHeight="26.0" prefWidth="141.0" />
-                        <Text layoutX="15.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky name:" />
-                        <Text layoutX="16.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bottle volume:" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <Button id="RigisterNewWhiskey" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" text="Register new whiskey" />
+                  <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Text layoutX="101.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw" />
+                  <TextArea id="txfWhiskyInfo" fx:id="txfWhiskyInfo" disable="true" layoutX="290.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
+                  <Text layoutX="356.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky info" />
+                  <Button id="BottleWhisky" layoutX="581.0" layoutY="82.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Bottle whisky" />
+                  <Button id="StoreWhisky" layoutX="581.0" layoutY="175.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Store whisky" />
                </children>
-            </GridPane>
+            </AnchorPane>
          </content>
       </Tab>
       <Tab text="Warehouse">
