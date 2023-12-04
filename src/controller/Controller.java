@@ -166,7 +166,7 @@ public abstract class Controller {
         // the parameter is ignored
         List<Cask> goodCasks = casks.stream()
                 // Makes sure all casks are currently in use
-                .filter(cask -> cask.getLiters() > 0)
+                .filter(cask -> cask.getLiters() != 0)
                 // Checks parameter type
                 .filter(cask -> type == null || cask.getType().equals(type))
                 // Checks parameter volume
