@@ -1,4 +1,4 @@
-import gui.AddFarmerPane;
+import gui.Gui;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +21,9 @@ import java.net.URL;
 import java.util.NoSuchElementException;
 
 public class GUIskitseController {
+    public void initialize(){
+
+    }
 
     @FXML
     private Button btnAddCask;
@@ -153,13 +156,13 @@ public class GUIskitseController {
 
     @FXML
     private void addFarmerAction() throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddFarmerGUI.fxml"));
-        Parent root = fxmlLoader.load();
+        Parent root = FXMLLoader.load(Gui.getFXMLFarmer());
         Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.setOpacity(1);
-        stage.setScene(new Scene(root, 450, 450));
-        stage.showAndWait();
+        stage.setMinWidth(root.minWidth(-1));
+        stage.setMinHeight(root.minHeight(-1));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

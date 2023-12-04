@@ -24,7 +24,7 @@ public class WarehouseTest {
     void warehouseExtractOverview(){
         //Clear file WarehouseOverview.txt
        try{
-           File file = new File("src\\model\\WarehouseOverveiw.txt");
+           File file = new File("src\\model\\WarehouseOverview.txt");
            file.delete();
        }catch (Exception e){
 
@@ -58,7 +58,7 @@ public class WarehouseTest {
 
         //Test
         try{
-            File file = new File("src\\model\\WarehouseOverveiw.txt");
+            File file = new File("src\\model\\WarehouseOverview.txt");
             assertTrue(file.isFile());
             assertTrue(file.exists());
 

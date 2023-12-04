@@ -16,8 +16,13 @@ public class Warehouse {
         this.adress = adress;
     }
 
+    /**
+     * This method print an overview of the repectable Warehouse object and the cask
+     * which it has stored. It wont print locations with empty casks.
+     * The ouput of the method is the WarehouseOver
+     */
     public void extractOverview(){
-        try(PrintWriter writer = new PrintWriter("src\\model\\WarehouseOverveiw.txt")){
+        try(PrintWriter writer = new PrintWriter("src\\model\\WarehouseOverview.txt")){
             writer.println("Warehouse extract for: " + this.name);
             writer.println("-------------------------------------");
             writer.println();

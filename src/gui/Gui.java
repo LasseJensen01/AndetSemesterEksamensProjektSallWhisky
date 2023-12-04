@@ -11,6 +11,8 @@ import java.util.NoSuchElementException;
 
 public class Gui extends Application {
 
+   private static URL FXMLFarmer;
+
     @Override
     public void start(Stage stage) throws Exception {
         URL fxmlFileName = this.getClass().getResource("GUIskitse.fxml");
@@ -22,9 +24,14 @@ public class Gui extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        //Initializer FXMLAddFarmerGUI
+        URL fxmlFileName2 = this.getClass().getResource("AddFarmerGUI.fxml");
+        if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
+        FXMLFarmer = fxmlFileName2;
     }
 
-
-
-
+    public static URL getFXMLFarmer() {
+        return FXMLFarmer;
+    }
 }
