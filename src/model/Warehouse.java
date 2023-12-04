@@ -69,7 +69,11 @@ public class Warehouse {
         if (newLocation.getCask() != null){
             throw new IllegalArgumentException();
         }
-        cask.getLocation().setCask(null);
+        newLocation.setCask(cask);
+        //If cask had a previous location, free up that spot
+        if (cask.getLocation() != null){
+            cask.getLocation().setCask(null);
+        }
         cask.setLocation(newLocation);
     }
 

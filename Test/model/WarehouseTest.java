@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,11 +70,35 @@ public class WarehouseTest {
 
     @Test
     void warehouseMoveCask(){
-        Cask cask1 = Controller.createCask(Type.VIRGIN_OAK, 30);
-
         Warehouse wh = Controller.createWarehouse("Sall", "Sall");
         Controller.createLocationsInWarehouse(wh,10,6,3,3);
+        //Check that all locations dont have a cask
+        List<Location> locations = wh.getLocations();
+        for (Location l : locations){
+            assertTrue(l.getCask() == null);
+        }
+        Location location1 = wh.getLocations().get(0);
+        Location location2 = wh.getLocations().get(1);
+        //Check that a cask can be moved into a location
+        Cask cask1 = Controller.createCask(Type.VIRGIN_OAK, 30);
+        Controller.moveCask(wh,cask1,location1);
 
+        //Test if the cask is on the location
+        assertEquals(cask1, wh.getLocations().get(0).getCask());
 
+        //Test if the location is on the cask
+        assertEquals(location1, cask1.getLocation());
+
+        //Move cask to location 2
+        Controller.moveCask(wh,cask1,location2);
+
+        //Test if the cask is on the new location
+        assertEquals(cask1, wh.getLocations().get(1).getCask());
+
+        //Test if the new location is on the cask
+        assertEquals(location2, cask1.getLocation());
+
+        //Test if the old location has been freed up
+        assertTrue(wh.getLocations().get(0).getCask() == null);
     }
 }
