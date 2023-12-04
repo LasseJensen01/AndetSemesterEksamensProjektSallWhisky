@@ -4,8 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.NoSuchElementException;
 
@@ -24,4 +27,18 @@ public class Gui extends Application {
         stage.show();
     }
 
+    public void showWhiskyRegistrationDialog() throws IOException {
+        URL fxmlFileName = this.getClass().getResource("WhiskyRegistrationDialog.fxml");
+        if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
+
+        Parent root = FXMLLoader.load(fxmlFileName);
+
+        Stage whiskyRegistrationDialog = new Stage();
+        whiskyRegistrationDialog.setTitle("New whisky");
+        whiskyRegistrationDialog.initModality(Modality.WINDOW_MODAL);
+
+        Scene scene = new Scene(root);
+        whiskyRegistrationDialog.setScene(scene);
+        whiskyRegistrationDialog.showAndWait();
+    }
 }

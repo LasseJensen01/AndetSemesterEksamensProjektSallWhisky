@@ -1,8 +1,10 @@
 import controller.Controller;
+import javafx.application.Application;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -108,21 +110,19 @@ public class GUIskitseController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<WhiskyProduct> whiskyProducts = FXCollections.observableArrayList(Controller.getWhiskyProducts());
         lvwWhiskyList.setItems(whiskyProducts);
+
         lvwWhiskyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        //lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(this::selectionChange);
         ChangeListener<WhiskyProduct> listener = (ov, o, n) -> this.wiskySelected();
         lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(listener);
-    }
-
-    private void selectionChange(Observable observable, WhiskyProduct ov, WhiskyProduct nv){
-        WhiskyProduct whiskyProducts = lvwWhiskyList.getSelectionModel().getSelectedItem();
-        String wiskyDescription = (whiskyProducts == null) ? "Select a wisky." : whiskyProducts.toString();
-        txfWhiskyInfo.clear();
     }
     private void wiskySelected(){
         WhiskyProduct whiskyProduct = lvwWhiskyList.getSelectionModel().getSelectedItem();
         String wiskyDescription = (whiskyProduct == null) ? "Select a wisky." : whiskyProduct.toString();
         txfWhiskyInfo.setText(wiskyDescription);
+    }
+    @FXML
+    void showWhiskyRegistrationDialog(ActionEvent event) {
+        
     }
 
 }

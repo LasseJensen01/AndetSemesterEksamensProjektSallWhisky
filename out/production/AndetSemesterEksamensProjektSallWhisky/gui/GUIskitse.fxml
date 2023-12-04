@@ -154,7 +154,7 @@
       </Tab>
       <Tab text="Whisky">
          <content>
-            <AnchorPane onMouseClicked="#updateWhiskyInfo" prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Button id="RigisterNewWhiskey" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" text="Register new whiskey" />
                   <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
