@@ -130,4 +130,50 @@ class ControllerTest {
                 Controller.putOnBottle(whiskyProduct,300, 0.7));
         assertEquals(IllegalArgumentException.class, exception.getClass());
     }
+
+    @Test
+    void locateEmptyCask(){
+        for (int i = 0; i < 5; i++) {
+            Controller.createCask(Type.VIRGIN_OAK,30);
+            Controller.createCask(Type.BOURBON, 30);
+            Controller.createCask(Type.BOURBON, 45);
+        }
+        Cask cask1 = Controller.createCask(Type.BEER, 55);
+        //Check type
+        //Check to see if cask is found
+        assertEquals(cask1, Controller.locateEmptyCask(Type.BEER,null,null,null).get(0));
+        //Check to see if non expected casks are on list
+        assertEquals(1, Controller.locateEmptyCask(Type.BEER,null,null,null).size());
+
+        //Check Volume
+        //Check to see if cask is found
+        assertEquals(cask1, Controller.locateEmptyCask(null,55.0,null,null).get(0));
+        //Check to see if non expected casks are on list
+        assertEquals(1, Controller.locateEmptyCask(null,55.0,null,null).size());
+    }
+
+    @Test
+    void locateFullCask(){
+        for (int i = 0; i < 5; i++) {
+            Cask c = Controller.createCask(Type.VIRGIN_OAK,30);
+            c.setFilling(new Filling(c,"LJ"));
+            c.setLiters(10);
+        }
+        Cask cask1 = Controller.createCask(Type.BEER, 55);
+        cask1.setFilling(new Filling(cask1,"LJ"));
+        cask1.setLiters(10);
+
+        //Check if cask is correct
+        assertEquals(cask1, Controller.locateFullCask(Type.BEER,null,null,null).get(0));
+        //Check to see if non requested casks are returned
+        assertEquals(1, Controller.locateFullCask(Type.BEER,null,null,null).size());
+
+        //Check with volume instead of Type
+
+        //Check if cask is correct
+        assertEquals(cask1, Controller.locateFullCask(null,55.0,null,null).get(0));
+        //Check to see if non requested casks are returned
+        assertEquals(1, Controller.locateFullCask(null,55.0,null,null).size());
+
+    }
 }
