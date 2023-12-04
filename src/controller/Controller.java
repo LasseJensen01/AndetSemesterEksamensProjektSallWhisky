@@ -256,7 +256,7 @@ public abstract class Controller {
     /**
      * This method creates a finished whisky.
      * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
-     * The reason for using cask and not filling in the map is that we need to call cask.empty() if we drain them entirely.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
      * @pram whiskyName the name of the finished whisky.
      */
     public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
