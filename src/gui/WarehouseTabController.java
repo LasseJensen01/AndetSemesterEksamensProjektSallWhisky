@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Cask;
@@ -82,5 +83,8 @@ public class WarehouseTabController {
         } catch (Exception e){
             lblErrorLabel.setText("Times used skal være et helt tal");
         }
+        if (caskInUse){
+            lwCasks.getItems().setAll(Controller.locateFullCask(iswhisky,type,volume,ID,timesUsed));
+        } else lwCasks.getItems().setAll(Controller.locateEmptyCask(type,volume,ID, timesUsed));
     }
 }
