@@ -36,7 +36,7 @@ public class Gui extends Application {
         //Init WhiskyRegistrationDialog
         URL fxmlWhiskyRegistration = this.getClass().getResource("WhiskyRegistrationDialog.fxml");
         if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
-        FXMLFarmer = fxmlFileName2;
+        fxmlWhiskyRegistration = fxmlWhiskyRegistration;
     }
 
     public static URL getFXMLFarmer() {
