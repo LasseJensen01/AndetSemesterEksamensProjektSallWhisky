@@ -160,7 +160,7 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateFullCask(Type type, Double volume){
+    public static List<Cask> locateFullCask(Type type, Double volume, Integer ID, Integer timesUsed){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
@@ -168,9 +168,13 @@ public abstract class Controller {
                 // Makes sure all casks are currently in use
                 .filter(cask -> cask.getLiters() > 0)
                 // Checks parameter type
-                .filter(cask -> type == null || cask.getType() == type)
+                .filter(cask -> type == null || cask.getType().equals(type))
                 // Checks parameter volume
-                .filter(cask -> Objects.isNull(volume) || cask.getVolume() == volume)
+                .filter(cask -> volume == null || cask.getVolume() == volume)
+                // Check parameter ID
+                .filter(cask -> ID == null || cask.getId() == ID)
+                //Check parameter timesUsed
+                .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
@@ -183,7 +187,7 @@ public abstract class Controller {
      * @param volume the amount of liquid the cask can hold
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateEmptyCask(Type type, Double volume){
+    public static List<Cask> locateEmptyCask(Type type, Double volume, Integer ID, Integer timesUsed){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
@@ -193,7 +197,11 @@ public abstract class Controller {
                 // Checks parameter type
                 .filter(cask -> type == null || cask.getType().equals(type))
                 // Checks parameter volume
-                .filter(cask -> Objects.isNull(volume) || cask.getVolume() == volume)
+                .filter(cask -> volume == null || cask.getVolume() == volume)
+                // Check parameter ID
+                .filter(cask -> ID == null || cask.getId() == ID)
+                //Check parameter timesUsed
+                .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
