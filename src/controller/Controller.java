@@ -148,6 +148,12 @@ public abstract class Controller {
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
     }
+    public static Cask getCaskByID(int id){
+        for (Cask cask : storage.getCasks()){
+            if (cask.getId() == id) return cask;
+        }
+        return null;
+    }
 
     //---------------------------------------------------------
     //Business logic
@@ -156,11 +162,14 @@ public abstract class Controller {
      * This method will take paramterts type and volume, both nullable, and search storgage for elligible
      * casks matching the paramters and return them in a list
      * Will only sort the casks currently in use
+     * @param isWhisky whether not content has aged 3 years
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
+     * @param ID cask ID
+     * @param timesUsed times casked has been used
      * @return a list of cask meeting the criteria
      */
-    public static List<Cask> locateFullCask(Type type, Double volume, Integer ID, Integer timesUsed){
+    public static List<Cask> locateFullCask(boolean isWhisky, Type type, Double volume, Integer ID, Integer timesUsed){
         List<Cask> casks = storage.getCasks();
         // Starts filtering process of the values typed into the parameters, if parameters are null
         // the parameter is ignored
@@ -175,6 +184,8 @@ public abstract class Controller {
                 .filter(cask -> ID == null || cask.getId() == ID)
                 //Check parameter timesUsed
                 .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
+                //Check if isWhisky is Enabled
+                .filter(cask -> isWhisky == false || cask.containsWhisky() == true)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
@@ -256,7 +267,7 @@ public abstract class Controller {
     /**
      * This method creates a finished whisky.
      * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
-     * The reason for using cask and not filling in the map is that we need to call cask.empty() if we drain them entirely.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
      * @pram whiskyName the name of the finished whisky.
      */
     public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
@@ -307,6 +318,7 @@ public abstract class Controller {
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
 
+    //Update this as the last few CRUD details are added to the controler
     public static void initTestStorage(){
         Farmer Lars = Controller.createFarmer("Lars T", "Hvor kragerne vender.");
         Field fieldOne = Controller.createField("By the hill", Lars);
@@ -320,22 +332,53 @@ public abstract class Controller {
         NewMake newMake79 = Controller.createNewMake("NM.79", LocalDate.now(), "Ashley", maltBatchTwo);
         newMake79.setAlcPercent(0.60);
 
+        Warehouse warehouse = new Warehouse("warehouse", "Storeage street");
+
         Cask caskA = Controller.createCask(Type.AMARONE, 200);
         Filling fillingA = Controller.createFilling(caskA, "Jonas");
-        Amount amountA = Controller.createAmount(newMake77, 100);
+        Amount amountA = Controller.createAmount(newMake77, 120);
         Controller.addAmountToFilling(fillingA,amountA);
+        Location locationA = new Location("1-1-1-1");
+        caskA.setLocation(locationA);
 
         Cask caskB = Controller.createCask(Type.BAROLO, 200);
         Filling fillingB = Controller.createFilling(caskB, "Jonas");
-        Amount amountB = Controller.createAmount(newMake78, 100);
+        Amount amountB = Controller.createAmount(newMake78, 80);
         Controller.addAmountToFilling(fillingB,amountB);
-        Amount amountC = new Amount(newMake79, 100);
-        Controller.addAmountToFilling(fillingB,amountC);
+        Amount amountB1 = new Amount(newMake79, 120);
+        Controller.addAmountToFilling(fillingB,amountB1);
+        Location locationB = new Location("1-1-1-2");
+        caskA.setLocation(locationB);
 
-        HashMap<Cask, Double> casks = new HashMap<>();
-        casks.put(caskA,Double.valueOf(80));
-        casks.put(caskB,Double.valueOf(200));
+        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200);
+        Filling fillingC = Controller.createFilling(caskC, "Jonas");
+        Amount amountC1 = Controller.createAmount(newMake79, 175);
+        Controller.addAmountToFilling(fillingC,amountC1);
+        Location locationC = new Location("1-1-1-3");
+        caskA.setLocation(locationC);
 
-        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200);
+        Filling fillingD = Controller.createFilling(caskD, "Jonas");
+        Amount amountD = Controller.createAmount(newMake78, 50);
+        Amount amountD1 = Controller.createAmount(newMake77, 150);
+        Controller.addAmountToFilling(fillingD,amountD);
+        Controller.addAmountToFilling(fillingD,amountD1);
+        Location locationD = new Location("1-1-2-1");
+        caskA.setLocation(locationD);
+
+        Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
+
+        Cask caskF = Controller.createCask(Type.FINO, 200);
+
+        HashMap<Cask, Double> whiskersCasks = new HashMap<>();
+        whiskersCasks.put(caskA,Double.valueOf(80));
+        whiskersCasks.put(caskB,Double.valueOf(200));
+        WhiskyProduct whiskyProduct1 = Controller.CreateWhiskyProduct(whiskersCasks,"Whiskers whisky");
+
+
+        HashMap<Cask, Double> whimsyWhiskyCasks = new HashMap<>();
+        whimsyWhiskyCasks.put(caskC,Double.valueOf(75));
+        whimsyWhiskyCasks.put(caskD,Double.valueOf(100));
+        WhiskyProduct whiskyProduct2 = Controller.CreateWhiskyProduct(whimsyWhiskyCasks,"Whimsy whisky");
     }
 }

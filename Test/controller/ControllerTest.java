@@ -18,9 +18,84 @@ class ControllerTest {
         Storage storage = new ListStorage();
         Controller.setStorage(storage);
     }
+    @Test
+    void formalCreateWhiskyProductTest(){
+        /*
+        * See the report for documentation of the test cases
+        * */
+        //
+        Farmer farmer = new Farmer("Lars", "Where the crows turn.");
+        Field field = new Field("Stadsgaard.", farmer);
+        MaltBatch maltBatch = new MaltBatch("Smoke","Northern Jylland","Barley", field);
+        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        newMake77.setAlcPercent(0.80);
+        NewMake newMake78 = new NewMake("NM.78", LocalDate.now(), "Jonas", maltBatch);
+        newMake78.setAlcPercent(0.70);
+        NewMake newMake79 = new NewMake("NM.79", LocalDate.now(), "Jonas", maltBatch);
+        newMake79.setAlcPercent(0.60);
 
+        Cask caskA = new Cask(Type.AMARONE, 200);
+        Filling fillingA = new Filling(caskA, "Jonas");
+        Amount amountA = new Amount(newMake77, 100);
+        fillingA.addAmount(amountA);
+
+        Cask caskB = new Cask(Type.BAROLO, 200);
+        Filling fillingB = new Filling(caskB, "Jonas");
+        Amount amountB = new Amount(newMake78, 100);
+        fillingB.addAmount(amountB);
+        Amount amountC = new Amount(newMake79, 100);
+        fillingB.addAmount(amountC);
+
+        // Test case 1:
+        // Arrange
+        HashMap<Cask, Double> testParam1 = new HashMap<>();
+
+        // Act & Assert
+        Exception tc1 = assertThrows(IllegalArgumentException.class, () ->
+                Controller.CreateWhiskyProduct(testParam1,"Test Whiskey"));
+        assertEquals(IllegalArgumentException.class, tc1.getClass());
+
+
+        // Test case 2:
+        // Arrange
+        HashMap<Cask, Double> testParam2 = new HashMap<>();
+        testParam2.put(caskA, Double.valueOf(110));
+
+        // Act & Assert
+        Exception tc2 = assertThrows(IllegalArgumentException.class, () ->
+                Controller.CreateWhiskyProduct(testParam1,"Test Whiskey"));
+        assertEquals(IllegalArgumentException.class, tc2.getClass());
+
+
+        // Test case 3:
+        // Arrange
+        HashMap<Cask, Double> casks = new HashMap<>();
+        casks.put(caskA,Double.valueOf(80));
+        casks.put(caskB,Double.valueOf(200));
+
+        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+
+        // Act
+        boolean isStored = Controller.getWhiskyProducts().contains(whiskyProduct);
+        double alcPercent = whiskyProduct.getAlcoholPercent();
+        double totalLiters = whiskyProduct.getLiters();
+
+        double caskALiters = caskA.getLiters();
+        double caskBLiters = caskB.getLiters();
+
+        // Assert
+        assertTrue(isStored);
+        assertEquals(0.692,alcPercent,0.001);
+        assertEquals(280,totalLiters);
+        assertEquals(20, caskALiters);
+        assertEquals(0, caskBLiters);
+    }
     @Test
     void createWhiskyProduct() {
+        /*
+        * This test was written during the coding process. It is not the one formal test refferd to in the documentation.
+        * It belongs to the previous iteration.
+        * */
         // Case 1: Simple create
         // Arrange
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
@@ -164,16 +239,16 @@ class ControllerTest {
         cask1.setLiters(10);
 
         //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(Type.BEER,null,null,null).get(0));
+        assertEquals(cask1, Controller.locateFullCask(false,Type.BEER,null,null,null).get(0));
         //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(Type.BEER,null,null,null).size());
+        assertEquals(1, Controller.locateFullCask(false,Type.BEER,null,null,null).size());
 
         //Check with volume instead of Type
 
         //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(null,55.0,null,null).get(0));
+        assertEquals(cask1, Controller.locateFullCask(false,null,55.0,null,null).get(0));
         //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(null,55.0,null,null).size());
+        assertEquals(1, Controller.locateFullCask(false,null,55.0,null,null).size());
 
     }
 }
