@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 public class Gui extends Application {
 
    private static URL FXMLFarmer;
+   private static URL FXMLWhiskyRegistration;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -31,9 +32,18 @@ public class Gui extends Application {
         URL fxmlFileName2 = this.getClass().getResource("AddFarmerGUI.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
         FXMLFarmer = fxmlFileName2;
+
+        //Init WhiskyRegistrationDialog
+        URL fxmlWhiskyRegistration = this.getClass().getResource("WhiskyRegistrationDialog.fxml");
+        if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
+        FXMLFarmer = fxmlFileName2;
     }
 
     public static URL getFXMLFarmer() {
         return FXMLFarmer;
+    }
+
+    public static URL getFXMLWhiskyRegistration() {
+        return FXMLWhiskyRegistration;
     }
 }
