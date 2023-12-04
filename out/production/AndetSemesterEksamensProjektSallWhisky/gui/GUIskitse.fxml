@@ -17,7 +17,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIskitseController">
   <tabs>
-    <Tab text="Suppliers">
+    <Tab text="Farmers">
          <content>
             <GridPane hgap="20.0" prefHeight="315.0" prefWidth="599.0" vgap="10.0">
               <columnConstraints>
@@ -30,9 +30,9 @@
                   <RowConstraints maxHeight="79.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text fx:id="txtSuppliers" strokeType="OUTSIDE" strokeWidth="0.0" text="Suppliers" />
+                  <Text fx:id="txtFarmers" strokeType="OUTSIDE" strokeWidth="0.0" text="Farmers" />
                   <Text fx:id="txtInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
-                  <Button fx:id="btnSupplier" mnemonicParsing="false" text="Add supplier" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnAddFarmer" mnemonicParsing="false" onAction="#addFarmerAction" text="Add farmer" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                   <ListView fx:id="lvwSuppliers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                   <ListView fx:id="lvwSupplierInfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
                </children>
@@ -100,11 +100,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Casks" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
-                  <Button mnemonicParsing="false" text="Add cask" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Text fx:id="txtCasks" strokeType="OUTSIDE" strokeWidth="0.0" text="Casks" />
+                  <Text fx:id="txtCaskInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info" GridPane.columnIndex="1" />
+                  <ListView fx:id="lvwCasks" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                  <ListView fx:id="lvwCaskInfo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
+                  <Button fx:id="btnAddCask" mnemonicParsing="false" text="Add cask" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -160,19 +160,19 @@
                 <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Search" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cask ID" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cask size" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fill no." GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="btnSearch" mnemonicParsing="false" text="Search" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <ListView fx:id="lvwResults" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
+                  <Text fx:id="txtCaskID" strokeType="OUTSIDE" strokeWidth="0.0" text="Cask ID" GridPane.rowIndex="1" />
+                  <TextField fx:id="txfCaskID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="txtCaskSize" strokeType="OUTSIDE" strokeWidth="0.0" text="Cask size" GridPane.rowIndex="2" />
+                  <Text fx:id="txtSupplier" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier" GridPane.rowIndex="3" />
+                  <Text fx:id="txtType" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="4" />
+                  <Text fx:id="txtFillNo" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill no." GridPane.rowIndex="5" />
+                  <TextField fx:id="txfCaskSize" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txfSupplier" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txfFillNo" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Results" GridPane.columnIndex="2" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="cboxType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

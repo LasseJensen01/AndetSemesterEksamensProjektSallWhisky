@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.NoSuchElementException;
 
-public class Gui extends Application {
+public class AddFarmerPane extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL fxmlFileName = this.getClass().getResource("GUIskitse.fxml");
+        URL fxmlFileName = this.getClass().getResource("AddFarmerGUI.fxml");
         if (fxmlFileName == null) throw new NoSuchElementException("FXML file not found");
 
         Parent root = FXMLLoader.load(fxmlFileName);
@@ -23,8 +23,5 @@ public class Gui extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 
 }
