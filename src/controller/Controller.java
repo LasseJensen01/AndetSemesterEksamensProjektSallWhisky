@@ -29,6 +29,14 @@ public abstract class Controller {
         storage.storeFarmer(farmer);
         return farmer;
     }
+    public static void addFieldsToFarmer(Farmer farmer, List<Field> fields){
+        for (Field f : fields){
+            farmer.addField(f);
+        }
+    }
+    public static List<Farmer> getFarmers(){
+        return new ArrayList<>(storage.getFarmers());
+    }
     public static Field createField(String name, Farmer farmer){
         Field field = new Field(name, farmer);
         farmer.addField(field);

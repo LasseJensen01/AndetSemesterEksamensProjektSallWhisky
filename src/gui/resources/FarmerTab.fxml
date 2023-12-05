@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FarmerTabController">
+
+<GridPane hgap="20.0" prefHeight="470.0" prefWidth="800.0" vgap="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FarmerTabController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.33331298828125" minWidth="0.0" prefWidth="70.6666768391927" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="673.3333231608073" minWidth="10.0" prefWidth="669.3333231608073" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="131.0" minHeight="0.0" prefHeight="92.00000508626303" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="300.33334859212243" minHeight="4.6666717529296875" prefHeight="35.99999491373697" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="327.0" minHeight="10.0" prefHeight="84.66668192545572" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="300.33334859212243" minHeight="10.0" prefHeight="186.66666666666669" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <Label layoutX="33.0" layoutY="27.0" text="Farmers" />
-      <ListView fx:id="lwFarmers" layoutX="33.0" layoutY="57.0" prefHeight="329.0" prefWidth="328.0" />
-      <Label layoutX="420.0" layoutY="27.0" text="Info" />
-      <ListView fx:id="lwInfo" layoutX="420.0" layoutY="57.0" prefHeight="391.0" prefWidth="328.0" />
-      <Button fx:id="btnAddFarmer" layoutX="158.0" layoutY="394.0" mnemonicParsing="false" onAction="#addFarmerAction" text="Add Farmer" />
+      <ListView fx:id="lwFarmers" prefHeight="269.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label fx:id="lblOurFarmers" text="Our farmers" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+      <Button fx:id="btnAddFarmer" mnemonicParsing="false" onAction="#addFarmerAction" text="Add Farmer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+      <Text fx:id="txtFarmerName" strokeType="OUTSIDE" strokeWidth="0.0" text="Farmer name" GridPane.halignment="LEFT" />
+      <TextField fx:id="txfFarmerName" prefHeight="25.0" prefWidth="371.0" GridPane.columnIndex="1" />
+      <Text fx:id="txtAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+      <TextField fx:id="txfAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</GridPane>
