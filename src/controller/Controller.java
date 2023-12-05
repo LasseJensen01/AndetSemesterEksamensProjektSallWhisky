@@ -184,8 +184,10 @@ public abstract class Controller {
      * @param employee the name of the employee
      * @param cask the cask containing the filling
      * @pre employee not "".
+     * @throws IllegalArgumentException if the cask is not empty.
      */
     public static Filling createFilling(Cask cask, String employee){
+        if (cask.getFilling() != null) throw new IllegalArgumentException();
         Filling filling = new Filling(cask, employee);
         storage.getIdTracker().setFillingId(filling.getId());
         return filling;
