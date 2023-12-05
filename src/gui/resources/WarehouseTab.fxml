@@ -18,13 +18,13 @@
       <TextField fx:id="txtCaskID" layoutX="114.0" layoutY="96.0" />
       <TextField fx:id="txtCaskVolume" layoutX="114.0" layoutY="174.0" />
       <TextField fx:id="txtTimesUsed" layoutX="114.0" layoutY="212.0" />
-      <CheckBox fx:id="cbCaskIsInUse" layoutX="95.0" layoutY="58.0" mnemonicParsing="false" text="Cask is in use" />
+      <CheckBox fx:id="cbCaskIsInUse" layoutX="95.0" layoutY="58.0" mnemonicParsing="false" onAction="#setStateForcbIsWhisky" text="Cask is in use" />
       <Label layoutX="366.0" layoutY="26.0" text="Casks" />
       <Button fx:id="btnSearch" layoutX="207.0" layoutY="256.0" mnemonicParsing="false" onAction="#setBtnSearch" text="Search" />
       <Label layoutX="48.0" layoutY="310.0" text="Move Cask" />
       <Label layoutX="55.0" layoutY="340.0" text="Nye Lager:" />
       <Label layoutX="41.0" layoutY="376.0" text="Nye Location:" />
-      <Button fx:id="btnMoveCask" layoutX="188.0" layoutY="416.0" mnemonicParsing="false" text="Move Cask" />
+      <Button fx:id="btnMoveCask" layoutX="188.0" layoutY="416.0" mnemonicParsing="false" onAction="#setBtnMoveCask" text="Move Cask" />
       <CheckBox fx:id="cbIsWhisky" layoutX="197.0" layoutY="58.0" mnemonicParsing="false" text="Is Whisky" />
       <Label fx:id="lblErrorLabel" layoutX="174.0" layoutY="281.0" textFill="RED" />
       <Label layoutX="502.0" layoutY="363.0" text="Lager for ExtractOverview" />

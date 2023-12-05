@@ -63,6 +63,9 @@ public class WarehouseTabController {
     List<Warehouse> warehouseList = Controller.getWarehouses();
     cbExtractOverview.getItems().setAll(warehouseList);
     cbNewWarehouse.getItems().setAll(warehouseList);
+    lwCasks.getItems().setAll(Controller.getCasks());
+    lwCasks.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    cbIsWhisky.setDisable(true);
     }
 
     @FXML
@@ -71,7 +74,9 @@ public class WarehouseTabController {
         try{
             wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
             cbNewLocation.getItems().setAll(wh.getLocations());
-        }catch (Exception e){}
+        }catch (Exception e){
+            System.err.println();
+        }
     }
 
     @FXML
@@ -122,7 +127,26 @@ public class WarehouseTabController {
             Warehouse wh = cbExtractOverview.getSelectionModel().getSelectedItem();
             wh.extractOverview();
         }catch (Exception e){
-            System.out.println("shitfuck" + e.getMessage());
+            System.err.println("error when printing: " + e.getMessage());
         }
+    }
+    @FXML
+    private void setBtnMoveCask(){
+        try {
+            Cask cask = lwCasks.getSelectionModel().getSelectedItem();
+            Location location = cbNewLocation.getSelectionModel().getSelectedItem();
+            Warehouse warehouse = cbNewWarehouse.getSelectionModel().getSelectedItem();
+
+            Controller.moveCask(warehouse, cask, location);
+        } catch (Exception e){
+            System.err.println("error when moveing cask" + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void setStateForcbIsWhisky(){
+        if(cbCaskIsInUse.isSelected()){
+            cbIsWhisky.setDisable(false);
+        } else cbIsWhisky.setDisable(true);
     }
 }
