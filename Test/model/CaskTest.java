@@ -34,8 +34,8 @@ class CaskTest {
         // Arrange
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
         Field field = new Field("By the river.", farmer);
-        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
-        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Barley", field);
+        NewMake newMake77 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake77.setAlcPercent(0.80);
         Amount amount = new Amount(newMake77, 15);
         filling.addAmount(amount);
@@ -76,8 +76,8 @@ class CaskTest {
         Filling filling = new Filling(cask, "Maria");
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
         Field field = new Field("By the river.", farmer);
-        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
-        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Byg", field);
+        NewMake newMake77 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake77.setAlcPercent(0.80);
         Amount amount = new Amount(newMake77, 15);
         filling.addAmount(amount);

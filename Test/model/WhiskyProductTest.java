@@ -16,12 +16,12 @@ class WhiskyProductTest {
         // Arrange
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
         Field field = new Field("By the river.", farmer);
-        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Nord Jylland","Byg", field);
-        NewMake newMake77 = new NewMake("NM.77", LocalDate.now(), "Jonas", maltBatch);
+        MaltBatch maltBatch = new MaltBatch("Søren Ryge","Byg", field);
+        NewMake newMake77 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake77.setAlcPercent(0.80);
-        NewMake newMake78 = new NewMake("NM.78", LocalDate.now(), "Jonas", maltBatch);
+        NewMake newMake78 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake78.setAlcPercent(0.70);
-        NewMake newMake79 = new NewMake("NM.79", LocalDate.now(), "Jonas", maltBatch);
+        NewMake newMake79 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
         Cask caskA = new Cask(Type.AMARONE, 200);
