@@ -402,7 +402,12 @@ public abstract class Controller {
         Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
 
         Cask caskF = Controller.createCask(Type.FINO, 200);
-
+        Controller.storeCask(warehouse, caskA);
+        Controller.storeCask(warehouse, caskB);
+        Controller.storeCask(warehouse, caskC);
+        Controller.storeCask(warehouse, caskD);
+        Controller.storeCask(warehouse, caskE);
+        Controller.storeCask(warehouse, caskF);
 
         HashMap<Cask, Double> whiskersCasks = new HashMap<>();
         whiskersCasks.put(caskA,Double.valueOf(80));
