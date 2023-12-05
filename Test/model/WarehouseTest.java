@@ -38,9 +38,9 @@ public class WarehouseTest {
 
         Field field = new Field("Mark",f);
 
-        MaltBatch mb = new MaltBatch("Tobak","NordFyn","Corn",field);
+        MaltBatch mb = new MaltBatch("NordFyn","Corn",field);
 
-        NewMake nm1 = new NewMake("GoodShit", LocalDate.now(),"LJ",mb);
+        NewMake nm1 = new NewMake(LocalDate.now(),"LJ",mb);
 
         Cask cask1 = new Cask(Type.VIRGIN_OAK, 30);
 
