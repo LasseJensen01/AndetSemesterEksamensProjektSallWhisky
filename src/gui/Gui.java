@@ -82,13 +82,21 @@ public class Gui extends Application {
         whiskyTab.setClosable(false);
         tabpane.getTabs().add(whiskyTab);
 
-        //Pane8
+        //Pane8 WarehouseTab
         URL warehousePane = this.getClass().getResource("resources\\WarehouseTab.fxml");
         if(warehousePane == null) throw new NoSuchElementException("warehousePane not found");
         Parent warehousePaneRoot = FXMLLoader.load(warehousePane);
         Tab warehouseTab = new Tab("Warehouse",warehousePaneRoot);
         warehouseTab.setClosable(false);
         tabpane.getTabs().add(warehouseTab);
+
+        //Pane9 LocateTab
+        URL locatePane = this.getClass().getResource("resources\\LocateCasksTab.fxml");
+        if(locatePane == null) throw new NoSuchElementException("locatePane not found");
+        Parent locatePaneRoot = FXMLLoader.load(locatePane);
+        Tab locateTab = new Tab("Locate Casks",locatePaneRoot);
+        locateTab.setClosable(false);
+        tabpane.getTabs().add(locateTab);
 
         // Setup TabPane
         Parent root = new AnchorPane(tabpane);

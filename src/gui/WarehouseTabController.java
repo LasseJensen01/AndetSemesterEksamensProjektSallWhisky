@@ -1,152 +1,67 @@
 package gui;
 
 import controller.Controller;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import model.Cask;
-import model.Location;
-import model.Type;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import model.Warehouse;
+
 
 import java.util.Arrays;
 import java.util.List;
 
 
 public class WarehouseTabController {
+    @FXML
+    private Button btnCreateWarehouse;
 
     @FXML
     private Button btnExtractOverview;
 
     @FXML
-    private Button btnMoveCask;
+    private ListView<Warehouse> lwWarehouses;
 
     @FXML
-    private Button btnSearch;
+    private TextField txtAdress;
 
     @FXML
-    private CheckBox cbCaskIsInUse;
+    private TextField txtName;
 
-    @FXML
-    private ComboBox<Type> cbCaskType;
 
-    @FXML
-    private ComboBox<Warehouse> cbExtractOverview;
-
-    @FXML
-    private CheckBox cbIsWhisky;
-
-    @FXML
-    private ComboBox<Location> cbNewLocation;
-
-    @FXML
-    private Label lblErrorLabel;
-
-    @FXML
-    private ListView<Cask> lwCasks;
-
-    @FXML
-    private TextField txtCaskID;
-
-    @FXML
-    private TextField txtCaskVolume;
-
-    @FXML
-    private TextField txtTimesUsed;
-
-    @FXML
-    private ComboBox<Warehouse> cbNewWarehouse;
 
     @FXML
     public void initialize(){
-    cbCaskType.getItems().setAll(Type.values());
-    List<Warehouse> warehouseList = Controller.getWarehouses();
-    cbExtractOverview.getItems().setAll(warehouseList);
-    cbNewWarehouse.getItems().setAll(warehouseList);
-    lwCasks.getItems().setAll(Controller.getCasks());
-    lwCasks.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-    cbIsWhisky.setDisable(true);
+    updateLWWarehouseOverview();
+    lwWarehouses.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
-
     @FXML
-    private void updateCBLocationBox(){
-        Warehouse wh = null;
+    private void setBtnCreateWarehouse(){
         try{
-            wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
-            cbNewLocation.getItems().setAll(wh.getLocations());
+            if (!txtName.getText().isEmpty() && !txtAdress.getText().isEmpty()) {
+                String name = txtName.getText();
+                String adress = txtAdress.getText();
+                Controller.createWarehouse(name,adress);
+                updateLWWarehouseOverview();
+                txtName.clear();
+                txtAdress.clear();
+            }
         }catch (Exception e){
-            System.err.println();
+            System.err.println("error when creating warehouse " + e.getMessage());
         }
     }
-
-    @FXML
-    private void setBtnSearch(){
-        boolean iswhisky = cbIsWhisky.isSelected();
-        boolean caskInUse = cbCaskIsInUse.isSelected();
-
-        Integer ID = null;
-        Type type = null;
-        Double volume = null;
-        Integer timesUsed = null;
-
-        try {
-            if (!txtCaskID.getText().isEmpty()){
-                ID = Integer.parseInt(txtCaskID.getText());
-            }
-        } catch (Exception e){
-            lblErrorLabel.setText("ID skal være et helt tal");
-        }
-
-        if(cbCaskType.getItems() != null){
-            type = cbCaskType.getSelectionModel().getSelectedItem();
-        }
-
-        try {
-            if (!txtCaskVolume.getText().isEmpty()){
-                volume = Double.parseDouble(txtCaskVolume.getText());
-            }
-        } catch (Exception e){
-            lblErrorLabel.setText("Cask Volume skal være et tal");
-        }
-
-        try {
-            if (!txtTimesUsed.getText().isEmpty()){
-                timesUsed = Integer.parseInt(txtTimesUsed.getText());
-            }
-        } catch (Exception e){
-            lblErrorLabel.setText("Times used skal være et helt tal");
-        }
-        if (caskInUse){
-            lwCasks.getItems().setAll(Controller.locateFullCask(iswhisky,type,volume,ID,timesUsed));
-        } else lwCasks.getItems().setAll(Controller.locateEmptyCask(type,volume,ID, timesUsed));
-    }
-
     @FXML
     private void setBtnExtractOverview(){
         try {
-            Warehouse wh = cbExtractOverview.getSelectionModel().getSelectedItem();
+            Warehouse wh = lwWarehouses.getSelectionModel().getSelectedItem();
             wh.extractOverview();
         }catch (Exception e){
             System.err.println("error when printing: " + e.getMessage());
         }
     }
     @FXML
-    private void setBtnMoveCask(){
-        try {
-            Cask cask = lwCasks.getSelectionModel().getSelectedItem();
-            Location location = cbNewLocation.getSelectionModel().getSelectedItem();
-            Warehouse warehouse = cbNewWarehouse.getSelectionModel().getSelectedItem();
-
-            Controller.moveCask(warehouse, cask, location);
-        } catch (Exception e){
-            System.err.println("error when moveing cask" + e.getMessage());
-        }
-    }
-
-    @FXML
-    private void setStateForcbIsWhisky(){
-        if(cbCaskIsInUse.isSelected()){
-            cbIsWhisky.setDisable(false);
-        } else cbIsWhisky.setDisable(true);
+    private void updateLWWarehouseOverview(){
+        lwWarehouses.getItems().setAll(Controller.getWarehouses());
     }
 }
