@@ -417,6 +417,16 @@ public abstract class Controller {
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
 
+    public static List<Field> getFarmersFields(Farmer farmer){
+        List<Farmer> allFarmers = storage.getFarmers();
+        for (Farmer f : allFarmers){
+            if (f.equals(farmer)){
+                return f.getFields();
+            }
+        }
+        return null;
+    }
+
     //Update this as the last few CRUD details are added to the controler
     public static void initTestStorage(){
         Farmer Lars = Controller.createFarmer("Lars T", "Hvor kragerne vender.");

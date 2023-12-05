@@ -33,7 +33,7 @@ public class Gui extends Application {
         URL fieldPane = this.getClass().getResource("resources\\FieldTab.fxml");
         if (fieldPane == null) throw new NoSuchElementException("fieldPane not found");
         Parent fieldPaneRoot = FXMLLoader.load(fieldPane);
-        Tab fieldTab = new Tab("Farmers", fieldPaneRoot);
+        Tab fieldTab = new Tab("Add fields to farmer", fieldPaneRoot);
         fieldTab.setClosable(false);
         tabpane.getTabs().add(fieldTab);
 
@@ -41,7 +41,7 @@ public class Gui extends Application {
         URL maltBatchPane = this.getClass().getResource("resources\\MaltBatchTab.fxml");
         if (maltBatchPane == null) throw new NoSuchElementException("maltBatchPane not found");
         Parent maltBatchPaneRoot = FXMLLoader.load(maltBatchPane);
-        Tab maltBatchTab = new Tab("Malt batch", maltBatchPaneRoot);
+        Tab maltBatchTab = new Tab("Register malt batch", maltBatchPaneRoot);
         maltBatchTab.setClosable(false);
         tabpane.getTabs().add(maltBatchTab);
 
