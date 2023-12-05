@@ -80,4 +80,9 @@ public class Warehouse {
     public List<Location> getLocations() {
         return new ArrayList<>(locations);
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + adress;
+    }
 }

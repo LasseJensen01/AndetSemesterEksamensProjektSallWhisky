@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -18,20 +18,20 @@
       <TextField fx:id="txtCaskID" layoutX="114.0" layoutY="96.0" />
       <TextField fx:id="txtCaskVolume" layoutX="114.0" layoutY="174.0" />
       <TextField fx:id="txtTimesUsed" layoutX="114.0" layoutY="212.0" />
-      <ChoiceBox fx:id="cbCaskType" layoutX="114.0" layoutY="134.0" prefWidth="150.0" />
       <CheckBox fx:id="cbCaskIsInUse" layoutX="95.0" layoutY="58.0" mnemonicParsing="false" text="Cask is in use" />
       <Label layoutX="366.0" layoutY="26.0" text="Casks" />
       <Button fx:id="btnSearch" layoutX="207.0" layoutY="256.0" mnemonicParsing="false" onAction="#setBtnSearch" text="Search" />
       <Label layoutX="48.0" layoutY="310.0" text="Move Cask" />
-      <ChoiceBox fx:id="cbNewWarehouse" layoutX="118.0" layoutY="336.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="cbNewLocation" layoutX="118.0" layoutY="372.0" prefWidth="150.0" />
       <Label layoutX="55.0" layoutY="340.0" text="Nye Lager:" />
       <Label layoutX="41.0" layoutY="376.0" text="Nye Location:" />
       <Button fx:id="btnMoveCask" layoutX="188.0" layoutY="416.0" mnemonicParsing="false" text="Move Cask" />
       <CheckBox fx:id="cbIsWhisky" layoutX="197.0" layoutY="58.0" mnemonicParsing="false" text="Is Whisky" />
       <Label fx:id="lblErrorLabel" layoutX="174.0" layoutY="281.0" textFill="RED" />
-      <ChoiceBox fx:id="cbExtractOverview" layoutX="495.0" layoutY="385.0" prefWidth="150.0" />
       <Label layoutX="502.0" layoutY="363.0" text="Lager for ExtractOverview" />
       <Button fx:id="btnExtractOverview" layoutX="518.0" layoutY="416.0" mnemonicParsing="false" text="Extract Overview" />
+      <ComboBox fx:id="cbNewLocation" layoutX="118.0" layoutY="372.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbNewWarehouse" layoutX="118.0" layoutY="336.0" onAction="#updateCBLocationBox" prefWidth="150.0" />
+      <ComboBox fx:id="cbCaskType" layoutX="114.0" layoutY="134.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbExtractOverview" layoutX="495.0" layoutY="381.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -336,7 +336,8 @@ public abstract class Controller {
         NewMake newMake79 = Controller.createNewMake("NM.79", LocalDate.now(), "Ashley", maltBatchTwo);
         newMake79.setAlcPercent(0.60);
 
-        Warehouse warehouse = new Warehouse("warehouse", "Storeage street");
+        Warehouse warehouse = Controller.createWarehouse("Storage", "Storage Street");
+        Controller.createLocationsInWarehouse(warehouse,10,4,3,3);
 
         Cask caskA = Controller.createCask(Type.AMARONE, 200);
         Filling fillingA = Controller.createFilling(caskA, "Jonas");

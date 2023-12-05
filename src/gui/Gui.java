@@ -68,7 +68,7 @@ public class Gui extends Application {
 
         //Pane 6 Whisky
         URL whiskyPane = this.getClass().getResource("resources\\WhiskyTab.fxml");
-        if(fillingsPane == null) throw new NoSuchElementException("whiskyPane not found");
+        if(whiskyPane == null) throw new NoSuchElementException("whiskyPane not found");
         Parent whiskyPaneRoot = FXMLLoader.load(whiskyPane);
         Tab whiskyTab = new Tab("Whisky",whiskyPaneRoot);
         whiskyTab.setClosable(false);
@@ -76,7 +76,7 @@ public class Gui extends Application {
 
         //Pane 7
         URL warehousePane = this.getClass().getResource("resources\\WarehouseTab.fxml");
-        if(fillingsPane == null) throw new NoSuchElementException("warehousePane not found");
+        if(warehousePane == null) throw new NoSuchElementException("warehousePane not found");
         Parent warehousePaneRoot = FXMLLoader.load(warehousePane);
         Tab warehouseTab = new Tab("Warehouse",warehousePaneRoot);
         warehouseTab.setClosable(false);

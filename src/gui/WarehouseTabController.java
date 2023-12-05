@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Cask;
@@ -9,6 +10,7 @@ import model.Type;
 import model.Warehouse;
 
 import java.util.Arrays;
+import java.util.List;
 
 
 public class WarehouseTabController {
@@ -26,19 +28,16 @@ public class WarehouseTabController {
     private CheckBox cbCaskIsInUse;
 
     @FXML
-    private ChoiceBox<Type> cbCaskType;
+    private ComboBox<Type> cbCaskType;
 
     @FXML
-    private ChoiceBox<Warehouse> cbExtractOverview;
+    private ComboBox<Warehouse> cbExtractOverview;
 
     @FXML
     private CheckBox cbIsWhisky;
 
     @FXML
-    private ChoiceBox<Location> cbNewLocation;
-
-    @FXML
-    private ChoiceBox<Warehouse> cbNewWarehouse;
+    private ComboBox<Location> cbNewLocation;
 
     @FXML
     private Label lblErrorLabel;
@@ -56,23 +55,23 @@ public class WarehouseTabController {
     private TextField txtTimesUsed;
 
     @FXML
+    private ComboBox<Warehouse> cbNewWarehouse;
+
+    @FXML
     public void initialize(){
     cbCaskType.getItems().setAll(Type.values());
-    cbExtractOverview.getItems().setAll(Controller.getWarehouses());
-    cbNewWarehouse.getItems().setAll(Controller.getWarehouses());
+    List<Warehouse> warehouseList = Controller.getWarehouses();
+    cbExtractOverview.getItems().setAll(warehouseList);
+    cbNewWarehouse.getItems().setAll(warehouseList);
     }
 
     @FXML
-    private void updateCBLocationBox(){
+    private void updateCBLocationBox(ActionEvent a){
         Warehouse wh = null;
         try{
             wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
             cbNewLocation.getItems().setAll(wh.getLocations());
-        }catch (Exception e){
-
-        }
-
-
+        }catch (Exception e){}
     }
 
     @FXML
