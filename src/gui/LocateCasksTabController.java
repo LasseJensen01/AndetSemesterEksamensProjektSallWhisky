@@ -128,6 +128,9 @@ public class LocateCasksTabController {
     private void setStateForcbIsWhisky(){
         if(cbCaskIsInUse.isSelected()){
             cbIsWhisky.setDisable(false);
-        } else cbIsWhisky.setDisable(true);
+        } else {
+            cbIsWhisky.setSelected(false);
+            cbIsWhisky.setDisable(true);
+        }
     }
 }
