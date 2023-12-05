@@ -10,9 +10,10 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.NoSuchElementException;
 
 public class WhiskyTabController {
-
+    private static URL FXMLWhiskyRegistration;
     @FXML
     private Button btnBottleWhisky;
 
@@ -28,9 +29,14 @@ public class WhiskyTabController {
     @FXML
     private TextArea txfWhiskyInfo;
 
+    private void intialize(){
+        URL fxmlWhiskyRegistration = this.getClass().getResource("WhiskyRegistrationDialog.fxml");
+        if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
+        this.FXMLWhiskyRegistration = fxmlWhiskyRegistration;
+    }
     @FXML
     private void registerWhiskeyAction() throws Exception{
-        Parent root = FXMLLoader.load(Gui.getFXMLWhiskyRegistration());
+        Parent root = FXMLLoader.load(FXMLWhiskyRegistration);
         Stage stage = new Stage();
         stage.setMinWidth(root.minWidth(-1));
         stage.setMinHeight(root.minHeight(-1));
