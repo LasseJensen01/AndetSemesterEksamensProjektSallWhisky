@@ -17,4 +17,9 @@ public class Field {
     public Farmer getSupplier() {
         return farmer;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Field '%s' owned by %s", name, farmer);
+    }
 }

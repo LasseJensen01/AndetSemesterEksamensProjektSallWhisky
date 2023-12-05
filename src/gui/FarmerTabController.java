@@ -7,16 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import model.Farmer;
 
 public class FarmerTabController {
     @FXML
     private Button btnAddFarmer;
 
     @FXML
-    private ListView<?> lwFarmers;
+    private ListView<Farmer> lwFarmers;
 
     @FXML
-    private ListView<?> lwInfo;
+    private ListView<String> lwInfo;
 
     @FXML
     private void addFarmerAction() throws Exception{
