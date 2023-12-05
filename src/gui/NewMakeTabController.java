@@ -7,23 +7,21 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import model.MaltBatch;
 
 public class NewMakeTabController {
+
+    @FXML
+    private Button btnDone;
 
     @FXML
     private Button btnRegister;
 
     @FXML
-    private ChoiceBox<?> cboxGrain;
+    private ChoiceBox<MaltBatch> cboxMaltBatch;
 
     @FXML
-    private ChoiceBox<?> cboxMaltBatch;
-
-    @FXML
-    private ChoiceBox<?> cboxResponsibleEmployee;
-
-    @FXML
-    private ChoiceBox<?> cboxSmokeMaterial;
+    private ChoiceBox<String> cboxResponsibleEmployee;
 
     @FXML
     private DatePicker datePickerEnd;
@@ -53,7 +51,7 @@ public class NewMakeTabController {
     private Text txtEndDate;
 
     @FXML
-    private Text txtGrain;
+    private Text txtFinish;
 
     @FXML
     private Text txtMaltBatch;
@@ -62,13 +60,16 @@ public class NewMakeTabController {
     private Text txtNewMakID;
 
     @FXML
+    private Text txtNewMakesInProgress;
+
+    @FXML
     private Text txtProducedAmount;
 
     @FXML
     private Text txtResponsibleEmployee;
 
     @FXML
-    private Text txtSmokeMaterial;
+    private Text txtStart;
 
     @FXML
     private Text txtStartDate;

@@ -62,16 +62,11 @@ public abstract class Controller {
         return newMake;
     }
 
-    public static void updateNewMakeWithComment(NewMake newMake, String comment){
-        if(newMake.getComment().isEmpty()){
-            newMake.setComment(comment);
-        }
-    }
-
-    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent){
+    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, String comment){
         newMake.setVolume(volume);
         newMake.setAlcPercent(alcoholPercent);
         newMake.setEndDate(LocalDate.now());
+        newMake.setComment(comment);
     }
 
     public static void setCaskLiters(Cask cask, double liters){
