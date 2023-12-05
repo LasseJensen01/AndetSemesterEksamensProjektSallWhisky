@@ -55,7 +55,7 @@ public class AddFarmerDialogController {
         Farmer farmer = Controller.createFarmer(name, adress);
 
         List<Field> fields = lvwFields.getItems();
-        Controller.addFieldsToFarmer(farmer, fields);
+        //Controller.addFieldsToFarmer(farmer, fields);
     }
 
     @FXML
