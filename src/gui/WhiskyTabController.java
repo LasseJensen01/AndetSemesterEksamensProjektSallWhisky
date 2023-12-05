@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.WhiskyProduct;
 
@@ -37,6 +34,12 @@ public class WhiskyTabController{
     private TextArea txfWhiskyInfo;
 
     @FXML
+    private TextField txfBottleSize;
+
+    @FXML
+    private TextField txfNumberOfBottles;
+
+    @FXML
     public void initialize(){
         ChangeListener<Object> listener = (ov, o, n) -> this.listViewSelected();
         lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(listener);
@@ -48,18 +51,43 @@ public class WhiskyTabController{
         URL fxmlWhiskyRegistration = this.getClass().getResource("resources\\WhiskyRegistrationDialog.fxml");
         if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
         this.FXMLWhiskyRegistration = fxmlWhiskyRegistration;
-        System.out.println("init");
+
     }
 
     private void listViewSelected() {
         txfWhiskyInfo.clear();
-        txfWhiskyInfo.setText("HELLO");
-
+        String s = lvwWhiskyList.getSelectionModel().getSelectedItem().toString();
+        txfWhiskyInfo.setText(s);
     }
-
     @FXML
-    private void registerWhiskeyAction() throws Exception{
+    void btnBottleWhiskyAction(ActionEvent event) {
+        try {
+            int numberOfBottles = Integer.parseInt(txfNumberOfBottles.getText());
+            double bottleSize = Double.parseDouble(txfBottleSize.getText());
 
+            WhiskyProduct selected = lvwWhiskyList.getSelectionModel().getSelectedItem();
+            Controller.putOnBottle(selected,numberOfBottles,bottleSize);
+
+            txfWhiskyInfo.clear();
+            lvwWhiskyList.getItems().clear();
+            lvwWhiskyList.refresh();
+            lvwWhiskyList.getItems().setAll(
+                    Controller.getWhiskyProducts()
+            );
+
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setResizable(true);
+            info.setTitle("Sucess");
+            info.setHeaderText("The whisky has been taped on to bottles.");
+            info.setContentText(numberOfBottles + " registered");
+            info.show();
+        } catch (Exception e){
+            Alert err = new Alert(Alert.AlertType.ERROR);
+            err.setTitle("An error has occured");
+            err.setHeaderText("The following issues have been detected");
+            err.setContentText("Please cheek number of bottle and bottle size feilds.");
+            err.show();
+        }
     }
 
     @FXML
