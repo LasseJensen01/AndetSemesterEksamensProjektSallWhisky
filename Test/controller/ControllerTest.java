@@ -251,4 +251,11 @@ class ControllerTest {
         assertEquals(1, Controller.locateFullCask(false,null,55.0,null,null).size());
 
     }
+    @Test
+    void createWarehouse(){
+        //Setup
+        Warehouse warehouse = Controller.createWarehouse("test", "test");
+
+        assertEquals(warehouse, Controller.getWarehouses().get(0));
+    }
 }
