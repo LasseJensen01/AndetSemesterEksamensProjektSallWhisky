@@ -25,28 +25,25 @@
       <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="32.666656494140625" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="151.33334350585938" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Text fx:id="txtNewMakID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID (New make nr.)" />
       <TextField fx:id="txfIDNewMake" GridPane.rowIndex="1" />
-      <Text fx:id="txtResponsibleEmployee" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsible employee" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <ChoiceBox fx:id="cboxResponsibleEmployee" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-      <Text fx:id="txtStartDate" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" GridPane.columnIndex="1" />
-      <DatePicker fx:id="datePickerStart" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Text fx:id="txtResponsibleEmployee" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsible employee" GridPane.rowIndex="6" />
+      <ChoiceBox fx:id="cboxResponsibleEmployee" prefWidth="150.0" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+      <Text fx:id="txtStartDate" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" GridPane.rowIndex="2" />
+      <DatePicker fx:id="datePickerStart" GridPane.rowIndex="3" />
       <DatePicker fx:id="datePickerEnd" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Text fx:id="txtEndDate" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" GridPane.columnIndex="2" />
-      <Text fx:id="txtGrain" strokeType="OUTSIDE" strokeWidth="0.0" text="Grain" GridPane.rowIndex="2" />
-      <Text fx:id="txtMaltBatch" strokeType="OUTSIDE" strokeWidth="0.0" text="Malt batch" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Text fx:id="txtSmokeMaterial" strokeType="OUTSIDE" strokeWidth="0.0" text="Smoke material" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ChoiceBox fx:id="cboxGrain" prefWidth="150.0" GridPane.rowIndex="3" />
-      <ChoiceBox fx:id="cboxMaltBatch" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <ChoiceBox fx:id="cboxSmokeMaterial" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Text fx:id="txtComment" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" GridPane.rowIndex="6" />
-      <TextArea fx:id="txaComment" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-      <Button fx:id="btnRegister" mnemonicParsing="false" text="Register" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-      <Text fx:id="txtProducedAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Produced amount" GridPane.rowIndex="4" />
-      <TextField fx:id="txfProducedAmount" GridPane.rowIndex="5" />
+      <Text fx:id="txtMaltBatch" strokeType="OUTSIDE" strokeWidth="0.0" text="Malt batch" GridPane.rowIndex="4" />
+      <ChoiceBox fx:id="cboxMaltBatch" prefWidth="150.0" GridPane.rowIndex="5" />
+      <Text fx:id="txtComment" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextArea fx:id="txaComment" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Button fx:id="btnRegister" mnemonicParsing="false" text="Register" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+      <Text fx:id="txtProducedAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Produced amount" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <TextField fx:id="txfProducedAmount" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Text fx:id="txtAlcoholPercent" strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol percent" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField fx:id="txfAlcoholPercent" GridPane.columnIndex="1" GridPane.rowIndex="5" />
    </children>
