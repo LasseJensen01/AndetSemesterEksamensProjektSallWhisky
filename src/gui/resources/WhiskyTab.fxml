@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WhiskyTabController">
    <children>
-      <Button id="RigisterNewWhiskey" fx:id="btnRegisterNewWhisky" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" text="Register new whiskey" />
+      <Button id="RigisterNewWhiskey" fx:id="btnRegisterNewWhisky" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" onAction="#openRegistrationWindow" text="Register new whiskey" />
       <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
       <Text layoutX="101.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw" />
       <TextArea id="txfWhiskyInfo" fx:id="txfWhiskyInfo" disable="true" layoutX="290.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0" />
