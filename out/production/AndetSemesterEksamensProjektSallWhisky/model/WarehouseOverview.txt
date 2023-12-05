@@ -1,6 +1,10 @@
 Warehouse extract for: Storage
 -------------------------------------
 
+ID:   1, Type: AMARONE       Volume: 200,00, Liters: 40,00, Location: 1-1-1-1
+     Fillings: 
+            ID:   1, Liters: 40,00, Employee: Jonas         Date: 2023-12-05
+            NewMake: hihi Liters: 120,00
 
 ID:   2, Type: BAROLO        Volume: 200,00, Liters: 0,00, Location: 1-1-1-2
      Fillings: 
