@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FillingsTabController">
+   <children>
+      <Text layoutX="29.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee signature" />
+      <TextField id="txfEmployeeSignature" fx:id="txfEmployeeSignature" layoutX="148.0" layoutY="34.0" />
+      <TextField id="txfCaskID" fx:id="txfCaskID" layoutX="148.0" layoutY="71.0" />
+      <Text layoutX="29.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cask ID" />
+      <Text layoutX="137.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NewMakes" />
+      <Text layoutX="383.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filling content" />
+      <TextArea id="txaFillingContent" fx:id="txaFillingContent" editable="false" layoutX="321.0" layoutY="162.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button id="btnFillCask" fx:id="btnFillCask" layoutX="616.0" layoutY="222.0" mnemonicParsing="false" onAction="#FillCask" text="Fill cask" />
+      <Button id="btnClear" fx:id="btnClear" layoutX="399.0" layoutY="390.0" mnemonicParsing="false" onAction="#clearChoices" text="Clear" />
+      <Button id="btnAddNewMake" fx:id="btnAddNewMake" layoutX="140.0" layoutY="390.0" mnemonicParsing="false" onAction="#addNewmake" text="Add" />
+      <ChoiceBox id="chbNewMakes" fx:id="chbNewMakes" layoutX="91.0" layoutY="162.0" prefWidth="150.0" />
+      <TextField id="txfLitersOfNewMake" fx:id="txfLitersOfNewMake" layoutX="92.0" layoutY="223.0" />
+      <Text layoutX="29.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters" />
+      <Text layoutX="410.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cask info" />
+      <TextField id="txfCaskInfo" fx:id="txfCaskInfo" editable="false" layoutX="321.0" layoutY="70.0" prefHeight="26.0" prefWidth="373.0" />
+      <Button id="btnConfirmCask" fx:id="btnConfirmCask" layoutX="531.0" layoutY="33.0" mnemonicParsing="false" onAction="#caskConfimation" text="Confirm cask" />
+   </children>
+</AnchorPane>

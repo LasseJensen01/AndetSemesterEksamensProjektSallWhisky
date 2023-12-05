@@ -1,10 +1,23 @@
 package gui;
 
+import controller.Controller;
+import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-public class WhiskyTabController {
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import model.WhiskyProduct;
+
+import java.net.URL;
+import java.util.NoSuchElementException;
+import java.util.ResourceBundle;
+
+public class WhiskyTabController{
+    private static URL FXMLWhiskyRegistration;
     @FXML
     private Button btnBottleWhisky;
 
@@ -15,8 +28,77 @@ public class WhiskyTabController {
     private Button btnStoreWhisky;
 
     @FXML
-    private ListView<?> lvwWhiskyList;
+    private ListView<WhiskyProduct> lvwWhiskyList;
 
     @FXML
     private TextArea txfWhiskyInfo;
+
+    @FXML
+    private TextField txfBottleSize;
+
+    @FXML
+    private TextField txfNumberOfBottles;
+
+    @FXML
+    public void initialize(){
+        ChangeListener<Object> listener = (ov, o, n) -> this.listViewSelected();
+        lvwWhiskyList.getSelectionModel().selectedItemProperty().addListener(listener);
+        lvwWhiskyList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        lvwWhiskyList.getItems().setAll(
+                Controller.getWhiskyProducts()
+        );
+
+        URL fxmlWhiskyRegistration = this.getClass().getResource("resources\\WhiskyRegistrationDialog.fxml");
+        if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
+        this.FXMLWhiskyRegistration = fxmlWhiskyRegistration;
+
+    }
+
+    private void listViewSelected() {
+        txfWhiskyInfo.clear();
+        String s = lvwWhiskyList.getSelectionModel().getSelectedItem().toString();
+        txfWhiskyInfo.setText(s);
+    }
+    @FXML
+    void btnBottleWhiskyAction(ActionEvent event) {
+        try {
+            int numberOfBottles = Integer.parseInt(txfNumberOfBottles.getText());
+            double bottleSize = Double.parseDouble(txfBottleSize.getText());
+
+            WhiskyProduct selected = lvwWhiskyList.getSelectionModel().getSelectedItem();
+            Controller.putOnBottle(selected,numberOfBottles,bottleSize);
+
+            txfWhiskyInfo.clear();
+            lvwWhiskyList.getItems().clear();
+            lvwWhiskyList.refresh();
+            lvwWhiskyList.getItems().setAll(
+                    Controller.getWhiskyProducts()
+            );
+
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setResizable(true);
+            info.setTitle("Sucess");
+            info.setHeaderText("The whisky has been taped on to bottles.");
+            info.setContentText(numberOfBottles + " registered");
+            info.show();
+        } catch (Exception e){
+            Alert err = new Alert(Alert.AlertType.ERROR);
+            err.setTitle("An error has occured");
+            err.setHeaderText("The following issues have been detected");
+            err.setContentText("Please cheek number of bottle and bottle size feilds.");
+            err.show();
+        }
+    }
+
+    @FXML
+    void openRegistrationWindow(ActionEvent event) throws Exception{
+        System.out.println(FXMLWhiskyRegistration.toString());
+        Parent root = FXMLLoader.load(FXMLWhiskyRegistration);
+        Stage stage = new Stage();
+        stage.setMinWidth(root.minWidth(-1));
+        stage.setMinHeight(root.minHeight(-1));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
