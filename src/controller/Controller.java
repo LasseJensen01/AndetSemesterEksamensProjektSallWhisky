@@ -66,6 +66,20 @@ public abstract class Controller {
         return field;
     }
 
+    public static List<Field> getFarmersFields(Farmer farmer){
+        List<Farmer> allFarmers = storage.getFarmers();
+        for (Farmer f : allFarmers){
+            if (f.equals(farmer)){
+                return f.getFields();
+            }
+        }
+        return null;
+    }
+
+    public static List<Field> getAllFields(){
+        return new ArrayList<>(storage.getFields());
+    }
+
     /**
      * Creates a MaltBatch object and sets its smoke material. The MaltBatch object is stored in storage.
      * @param rygeMateriale material used to smoke the grain
@@ -415,16 +429,6 @@ public abstract class Controller {
             storage.storeBottles(bottle);
         }
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
-    }
-
-    public static List<Field> getFarmersFields(Farmer farmer){
-        List<Farmer> allFarmers = storage.getFarmers();
-        for (Farmer f : allFarmers){
-            if (f.equals(farmer)){
-                return f.getFields();
-            }
-        }
-        return null;
     }
 
     //Update this as the last few CRUD details are added to the controler

@@ -19,7 +19,7 @@ public class FieldTabController {
     private Button btnAddField;
 
     @FXML
-    private ComboBox<Farmer> cbokFarmer;
+    private ComboBox<Farmer> cboxFarmer;
 
     @FXML
     private Label lblChoseFarmersFields;
@@ -38,19 +38,19 @@ public class FieldTabController {
 
     @FXML
     public void initialize(){
-        cbokFarmer.getItems().setAll(Controller.getFarmers());
+        cboxFarmer.getItems().setAll(Controller.getFarmers());
     }
 
     @FXML
     void chooseFarmerAction(ActionEvent event) {
-        Farmer farmer = cbokFarmer.getSelectionModel().getSelectedItem();
+        Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
         List<Field> farmersFields = Controller.getFarmersFields(farmer);
         lvwChosenFarmersFields.getItems().setAll(farmersFields);
     }
     @FXML
     void addFieldAction(ActionEvent event) {
         String fieldName = txfFieldName.getText();
-        Farmer farmer = cbokFarmer.getSelectionModel().getSelectedItem();
+        Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
         Field field = Controller.createField(fieldName, farmer);
         lvwChosenFarmersFields.getItems().setAll(Controller.getFarmersFields(farmer));
     }

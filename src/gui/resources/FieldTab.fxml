@@ -31,7 +31,7 @@
       <Label fx:id="lblFieldName" prefHeight="17.0" prefWidth="68.0" text="Field name" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
       <Label fx:id="lblFarmer" text="Farmer" GridPane.rowIndex="3" />
       <TextField fx:id="txfFieldName" maxWidth="-Infinity" prefHeight="25.0" prefWidth="463.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-      <ComboBox fx:id="cbokFarmer" onAction="#chooseFarmerAction" prefHeight="25.0" prefWidth="463.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ComboBox fx:id="cboxFarmer" onAction="#chooseFarmerAction" prefHeight="25.0" prefWidth="463.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Button fx:id="btnAddField" mnemonicParsing="false" onAction="#addFieldAction" text="Add field" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
       <ListView fx:id="lvwChosenFarmersFields" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
       <Label fx:id="lblChoseFarmersFields" text="Chosen farmer's fields" GridPane.columnIndex="2">
