@@ -19,4 +19,6 @@ public class WhiskyTabController {
 
     @FXML
     private TextArea txfWhiskyInfo;
+
+
 }
