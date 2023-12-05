@@ -6,6 +6,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import model.Field;
 
 public class AddFarmerDialogController {
 
@@ -19,7 +20,7 @@ public class AddFarmerDialogController {
     private Button btnAddField;
 
     @FXML
-    private ListView<?> lvwFields;
+    private ListView<Field> lvwFields;
 
     @FXML
     private TextField txfAddress;

@@ -6,7 +6,7 @@ import java.util.List;
 public class NewMake {
     private int newMakeID;
     private static int no = 0;
-    private String name;
+    private boolean isDone = false;
     private LocalDate startDate;
     private LocalDate endDate;
     private double volume;
@@ -17,10 +17,9 @@ public class NewMake {
     //----------------
     private MaltBatch maltBatch;
 
-    public NewMake(String name, LocalDate startDate, String workerID, MaltBatch maltBatch) {
+    public NewMake(LocalDate startDate, String workerID, MaltBatch maltBatch) {
         no++;
         this.newMakeID = no;
-        this.name = name;
         this.startDate = startDate;
         this.workerID = workerID;
         this.maltBatch = maltBatch;
@@ -30,8 +29,8 @@ public class NewMake {
         return newMakeID;
     }
 
-    public String getName() {
-        return name;
+    public boolean isDone() {
+        return isDone;
     }
 
     public LocalDate getStartDate() {
@@ -62,6 +61,10 @@ public class NewMake {
         return maltBatch;
     }
 
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
@@ -77,7 +80,13 @@ public class NewMake {
     public void setAlcPercent(double alcPercent) {
         this.alcPercent = alcPercent;
     }
+
     public static void setNo(int no) {
         NewMake.no = no;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("New make #%d", newMakeID);
     }
 }
