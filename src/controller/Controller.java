@@ -24,11 +24,41 @@ public abstract class Controller {
     //hi
 
     //CRUD
+
+    /**
+     * Creates Farmer object and stores it in storage.
+     * @param name name of farmer
+     * @param address address of farmer
+     * @return The created Farmer object
+     */
     public static Farmer createFarmer(String name, String address){
         Farmer farmer = new Farmer(name, address);
         storage.storeFarmer(farmer);
         return farmer;
     }
+
+    /**
+     * Adds a Field object to a Farmer object
+     * @param farmer a Farmer object
+     * @param field a Field objects
+     */
+    public static void addFieldsToFarmer(Farmer farmer, Field field){
+        farmer.addField(field);
+    }
+
+    /**
+     * @return all Farmer objects in storage
+     */
+    public static List<Farmer> getFarmers(){
+        return new ArrayList<>(storage.getFarmers());
+    }
+
+    /**
+     * Creates a Field object, adds it to a Farmer object and stores the Field object in storage
+     * @param name name of Field
+     * @param farmer the Farmer object that the Field should belong to
+     * @return the created Field object
+     */
     public static Field createField(String name, Farmer farmer){
         Field field = new Field(name, farmer);
         farmer.addField(field);
@@ -36,7 +66,14 @@ public abstract class Controller {
         return field;
     }
 
-    //creates MaltBatch with smoke material
+    /**
+     * Creates a MaltBatch object and sets its smoke material. The MaltBatch object is stored in storage.
+     * @param rygeMateriale material used to smoke the grain
+     * @param malteri place that malted the grain
+     * @param grain grain used in the MaltBatch
+     * @param field which field the grain came from
+     * @return the created MaltBatch object
+     */
     public static MaltBatch createMaltBatch(String rygeMateriale, String malteri, String grain, Field field){
         MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
         maltBatch.setRygeMateriale(rygeMateriale);
@@ -44,28 +81,31 @@ public abstract class Controller {
         return maltBatch;
     }
 
-    //creates MaltBatch without smoke material
+    /**
+     * Creates a MaltBatch object without smoke material. The MaltBatch object is stored in storage.
+     * @param malteri place that malted the grain
+     * @param grain grain used in the MaltBatch
+     * @param field which field the grain came from
+     * @return the created MaltBatch object
+     */
     public static MaltBatch createMaltBatch(String malteri, String grain, Field field){
         MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
         storage.storeMaltBatch(maltBatch);
         return maltBatch;
     }
 
+    /**
+     * @return all MaltBatch objects in storage
+     */
     public static List<MaltBatch> getMaltBatches(){
         return new ArrayList<>(storage.getMaltBatches());
     }
 
     /**
      * This method creates, stores and returns a newmake
-     * @param newMakeID id of newmake
-     * @param name name of the newmake
      * @param startDate day production started
-     * @param endDate day production ended
-     * @param volume the amount of liquid produced from the distillation process
      * @param workerID id of responsible worker
-     * @param comment optional comment
-     * @param alcPercent alcohol percentage of new make
-     * @param maltBatches the malt batches involved in making the new make
+     * @param maltBatch the malt batch involved in making the new make
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
@@ -75,7 +115,17 @@ public abstract class Controller {
         return newMake;
     }
 
-    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, LocalDate endDate, String comment){
+    /**
+     * This method updates a given NewMake object and marks it done.
+     * It sets the remaining attributes of the NewMake class, including comment.
+     * @param newMake chosen NewMak object
+     * @param volume amount new make produced
+     * @param alcoholPercent alcohol percentage of the produced new make
+     * @param endDate day production ended
+     * @param comment comment about anything related to the production
+     */
+    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent,
+                                            LocalDate endDate, String comment){
         newMake.setVolume(volume);
         newMake.setAlcPercent(alcoholPercent);
         newMake.setEndDate(endDate);
@@ -83,6 +133,14 @@ public abstract class Controller {
         newMake.setDone(true);
     }
 
+    /**
+     * This method updates a given NewMake object and marks it done.
+     * It sets the remaining attributes of the NewMake class, not including comment.
+     * @param newMake chosen NewMak object
+     * @param volume amount new make produced
+     * @param alcoholPercent alcohol percentage of the produced new make
+     * @param endDate day production ended
+     */
     public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, LocalDate endDate){
         newMake.setVolume(volume);
         newMake.setAlcPercent(alcoholPercent);
@@ -97,6 +155,10 @@ public abstract class Controller {
     public static List<Bottle> getBottels(){
         return storage.getBottles();
     }
+
+    /**
+     * @return all NewMake objects in storage
+     */
     public static List<NewMake> getNewMakes(){
         return storage.getNewMakes();
     }

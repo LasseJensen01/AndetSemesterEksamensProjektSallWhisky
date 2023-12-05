@@ -25,7 +25,7 @@ public class Gui extends Application {
         URL farmerPane = this.getClass().getResource("resources\\FarmerTab.fxml");
         if (farmerPane == null) throw new NoSuchElementException("farmerPane not found");
         Parent farmerPaneRoot = FXMLLoader.load(farmerPane);
-        Tab farmerTab = new Tab("Farmers", farmerPaneRoot);
+        Tab farmerTab = new Tab("Add Farmer", farmerPaneRoot);
         farmerTab.setClosable(false);
         tabpane.getTabs().add(farmerTab);
 
