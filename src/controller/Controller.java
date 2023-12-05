@@ -246,6 +246,23 @@ public abstract class Controller {
     }
 
     /**
+     * Stores a cask in a warehouses first available location
+     * @param warehouse warehouse to store cask
+     * @param cask cask to store
+     */
+    public static void storeCask(Warehouse warehouse, Cask cask){
+        boolean hasNotBeenStored = true;
+        List<Location> locations = warehouse.getLocations();
+        // Her er din for-loop med if statement Michael
+        for (int i = 0; i < locations.size() && hasNotBeenStored; i++) {
+            if (locations.get(i).getCask() == null){
+                moveCask(warehouse,cask,locations.get(i));
+                hasNotBeenStored = false;
+            }
+        }
+    }
+
+    /**
      * Creates Locations in a warehouse based on the information given
      * @param wh - Warehouse which is getting location created
      * @param rows - Nr. of rows in the location
@@ -385,6 +402,7 @@ public abstract class Controller {
         Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
 
         Cask caskF = Controller.createCask(Type.FINO, 200);
+
 
         HashMap<Cask, Double> whiskersCasks = new HashMap<>();
         whiskersCasks.put(caskA,Double.valueOf(80));
