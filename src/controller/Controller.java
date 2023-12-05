@@ -155,6 +155,10 @@ public abstract class Controller {
         return null;
     }
 
+    public static List<Warehouse> getWarehouses(){
+        return storage.getWarehouses();
+    }
+
     //---------------------------------------------------------
     //Business logic
 

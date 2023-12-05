@@ -14,6 +14,9 @@ import java.util.Arrays;
 public class WarehouseTabController {
 
     @FXML
+    private Button btnExtractOverview;
+
+    @FXML
     private Button btnMoveCask;
 
     @FXML
@@ -23,7 +26,10 @@ public class WarehouseTabController {
     private CheckBox cbCaskIsInUse;
 
     @FXML
-    private ChoiceBox<Type> cbCaskType = new ChoiceBox<>();
+    private ChoiceBox<Type> cbCaskType;
+
+    @FXML
+    private ChoiceBox<Warehouse> cbExtractOverview;
 
     @FXML
     private CheckBox cbIsWhisky;
@@ -33,6 +39,9 @@ public class WarehouseTabController {
 
     @FXML
     private ChoiceBox<Warehouse> cbNewWarehouse;
+
+    @FXML
+    private Label lblErrorLabel;
 
     @FXML
     private ListView<Cask> lwCasks;
@@ -45,12 +54,25 @@ public class WarehouseTabController {
 
     @FXML
     private TextField txtTimesUsed;
-    @FXML
-    private Label lblErrorLabel;
 
     @FXML
     public void initialize(){
     cbCaskType.getItems().setAll(Type.values());
+    cbExtractOverview.getItems().setAll(Controller.getWarehouses());
+    cbNewWarehouse.getItems().setAll(Controller.getWarehouses());
+    }
+
+    @FXML
+    private void updateCBLocationBox(){
+        Warehouse wh = null;
+        try{
+            wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
+            cbNewLocation.getItems().setAll(wh.getLocations());
+        }catch (Exception e){
+
+        }
+
+
     }
 
     @FXML
