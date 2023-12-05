@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-public class AddFarmerPaneController {
+public class AddFarmerDialogController {
 
     @FXML
     private GridPane AddFarmerPane;
