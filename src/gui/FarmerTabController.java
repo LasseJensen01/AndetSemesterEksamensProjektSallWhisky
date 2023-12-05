@@ -46,8 +46,10 @@ public class FarmerTabController {
     void addFarmerAction(ActionEvent event) {
         String name = txfFarmerName.getText();
         String address = txfAddress.getText();
-        Controller.createFarmer(name, address);
-        lwFarmers.getItems().setAll(Controller.getFarmers());
+        if(!name.isEmpty() && !address.isEmpty()) {
+            Controller.createFarmer(name, address);
+            lwFarmers.getItems().setAll(Controller.getFarmers());
+        }
     }
 
     /*@FXML
