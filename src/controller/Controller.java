@@ -80,6 +80,14 @@ public abstract class Controller {
         newMake.setAlcPercent(alcoholPercent);
         newMake.setEndDate(endDate);
         newMake.setComment(comment);
+        newMake.setDone(true);
+    }
+
+    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, LocalDate endDate){
+        newMake.setVolume(volume);
+        newMake.setAlcPercent(alcoholPercent);
+        newMake.setEndDate(endDate);
+        newMake.setDone(true);
     }
 
     public static void setCaskLiters(Cask cask, double liters){

@@ -22,13 +22,13 @@ public class NewMakeTabController {
     private ChoiceBox<MaltBatch> cboxMaltBatch;
 
     @FXML
-    private ChoiceBox<String> cboxResponsibleEmployee;
-
-    @FXML
     private DatePicker datePickerEnd;
 
     @FXML
     private DatePicker datePickerStart;
+
+    @FXML
+    private Label lblConfirmation = new Label();
 
     @FXML
     private ListView<NewMake> lvwNewMakeinProgress = new ListView<>();
@@ -38,9 +38,6 @@ public class NewMakeTabController {
 
     @FXML
     private TextField txfAlcoholPercent;
-
-    @FXML
-    private TextField txfIDNewMake;
 
     @FXML
     private TextField txfProducedAmount;
@@ -62,9 +59,6 @@ public class NewMakeTabController {
 
     @FXML
     private Text txtMaltBatch;
-
-    @FXML
-    private Text txtNewMakID;
 
     @FXML
     private Text txtNewMakesInProgress;
@@ -95,5 +89,25 @@ public class NewMakeTabController {
 
         NewMake newMake = Controller.createNewMake(startDate,respEmp,maltBatch);
         lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+    }
+
+    @FXML
+    void doneAction(ActionEvent event){
+        NewMake newMake = lvwNewMakeinProgress.getSelectionModel().getSelectedItem();
+
+        LocalDate endDate = datePickerEnd.getValue();
+        double producedAmount = Double.parseDouble(txfProducedAmount.getText());
+        double alcoholdPercent = Double.parseDouble(txfAlcoholPercent.getText());
+
+        if(txaComment.getText().equals(null)){
+            Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate);
+        }
+        else{
+            String comment = txaComment.getText();
+            Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate, comment);
+        }
+
+        lvwNewMakeinProgress.getItems().remove(newMake);
+        lblConfirmation.setText(newMake.toString() + "is registered");
     }
 }
