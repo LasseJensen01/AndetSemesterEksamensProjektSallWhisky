@@ -66,7 +66,7 @@ public class WarehouseTabController {
     }
 
     @FXML
-    private void updateCBLocationBox(ActionEvent a){
+    private void updateCBLocationBox(){
         Warehouse wh = null;
         try{
             wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
@@ -114,5 +114,15 @@ public class WarehouseTabController {
         if (caskInUse){
             lwCasks.getItems().setAll(Controller.locateFullCask(iswhisky,type,volume,ID,timesUsed));
         } else lwCasks.getItems().setAll(Controller.locateEmptyCask(type,volume,ID, timesUsed));
+    }
+
+    @FXML
+    private void setBtnExtractOverview(){
+        try {
+            Warehouse wh = cbExtractOverview.getSelectionModel().getSelectedItem();
+            wh.extractOverview();
+        }catch (Exception e){
+            System.out.println("shitfuck" + e.getMessage());
+        }
     }
 }

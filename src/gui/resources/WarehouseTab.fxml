@@ -28,7 +28,7 @@
       <CheckBox fx:id="cbIsWhisky" layoutX="197.0" layoutY="58.0" mnemonicParsing="false" text="Is Whisky" />
       <Label fx:id="lblErrorLabel" layoutX="174.0" layoutY="281.0" textFill="RED" />
       <Label layoutX="502.0" layoutY="363.0" text="Lager for ExtractOverview" />
-      <Button fx:id="btnExtractOverview" layoutX="518.0" layoutY="416.0" mnemonicParsing="false" text="Extract Overview" />
+      <Button fx:id="btnExtractOverview" layoutX="518.0" layoutY="416.0" mnemonicParsing="false" onAction="#setBtnExtractOverview" text="Extract Overview" />
       <ComboBox fx:id="cbNewLocation" layoutX="118.0" layoutY="372.0" prefWidth="150.0" />
       <ComboBox fx:id="cbNewWarehouse" layoutX="118.0" layoutY="336.0" onAction="#updateCBLocationBox" prefWidth="150.0" />
       <ComboBox fx:id="cbCaskType" layoutX="114.0" layoutY="134.0" prefWidth="150.0" />
