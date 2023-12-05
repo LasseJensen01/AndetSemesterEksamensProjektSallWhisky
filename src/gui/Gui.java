@@ -29,7 +29,15 @@ public class Gui extends Application {
         farmerTab.setClosable(false);
         tabpane.getTabs().add(farmerTab);
 
-        //Pane2 MaltBatch
+        //Pane2 Field
+        URL fieldPane = this.getClass().getResource("resources\\FieldTab.fxml");
+        if (fieldPane == null) throw new NoSuchElementException("fieldPane not found");
+        Parent fieldPaneRoot = FXMLLoader.load(fieldPane);
+        Tab fieldTab = new Tab("Farmers", fieldPaneRoot);
+        fieldTab.setClosable(false);
+        tabpane.getTabs().add(fieldTab);
+
+        //Pane3 MaltBatch
         URL maltBatchPane = this.getClass().getResource("resources\\MaltBatchTab.fxml");
         if (maltBatchPane == null) throw new NoSuchElementException("maltBatchPane not found");
         Parent maltBatchPaneRoot = FXMLLoader.load(maltBatchPane);
@@ -42,7 +50,7 @@ public class Gui extends Application {
         if (addFarmerDialog == null) throw new NoSuchElementException("addFarmerDialog not found");
         FXMLFarmer = addFarmerDialog;
 
-        //Pane3 NewMake
+        //Pane4 NewMake
         URL newMakePane = this.getClass().getResource("resources\\NewMakeTab.fxml");
         if (newMakePane == null) throw new NoSuchElementException("farmerPane not found");
         Parent newMakePaneRoot = FXMLLoader.load(newMakePane);
@@ -50,7 +58,7 @@ public class Gui extends Application {
         newMakeTab.setClosable(false);
         tabpane.getTabs().add(newMakeTab);
 
-        //Pane 4 Casks
+        //Pane5 Casks
         URL casksPane = this.getClass().getResource("resources\\CasksTab.fxml");
         if(casksPane == null) throw new NoSuchElementException("caskPane not found");
         Parent casksPaneRoot = FXMLLoader.load(casksPane);
@@ -58,7 +66,7 @@ public class Gui extends Application {
         casksTab.setClosable(false);
         tabpane.getTabs().add(casksTab);
 
-        //Pane 5 Fillings
+        //Pane6 Fillings
         URL fillingsPane = this.getClass().getResource("resources\\FillingsTab.fxml");
         if(fillingsPane == null) throw new NoSuchElementException("fillingsPane not found");
         Parent fillingsPaneRoot = FXMLLoader.load(fillingsPane);
@@ -66,7 +74,7 @@ public class Gui extends Application {
         fillingsTab.setClosable(false);
         tabpane.getTabs().add(fillingsTab);
 
-        //Pane 6 Whisky
+        //Pane7 Whisky
         URL whiskyPane = this.getClass().getResource("resources\\WhiskyTab.fxml");
         if(fillingsPane == null) throw new NoSuchElementException("whiskyPane not found");
         Parent whiskyPaneRoot = FXMLLoader.load(whiskyPane);
@@ -74,7 +82,7 @@ public class Gui extends Application {
         whiskyTab.setClosable(false);
         tabpane.getTabs().add(whiskyTab);
 
-        //Pane 7
+        //Pane8
         URL warehousePane = this.getClass().getResource("resources\\WarehouseTab.fxml");
         if(fillingsPane == null) throw new NoSuchElementException("warehousePane not found");
         Parent warehousePaneRoot = FXMLLoader.load(warehousePane);
