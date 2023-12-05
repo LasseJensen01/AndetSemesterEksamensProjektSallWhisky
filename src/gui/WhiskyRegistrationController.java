@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Cask;
+import model.WhiskyProduct;
 
 import java.util.HashMap;
 
@@ -64,7 +65,18 @@ public class WhiskyRegistrationController {
     @FXML
     void createWhiskyAction(ActionEvent event) {
         try {
-            Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+            WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+            txachosenCasks.clear();
+            txfcaskID.clear();
+            txfcaskID.clear();
+            txfName.clear();
+
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setResizable(true);
+            info.setTitle("Sucess");
+            info.setHeaderText("The following whisky has been created:");
+            info.setContentText(newWhisky.toString());
+            info.show();
         } catch (Exception e) {
             Alert err = new Alert(Alert.AlertType.ERROR);
             err.setTitle("An error has occured");
