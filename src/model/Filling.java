@@ -116,4 +116,8 @@ public class Filling {
     public double getAlcoholPercent() {
         return alcoholPercent;
     }
+
+    public void setAlcoholPercent(double alcoholPercent) {
+        this.alcoholPercent = alcoholPercent;
+    }
 }
