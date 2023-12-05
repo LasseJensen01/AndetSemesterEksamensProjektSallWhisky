@@ -36,10 +36,23 @@ public abstract class Controller {
         return field;
     }
 
+    //creates MaltBatch with smoke material
     public static MaltBatch createMaltBatch(String rygeMateriale, String malteri, String grain, Field field){
-        MaltBatch maltBatch = new MaltBatch(rygeMateriale, malteri, grain, field);
+        MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
+        maltBatch.setRygeMateriale(rygeMateriale);
         storage.storeMaltBatch(maltBatch);
         return maltBatch;
+    }
+
+    //creates MaltBatch without smoke material
+    public static MaltBatch createMaltBatch(String malteri, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
+        storage.storeMaltBatch(maltBatch);
+        return maltBatch;
+    }
+
+    public static List<MaltBatch> getMaltBatches(){
+        return new ArrayList<>(storage.getMaltBatches());
     }
 
     /**
@@ -56,16 +69,16 @@ public abstract class Controller {
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
-    public static NewMake createNewMake(String name, LocalDate startDate, String workerID, MaltBatch maltBatch){
-        NewMake newMake = new NewMake(name, startDate, workerID, maltBatch);
+    public static NewMake createNewMake(LocalDate startDate, String workerID, MaltBatch maltBatch){
+        NewMake newMake = new NewMake(startDate, workerID, maltBatch);
         storage.storeNewMakes(newMake);
         return newMake;
     }
 
-    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, String comment){
+    public static void finishNewMakeProcess(NewMake newMake, double volume, double alcoholPercent, LocalDate endDate, String comment){
         newMake.setVolume(volume);
         newMake.setAlcPercent(alcoholPercent);
-        newMake.setEndDate(LocalDate.now());
+        newMake.setEndDate(endDate);
         newMake.setComment(comment);
     }
 
@@ -320,11 +333,11 @@ public abstract class Controller {
         Field fieldTwo = Controller.createField("By the river", Lars);
         MaltBatch maltBatchOne = Controller.createMaltBatch("Søren Ryge","Nord Jylland","Byg", fieldOne);
         MaltBatch maltBatchTwo = Controller.createMaltBatch("Søren Ryge","Syd Jylland","Byg", fieldTwo);
-        NewMake newMake77 = Controller.createNewMake("NM.77", LocalDate.now(), "Jonas", maltBatchOne);
+        NewMake newMake77 = Controller.createNewMake(LocalDate.now(), "Jonas", maltBatchOne);
         newMake77.setAlcPercent(0.80);
-        NewMake newMake78 = Controller.createNewMake("NM.78", LocalDate.now(), "Maria", maltBatchOne);
+        NewMake newMake78 = Controller.createNewMake(LocalDate.now(), "Maria", maltBatchOne);
         newMake78.setAlcPercent(0.70);
-        NewMake newMake79 = Controller.createNewMake("NM.79", LocalDate.now(), "Ashley", maltBatchTwo);
+        NewMake newMake79 = Controller.createNewMake(LocalDate.now(), "Ashley", maltBatchTwo);
         newMake79.setAlcPercent(0.60);
 
         Warehouse warehouse = new Warehouse("warehouse", "Storeage street");

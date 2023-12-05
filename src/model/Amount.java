@@ -19,6 +19,6 @@ public class Amount {
 
     @Override
     public String toString() {
-        return liters + "L of " + newMake.getName();
+        return liters + "L of " + newMake.getNewMakeID();
     }
 }

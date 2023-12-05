@@ -30,4 +30,9 @@ public class Farmer {
     public void addField(Field field) {
         fields.add(field);
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s", name);
+    }
 }

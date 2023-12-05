@@ -37,7 +37,6 @@
       <Text fx:id="txtNewMakID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID (New make nr.)" GridPane.rowIndex="1" />
       <TextField fx:id="txfIDNewMake" GridPane.rowIndex="2" />
       <Text fx:id="txtResponsibleEmployee" strokeType="OUTSIDE" strokeWidth="0.0" text="Responsible employee" GridPane.rowIndex="7" />
-      <ChoiceBox fx:id="cboxResponsibleEmployee" prefHeight="25.0" prefWidth="247.0" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
       <Text fx:id="txtStartDate" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" GridPane.rowIndex="3" />
       <DatePicker fx:id="datePickerStart" prefHeight="25.0" prefWidth="243.0" GridPane.rowIndex="4" />
       <DatePicker fx:id="datePickerEnd" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -46,7 +45,7 @@
       <ChoiceBox fx:id="cboxMaltBatch" prefHeight="25.0" prefWidth="246.0" GridPane.rowIndex="6" />
       <Text fx:id="txtComment" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" GridPane.columnIndex="2" GridPane.rowIndex="7" />
       <TextArea fx:id="txaComment" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.rowSpan="3" />
-      <Button fx:id="btnRegister" mnemonicParsing="false" text="Register" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
+      <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#registerAction" text="Register" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER" />
       <Text fx:id="txtProducedAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Produced amount (liter)" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <TextField fx:id="txfProducedAmount" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Text fx:id="txtAlcoholPercent" strokeType="OUTSIDE" strokeWidth="0.0" text="Alcohol percent (%)" GridPane.columnIndex="2" GridPane.rowIndex="5" />
@@ -57,7 +56,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="10" />
+      <ListView fx:id="lvwNewMakeinProgress" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="10" />
       <Text fx:id="txtStart" strokeType="OUTSIDE" strokeWidth="0.0" text="Start">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -68,6 +67,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
+      <TextField fx:id="txfResponsibleEmployee" GridPane.rowIndex="8" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

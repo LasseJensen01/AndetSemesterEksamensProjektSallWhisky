@@ -1,13 +1,14 @@
 package gui;
 
+import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import model.MaltBatch;
+import model.NewMake;
+
+import java.time.LocalDate;
 
 public class NewMakeTabController {
 
@@ -30,6 +31,9 @@ public class NewMakeTabController {
     private DatePicker datePickerStart;
 
     @FXML
+    private ListView<NewMake> lvwNewMakeinProgress = new ListView<>();
+
+    @FXML
     private TextArea txaComment;
 
     @FXML
@@ -40,6 +44,9 @@ public class NewMakeTabController {
 
     @FXML
     private TextField txfProducedAmount;
+
+    @FXML
+    private TextField txfResponsibleEmployee;
 
     @FXML
     private Text txtAlcoholPercent;
@@ -74,4 +81,19 @@ public class NewMakeTabController {
     @FXML
     private Text txtStartDate;
 
+    @FXML
+    public void initialize(){
+        cboxMaltBatch.getItems().setAll(Controller.getMaltBatches());
+        lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+    }
+
+    @FXML
+    void registerAction(ActionEvent event) {
+        LocalDate startDate = datePickerStart.getValue();
+        MaltBatch maltBatch = cboxMaltBatch.getValue();
+        String respEmp = txfResponsibleEmployee.getText();
+
+        NewMake newMake = Controller.createNewMake(startDate,respEmp,maltBatch);
+        lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+    }
 }

@@ -44,9 +44,8 @@ public class Warehouse {
                     writer.printf("            ID: %3d, Liters: %1.2f, Employee: %-13s Date: %tF%n", fid, fliters,employee,date);
                     List<Amount> amount = f.getAmounts();
                     for (Amount a : amount){
-                        String nm = a.getNewMake().getName();
                         double aliters = a.getLiters();
-                        writer.printf("            NewMake: %-13s Liters: %1.2f%n", nm,aliters);
+                        writer.printf("            NewMake: hihi Liters: %1.2f%n", aliters);
                     }
                 }
                 writer.println();

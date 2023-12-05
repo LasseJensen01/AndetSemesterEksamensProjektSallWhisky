@@ -10,10 +10,9 @@ public class MaltBatch {
     //---------------
     private Field field;
 
-    public MaltBatch(String rygeMateriale, String malteri, String grain, Field field) {
+    public MaltBatch(String malteri, String grain, Field field) {
         no++;
         this.batchID = no;
-        this.rygeMateriale = rygeMateriale;
         this.malteri = malteri;
         this.grain = grain;
         this.field = field;
@@ -31,6 +30,10 @@ public class MaltBatch {
         return rygeMateriale;
     }
 
+    public void setRygeMateriale(String rygeMateriale) {
+        this.rygeMateriale = rygeMateriale;
+    }
+
     public String getMalteri() {
         return malteri;
     }
@@ -41,5 +44,13 @@ public class MaltBatch {
 
     public Field getField() {
         return field;
+    }
+
+    @Override
+    public String toString(){
+        if(!rygeMateriale.equals(null)){
+            String.format("Maltbatch #%d made with %s from %s smoked with %s", batchID, grain, field, rygeMateriale);
+        }
+        return String.format("Maltbatch #%d made with %s from %s", batchID, grain, field);
     }
 }
