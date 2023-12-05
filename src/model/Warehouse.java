@@ -65,11 +65,15 @@ public class Warehouse {
      * @param cask - The cask to be moved
      * @param newLocation - The new location
      */
-    public static void moveCask(Cask cask, Location newLocation){
+    public void moveCask(Cask cask, Location newLocation){
         if (newLocation.getCask() != null){
             throw new IllegalArgumentException();
         }
-        cask.getLocation().setCask(null);
+        newLocation.setCask(cask);
+        //If cask had a previous location, free up that spot
+        if (cask.getLocation() != null){
+            cask.getLocation().setCask(null);
+        }
         cask.setLocation(newLocation);
     }
 

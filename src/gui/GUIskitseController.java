@@ -35,6 +35,9 @@ public class GUIskitseController {
     private Button btnRegister;
 
     @FXML
+    private Button btnRegisterWhiskey;
+
+    @FXML
     private Button btnSearch;
 
     @FXML
@@ -165,4 +168,14 @@ public class GUIskitseController {
         stage.show();
     }
 
+    @FXML
+    private void registerWhiskeyAction() throws Exception{
+        Parent root = FXMLLoader.load(Gui.getFXMLWhiskyRegistration());
+        Stage stage = new Stage();
+        stage.setMinWidth(root.minWidth(-1));
+        stage.setMinHeight(root.minHeight(-1));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
