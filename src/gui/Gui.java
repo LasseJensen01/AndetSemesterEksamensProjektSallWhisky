@@ -78,9 +78,13 @@ public class Gui extends Application {
         Parent root = new AnchorPane(tabpane);
         Scene scene = new Scene(root);
 
-        stage.setTitle("Sall Whisky Lagerings System");
+        stage.setTitle("Sall Whisky System");
         stage.setScene(scene);
         stage.show();
+
+        Tab temp = tabpane.getTabs().get(tabpane.getTabs().size()-1);
+        var t = temp.getContent();
+        System.out.println("Fuck");
     }
 
     public static URL getFXMLFarmer() {

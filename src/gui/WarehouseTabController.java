@@ -8,6 +8,8 @@ import model.Location;
 import model.Type;
 import model.Warehouse;
 
+import java.util.Arrays;
+
 
 public class WarehouseTabController {
 
@@ -21,7 +23,7 @@ public class WarehouseTabController {
     private CheckBox cbCaskIsInUse;
 
     @FXML
-    private ChoiceBox<Type> cbCaskType;
+    private ChoiceBox<Type> cbCaskType = new ChoiceBox<>();
 
     @FXML
     private CheckBox cbIsWhisky;
@@ -45,6 +47,11 @@ public class WarehouseTabController {
     private TextField txtTimesUsed;
     @FXML
     private Label lblErrorLabel;
+
+    @FXML
+    public void initialize(){
+    cbCaskType.getItems().setAll(Type.values());
+    }
 
     @FXML
     private void setBtnSearch(){
