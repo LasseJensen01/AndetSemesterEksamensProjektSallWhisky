@@ -3,7 +3,9 @@ package model;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Filling {
     private List<Amount> amounts = new ArrayList<>();
@@ -53,13 +55,13 @@ public class Filling {
      */
     public String getContentsInfo(LocalDate periodEndDate){
         Period maturity = calcMaturiy(periodEndDate);
-        String s = "";
+        String s = "Filling id: " + this.id + ", made from:\n";
         for (Amount t : amounts){
-            s += t.toString() + " ";
+            s += t.getContentInfo() + "\n";
         }
-        s += "\nTapped by " + employee + " on " + date.toString() + "\n";
+        s += "Tapped by " + employee + " on " + date.toString() + "\n";
         s += "Matured for " + maturity.getYears() + " years " + maturity.getMonths() + " months "
-                + maturity.getDays() + " days on a " + cask.getType() + " cask, " + " as the " + fillNo + " fill.";
+                + maturity.getDays() + " days on a " + cask.getType() + " cask, as the " + fillNo + " fill.";
         return s;
     }
     /**
@@ -79,6 +81,13 @@ public class Filling {
      */
     public double calcAlcPercent(double currentLiters, double currentAlcPercent, double litersAdded, double percentAdded){
         return  ((currentLiters * currentAlcPercent) + (litersAdded * percentAdded)) / (currentLiters + litersAdded);
+    }
+    public Set<MaltBatch> getMalts(){
+        Set<MaltBatch> malts = new HashSet<>();
+        for (Amount amount : amounts){
+            malts.add(amount.getNewMake().getMaltBatch());
+        }
+        return malts;
     }
     //---------------------------------------------------------------------------------------------------
     public void setLiters(double liters) {
