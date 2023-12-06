@@ -38,7 +38,7 @@ public class FieldTabController {
 
     @FXML
     public void initialize(){
-        cboxFarmer.getItems().setAll(Controller.getFarmers());
+        update();
     }
 
     @FXML
@@ -53,6 +53,10 @@ public class FieldTabController {
         Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
         Field field = Controller.createField(fieldName, farmer);
         lvwChosenFarmersFields.getItems().setAll(Controller.getFarmersFields(farmer));
+    }
+    @FXML
+    void update(){
+        cboxFarmer.getItems().setAll(Controller.getFarmers());
     }
 
 }
