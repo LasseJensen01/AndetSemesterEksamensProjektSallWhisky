@@ -14,8 +14,6 @@ public class WhiskyProduct {
     private double water = 0; // If this is 0 the product is "cask strength"
     private String waterSource;
     private double alcoholPercent;
-    private String type;
-    private int numberOfMalts; // Find a better way
     private Cask cask;
     private Set<MaltBatch> malts;
 
@@ -56,13 +54,27 @@ public class WhiskyProduct {
         liters = totalLitersOfWater+totalLitersOfAlcohol;
         alcoholPercent = totalLitersOfAlcohol/(totalLitersOfWater+totalLitersOfAlcohol);
     }
-    public String getLabelText(){
-        String s = "";
-        return s;
-    }
 
     public String getFullProductionHistory(){
         String s = "";
+        s += this.whiskyName + " is a";
+        if (isSingleCask()){
+            s += " single cask,";
+        }
+        if (malts.size() == 1){
+            s += " sigle malt,";
+        }
+        if (isSingleCask()){
+            s += " sigle cask,";
+        }
+        if (water == 0){
+            s += " cask strength,";
+        } else {
+            s += " diluted with " + water + " liters of water from " + waterSource;
+        }
+        s += " with an alcohol percent of " + alcoholPercent*100 + "%.\n" +
+                "With the following production histoy:\n" +
+        "*************************************************\n";
         for (Filling f : fillings.keySet()){
             s += f.getContentsInfo(this.date) + "\n";
             s+= "-------------------------------------------------\n";
@@ -104,13 +116,5 @@ public class WhiskyProduct {
 
     public double getAlcoholPercent() {
         return alcoholPercent;
-    }
-
-    public Cask getCask() {
-        return cask;
-    }
-
-    public void setCask(Cask cask) {
-        this.cask = cask;
     }
 }

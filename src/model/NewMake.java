@@ -92,7 +92,7 @@ public class NewMake {
 
     public String getContentInfo(){
         String s = "";
-        s += "New make Id: " + this.newMakeID + "\ndistilled from " + maltBatch.toString();
+        s += "New make Id: " + this.newMakeID + "\nDistilled from " + maltBatch.toString();
         return s;
     }
 }
