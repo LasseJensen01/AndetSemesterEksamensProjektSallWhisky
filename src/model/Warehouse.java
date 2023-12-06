@@ -41,12 +41,12 @@ public class Warehouse {
                     double fliters = f.getLiters();
                     String employee = f.getEmployee();
                     LocalDate date = f.getDate();
-                    writer.printf("            ID: %3d, Liters: %1.2f, Employee: %-13s Date: %tF%n", fid, fliters,employee,date);
-                    List<Amount> amount = f.getAmounts();
-                    for (Amount a : amount){
-                        double aliters = a.getLiters();
+                    writer.printf("            ID: %3d, Liters left: %1.2f, Employee: %-13s Date: %tF%n", fid, fliters,employee,date);
+                    List<Amount> amounts = f.getAmounts();
+                    for (Amount a : amounts){
                         int nmID = a.getNewMake().getNewMakeID();
-                        writer.printf("            NewMake: d3%, Liters: %1.2f%n",nmID, aliters);
+                        double lit = a.getLiters();
+                        writer.printf("            NewMakeID: %3d, Liters: %1.2f%n", nmID, lit);
                     }
                 }
                 writer.println();

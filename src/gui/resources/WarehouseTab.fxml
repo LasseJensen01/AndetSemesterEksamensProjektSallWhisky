@@ -24,7 +24,7 @@
          </font>
       </Label>
       <Button fx:id="btnCreateWarehouse" layoutX="118.0" layoutY="312.0" mnemonicParsing="false" onAction="#setBtnCreateWarehouse" text="Create Warehouse" />
-      <Button fx:id="btnExtractOverview" layoutX="470.0" layoutY="409.0" mnemonicParsing="false" text="Extract overview" />
+      <Button fx:id="btnExtractOverview" layoutX="470.0" layoutY="409.0" mnemonicParsing="false" onAction="#setBtnExtractOverview" text="Extract overview" />
       <ListView fx:id="lwWarehouses" layoutX="273.0" layoutY="70.0" prefHeight="325.0" prefWidth="489.0" />
       <Label layoutX="56.0" layoutY="176.0" text="Rows:" textAlignment="RIGHT" />
       <Label layoutX="26.0" layoutY="212.0" text="Shelf Units:" textAlignment="RIGHT" />
