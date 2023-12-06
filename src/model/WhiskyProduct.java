@@ -1,12 +1,11 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 
 public class WhiskyProduct {
     private Map<Filling,Double> fillings; // Fillings and what percent of the mix they make up.
-    private LocalDate saleDate;
+    private LocalDate date;
     private String whiskyName;
     private double liters;
     private double water = 0; // If this is 0 the product is "cask strength"
@@ -17,7 +16,7 @@ public class WhiskyProduct {
 
     public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName) {
         this.fillings = fillings;
-        this.saleDate = LocalDate.now();
+        this.date = LocalDate.now();
         this.whiskyName = whiskyName;
 
         // Malts
@@ -49,6 +48,10 @@ public class WhiskyProduct {
 
     public String getFullProductionHistory(){
         String s = "";
+        for (Filling f : fillings.keySet()){
+            s += f.getContentsInfo(this.date) + "\n";
+            s+= "---------------------------------------";
+        }
         return s;
     }
 

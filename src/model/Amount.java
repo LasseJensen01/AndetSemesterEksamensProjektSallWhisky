@@ -21,4 +21,8 @@ public class Amount {
     public String toString() {
         return liters + "L of " + newMake.getNewMakeID();
     }
+    public String getContentInfo(){
+        String s = liters + " of " + newMake.getContentInfo();
+        return s;
+    }
 }

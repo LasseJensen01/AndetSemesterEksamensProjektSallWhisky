@@ -89,4 +89,10 @@ public class NewMake {
     public String toString(){
         return String.format("New make #%d", newMakeID);
     }
+
+    public String getContentInfo(){
+        String s = "";
+        s += "New make Id: " + this.newMakeID + " distilled from " + maltBatch.toString();
+        return s;
+    }
 }

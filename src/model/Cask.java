@@ -59,6 +59,7 @@ public class Cask {
     }
     public void setFilling(Filling filling) {
         this.filling = filling;
+        this.timesUsed++;
     }
 
     public Filling getFilling() {

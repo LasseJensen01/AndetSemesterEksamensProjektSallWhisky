@@ -14,6 +14,7 @@ public class Filling {
     private LocalDate date;
     private String employee;
     private double alcoholPercent;
+    private int fillNo;
 
     /**
      * Creats a filling and sets its relation to its cask
@@ -28,6 +29,7 @@ public class Filling {
         this.id = no;
 
         cask.setFilling(this);
+        this.fillNo = cask.getTimesUsed();
     }
     /**
      * @param amount an amount to be added.
@@ -51,13 +53,13 @@ public class Filling {
      */
     public String getContentsInfo(LocalDate periodEndDate){
         Period maturity = calcMaturiy(periodEndDate);
-        String s = ""; //Add single cask, sigle malt v1 and blend in v2
+        String s = "";
         for (Amount t : amounts){
             s += t.toString() + " ";
         }
         s += "\nTapped by " + employee + " on " + date.toString() + "\n";
         s += "Matured for " + maturity.getYears() + " years " + maturity.getMonths() + " months "
-                + maturity.getDays() + " days on a " + cask.getType() + " cask.";
+                + maturity.getDays() + " days on a " + cask.getType() + " cask, " + " as the " + fillNo + " fill.";
         return s;
     }
     /**
