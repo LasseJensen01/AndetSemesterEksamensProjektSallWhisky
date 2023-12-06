@@ -2,10 +2,7 @@ package gui;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Warehouse;
 
 
@@ -21,6 +18,9 @@ public class WarehouseTabController {
     private Button btnExtractOverview;
 
     @FXML
+    private Label lblError;
+
+    @FXML
     private ListView<Warehouse> lwWarehouses;
 
     @FXML
@@ -28,6 +28,18 @@ public class WarehouseTabController {
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TextField txtPallets;
+
+    @FXML
+    private TextField txtRows;
+
+    @FXML
+    private TextField txtShelfUnits;
+
+    @FXML
+    private TextField txtShelfs;
 
 
 
@@ -42,12 +54,22 @@ public class WarehouseTabController {
             if (!txtName.getText().isEmpty() && !txtAdress.getText().isEmpty()) {
                 String name = txtName.getText();
                 String adress = txtAdress.getText();
-                Controller.createWarehouse(name,adress);
+                int rows = Integer.parseInt(txtRows.getText());
+                int shelfUnits = Integer.parseInt(txtShelfUnits.getText());
+                int shelfs = Integer.parseInt(txtShelfs.getText());
+                int pallets = Integer.parseInt(txtPallets.getText());
+                Warehouse wh = Controller.createWarehouse(name,adress);
+                Controller.createLocationsInWarehouse(wh,rows,shelfUnits,shelfs,pallets);
                 updateLWWarehouseOverview();
                 txtName.clear();
                 txtAdress.clear();
+                txtRows.clear();
+                txtShelfUnits.clear();
+                txtShelfs.clear();
+                txtPallets.clear();
             }
         }catch (Exception e){
+            lblError.setText("Error: Check Data for errors");
             System.err.println("error when creating warehouse " + e.getMessage());
         }
     }
