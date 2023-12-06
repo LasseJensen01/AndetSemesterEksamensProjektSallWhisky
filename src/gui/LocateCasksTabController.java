@@ -51,8 +51,6 @@ public class LocateCasksTabController {
     @FXML
     public void initialize(){
         cbCaskType.getItems().setAll(Type.values());
-        List<Warehouse> warehouseList = Controller.getWarehouses();
-        cbNewWarehouse.getItems().setAll(warehouseList);
         lwCasks.getItems().setAll(Controller.getCasks());
         lwCasks.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         cbIsWhisky.setDisable(true);
@@ -66,7 +64,7 @@ public class LocateCasksTabController {
             wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
             cbNewLocation.getItems().setAll(wh.getLocations());
         }catch (Exception e){
-            System.err.println();
+            System.err.println(e.getMessage());
         }
     }
 
@@ -132,5 +130,9 @@ public class LocateCasksTabController {
             cbIsWhisky.setSelected(false);
             cbIsWhisky.setDisable(true);
         }
+    }
+    @FXML
+    private void update(){
+        cbNewWarehouse.getItems().setAll(Controller.getWarehouses());
     }
 }
