@@ -48,9 +48,9 @@ public class MaltBatch {
 
     @Override
     public String toString(){
-        if(!rygeMateriale.equals(null)){
-            String.format("Maltbatch #%d made with %s from %s smoked with %s", batchID, grain, field, rygeMateriale);
+        if(rygeMateriale != null){
+            return String.format("Maltbatch #%d made in %s with %s from %s smoked with %s", batchID,  malteri, grain, field, rygeMateriale);
         }
-        return String.format("Maltbatch #%d made with %s from %s", batchID, grain, field);
+        return String.format("Maltbatch #%d made in %s with %s from %s", batchID, malteri, grain, field);
     }
 }
