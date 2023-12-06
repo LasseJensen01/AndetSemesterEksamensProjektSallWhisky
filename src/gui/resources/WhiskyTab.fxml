@@ -9,16 +9,16 @@
 
 <AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WhiskyTabController">
    <children>
-      <Button id="RigisterNewWhiskey" fx:id="btnRegisterNewWhisky" layoutX="79.0" layoutY="332.0" mnemonicParsing="false" onAction="#openRegistrationWindow" text="Register new whiskey" />
+      <Button id="RigisterNewWhiskey" fx:id="btnRegisterNewWhisky" layoutX="118.0" layoutY="332.0" mnemonicParsing="false" onAction="#openRegistrationWindow" text="Register new whiskey" />
       <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="278.0" />
       <Text layoutX="145.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw" />
       <TextArea id="txfWhiskyInfo" fx:id="txfWhiskyInfo" disable="true" layoutX="387.0" layoutY="60.0" prefHeight="102.0" prefWidth="342.0" />
       <Text layoutX="527.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky info" />
       <Button id="BottleWhisky" fx:id="btnBottleWhisky" layoutX="497.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnBottleWhiskyAction" prefHeight="30.0" prefWidth="142.0" text="Bottle whisky" />
-      <Button id="StoreWhisky" fx:id="btnStoreWhisky" layoutX="643.0" layoutY="425.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Store whisky" />
       <TextField id="txfNumberOfBottles" fx:id="txfNumberOfBottles" layoutX="527.0" layoutY="213.0" prefHeight="26.0" prefWidth="82.0" />
       <Text layoutX="387.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of bottles" />
       <Text layoutX="387.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bottle size" />
       <TextField id="txfBottleSize" fx:id="txfBottleSize" layoutX="527.0" layoutY="256.0" prefHeight="26.0" prefWidth="82.0" />
+      <Button id="btnShowHistory" fx:id="btnShowHistory" layoutX="117.0" layoutY="394.0" mnemonicParsing="false" onAction="#showHistoryDialog" prefHeight="30.0" prefWidth="142.0" text="Show whisky histoy" />
    </children>
 </AnchorPane>

@@ -117,4 +117,5 @@ public class WhiskyProduct {
     public double getAlcoholPercent() {
         return alcoholPercent;
     }
+
 }

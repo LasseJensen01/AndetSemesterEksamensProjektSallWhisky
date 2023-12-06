@@ -248,7 +248,12 @@ public abstract class Controller {
         }
         return null;
     }
-
+    public static Bottle getBottleById(int id){
+        for (Bottle bottle : storage.getBottles()){
+            if (bottle.getId() == id) return bottle;
+        }
+        return null;
+    }
     public static List<Warehouse> getWarehouses(){
         return storage.getWarehouses();
     }
@@ -377,6 +382,7 @@ public abstract class Controller {
         Cask.setNo(idTracker.getCaskId());
         NewMake.setNo(idTracker.getNewMakeID());
         MaltBatch.setNo(idTracker.getMaltBatchId());
+
     }
 
     /**

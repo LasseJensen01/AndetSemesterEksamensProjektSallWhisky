@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class WhiskyTabController{
     private static URL FXMLWhiskyRegistration;
+    private static URL FXMLWhiskyHistory;
     @FXML
     private Button btnBottleWhisky;
 
@@ -25,7 +26,7 @@ public class WhiskyTabController{
     private Button btnRegisterNewWhisky;
 
     @FXML
-    private Button btnStoreWhisky;
+    private Button btnShowHistory;
 
     @FXML
     private ListView<WhiskyProduct> lvwWhiskyList;
@@ -38,6 +39,7 @@ public class WhiskyTabController{
 
     @FXML
     private TextField txfNumberOfBottles;
+
 
     @FXML
     public void initialize(){
@@ -52,6 +54,9 @@ public class WhiskyTabController{
         if (fxmlWhiskyRegistration == null) throw new NoSuchElementException("FXML file not found");
         this.FXMLWhiskyRegistration = fxmlWhiskyRegistration;
 
+        URL fxmlWhiskyHistoryDialog = this.getClass().getResource("resources\\WhiskyHistoryDialog.fxml");
+        if (fxmlWhiskyHistoryDialog == null) throw new NoSuchElementException("FXML file not found");
+        this.FXMLWhiskyHistory = fxmlWhiskyHistoryDialog;
     }
 
     private void listViewSelected() {
@@ -92,8 +97,18 @@ public class WhiskyTabController{
 
     @FXML
     void openRegistrationWindow(ActionEvent event) throws Exception{
-        System.out.println(FXMLWhiskyRegistration.toString());
         Parent root = FXMLLoader.load(FXMLWhiskyRegistration);
+        Stage stage = new Stage();
+        stage.setMinWidth(root.minWidth(-1));
+        stage.setMinHeight(root.minHeight(-1));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void showHistoryDialog(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(FXMLWhiskyHistory);
         Stage stage = new Stage();
         stage.setMinWidth(root.minWidth(-1));
         stage.setMinHeight(root.minHeight(-1));

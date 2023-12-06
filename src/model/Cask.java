@@ -34,7 +34,7 @@ public class Cask {
         daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); // positive int minus a negative long
         filling.setLiters(0);
         this.filling = null;
-        this.location.setCask(null);
+        //this.location.setCask(null);
         this.location = null;
     }
     public boolean containsWhisky(){
