@@ -22,7 +22,7 @@ public class Amount {
         return liters + "L of " + newMake.getNewMakeID();
     }
     public String getContentInfo(){
-        String s = liters + " of " + newMake.getContentInfo();
+        String s = liters + " liters of " + newMake.getContentInfo();
         return s;
     }
 }
