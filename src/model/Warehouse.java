@@ -45,7 +45,8 @@ public class Warehouse {
                     List<Amount> amount = f.getAmounts();
                     for (Amount a : amount){
                         double aliters = a.getLiters();
-                        writer.printf("            NewMake: hihi Liters: %1.2f%n", aliters);
+                        int nmID = a.getNewMake().getNewMakeID();
+                        writer.printf("            NewMake: d3%, Liters: %1.2f%n",nmID, aliters);
                     }
                 }
                 writer.println();
