@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class FillingsTabController {
     private Cask cask;
@@ -45,7 +46,7 @@ public class FillingsTabController {
     private TextField txfCaskInfo;
     @FXML
     public void initialize(){
-        chbNewMakes.getItems().setAll(Controller.getNewMakes());
+        update();
     }
     @FXML
     void FillCask(ActionEvent event) {
@@ -156,9 +157,11 @@ public class FillingsTabController {
             err.show();
         }
     }
-
-
-
+    @FXML
+    void update(){
+        List<NewMake> list = Controller.getNewMakes().stream().filter(NewMake -> NewMake.isDone()).toList();
+        chbNewMakes.getItems().setAll(list);
+    }
 }
 
 
