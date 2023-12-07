@@ -24,12 +24,12 @@ class WhiskyProductTest {
         NewMake newMake79 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
-        Cask caskA = new Cask(Type.AMARONE, 200);
+        Cask caskA = new Cask(Type.AMARONE, 200, "Big Barrel");
         Filling fillingA = new Filling(caskA, "Jonas");
         Amount amountA = new Amount(newMake77, 100);
         fillingA.addAmount(amountA);
 
-        Cask caskB = new Cask(Type.BAROLO, 200);
+        Cask caskB = new Cask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = new Filling(caskB, "Jonas");
         Amount amountB = new Amount(newMake78, 100);
         fillingB.addAmount(amountB);
@@ -76,13 +76,13 @@ class WhiskyProductTest {
         NewMake newMake79 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
-        Cask caskA = new Cask(Type.AMARONE, 200);
+        Cask caskA = new Cask(Type.AMARONE, 200, "Big Barrel");
         Filling fillingA = new Filling(caskA, "Jonas");
         fillingA.setDate(LocalDate.now().minusYears(3));
         Amount amountA = new Amount(newMake77, 100);
         fillingA.addAmount(amountA);
 
-        Cask caskB = new Cask(Type.BAROLO, 200);
+        Cask caskB = new Cask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = new Filling(caskB, "Jonas");
         fillingB.setDate(LocalDate.now().minusYears(4));
         Amount amountB = new Amount(newMake78, 100);

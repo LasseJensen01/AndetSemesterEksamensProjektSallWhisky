@@ -14,7 +14,7 @@ public class Cask {
     private int timesUsed = 0;
     private Location location = null;
 
-    public Cask(Type type, double volume) {
+    public Cask(Type type, double volume, String supplier) {
         this.type = type;
         this.volume = volume;
         no++;

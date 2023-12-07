@@ -236,8 +236,8 @@ public abstract class Controller {
      * @param volume how many liters the cask can contain.
      * @pre employee not "".
      */
-    public static Cask createCask(Type type, double volume){
-        Cask cask = new Cask(type, volume);
+    public static Cask createCask(Type type, double volume, String supplier){
+        Cask cask = new Cask(type, volume, supplier);
         storage.storeCask(cask);
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
@@ -477,14 +477,14 @@ public abstract class Controller {
         Warehouse warehouse = Controller.createWarehouse("Storage", "Storage Street");
         Controller.createLocationsInWarehouse(warehouse,10,4,3,3);
 
-        Cask caskA = Controller.createCask(Type.AMARONE, 200);
+        Cask caskA = Controller.createCask(Type.AMARONE, 200, "Big Barrel");
         Filling fillingA = Controller.createFilling(caskA, "Jonas");
         Amount amountA = Controller.createAmount(newMake77, 120);
         Controller.addAmountToFilling(fillingA,amountA);
         Location locationA = new Location("1-1-1-1");
         caskA.setLocation(locationA);
 
-        Cask caskB = Controller.createCask(Type.BAROLO, 200);
+        Cask caskB = Controller.createCask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = Controller.createFilling(caskB, "Jonas");
         Amount amountB = Controller.createAmount(newMake78, 80);
         Controller.addAmountToFilling(fillingB,amountB);
@@ -493,14 +493,14 @@ public abstract class Controller {
         Location locationB = new Location("1-1-1-2");
         caskA.setLocation(locationB);
 
-        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200);
+        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200, "Big Barrel");
         Filling fillingC = Controller.createFilling(caskC, "Jonas");
         Amount amountC1 = Controller.createAmount(newMake79, 175);
         Controller.addAmountToFilling(fillingC,amountC1);
         Location locationC = new Location("1-1-1-3");
         caskA.setLocation(locationC);
 
-        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200);
+        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200, "Big Barrel");
         Filling fillingD = Controller.createFilling(caskD, "Jonas");
         Amount amountD = Controller.createAmount(newMake78, 50);
         Amount amountD1 = Controller.createAmount(newMake77, 150);
@@ -509,9 +509,9 @@ public abstract class Controller {
         Location locationD = new Location("1-1-2-1");
         caskA.setLocation(locationD);
 
-        Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
+        Cask caskE = Controller.createCask(Type.SAUTERNES, 200, "Big Barrel");
 
-        Cask caskF = Controller.createCask(Type.FINO, 200);
+        Cask caskF = Controller.createCask(Type.FINO, 200, "Big Barrel");
         Controller.storeCask(warehouse, caskA);
         Controller.storeCask(warehouse, caskC);
         Controller.storeCask(warehouse, caskD);

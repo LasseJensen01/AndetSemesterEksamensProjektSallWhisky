@@ -42,7 +42,7 @@ public class WarehouseTest {
 
         NewMake nm1 = new NewMake(LocalDate.now(),"LJ",mb);
 
-        Cask cask1 = new Cask(Type.VIRGIN_OAK, 30);
+        Cask cask1 = new Cask(Type.VIRGIN_OAK, 30, "Big Barrel");
 
         Filling fill1 = new Filling(cask1,"LJ");
 
@@ -80,7 +80,7 @@ public class WarehouseTest {
         Location location1 = wh.getLocations().get(0);
         Location location2 = wh.getLocations().get(1);
         //Check that a cask can be moved into a location
-        Cask cask1 = Controller.createCask(Type.VIRGIN_OAK, 30);
+        Cask cask1 = Controller.createCask(Type.VIRGIN_OAK, 30,"Big Barrel");
         Controller.moveCask(wh,cask1,location1);
 
         //Test if the cask is on the location
