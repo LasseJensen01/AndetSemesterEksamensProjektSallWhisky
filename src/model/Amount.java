@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Amount implements Serializable {
     private NewMake newMake;
-    private int liters;
+    private double liters;
 
-    public Amount(NewMake newMake, int liters) {
+    public Amount(NewMake newMake, double liters) {
         this.newMake = newMake;
         this.liters = liters;
     }
 
-    public int getLiters() {
+    public double getLiters() {
         return liters;
     }
 

@@ -30,7 +30,7 @@ public class Warehouse implements Serializable {
             for (Location l : locations){
                 Cask c = l.getCask();
                 if (c != null){
-                    int id = c.getId();
+                    int id = c.getCaskID();
                     Type type = c.getType();
                     double volume = c.getVolume();
                     double liters = c.getLiters();

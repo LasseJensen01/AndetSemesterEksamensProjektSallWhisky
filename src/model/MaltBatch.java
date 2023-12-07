@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class MaltBatch implements Serializable {
     private int batchID;
     private static int no = 0;
-    private String rygeMateriale;
-    private String malteri;
+    private String smokeMaterial;
+    private String maltery;
     private String grain;
 
     //---------------
     private Field field;
 
-    public MaltBatch(String malteri, String grain, Field field) {
+    public MaltBatch(String maltery, String grain, Field field) {
         no++;
         this.batchID = no;
-        this.malteri = malteri;
+        this.maltery = maltery;
         this.grain = grain;
         this.field = field;
     }
@@ -28,16 +28,16 @@ public class MaltBatch implements Serializable {
         MaltBatch.no = no;
     }
 
-    public String getRygeMateriale() {
-        return rygeMateriale;
+    public String getSmokeMaterial() {
+        return smokeMaterial;
     }
 
-    public void setRygeMateriale(String rygeMateriale) {
-        this.rygeMateriale = rygeMateriale;
+    public void setSmokeMaterial(String smokeMaterial) {
+        this.smokeMaterial = smokeMaterial;
     }
 
-    public String getMalteri() {
-        return malteri;
+    public String getMaltery() {
+        return maltery;
     }
 
     public String getGrain() {
@@ -50,9 +50,9 @@ public class MaltBatch implements Serializable {
 
     @Override
     public String toString(){
-        if(rygeMateriale != null){
-            return String.format("Maltbatch #%d made in %s with %s from %s smoked with %s", batchID,  malteri, grain, field, rygeMateriale);
+        if(smokeMaterial != null){
+            return String.format("Maltbatch #%d made in %s with %s from %s smoked with %s", batchID, maltery, grain, field, smokeMaterial);
         }
-        return String.format("Maltbatch #%d made in %s with %s from %s", batchID, malteri, grain, field);
+        return String.format("Maltbatch #%d made in %s with %s from %s", batchID, maltery, grain, field);
     }
 }

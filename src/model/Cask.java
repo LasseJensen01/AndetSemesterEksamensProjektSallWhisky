@@ -2,14 +2,11 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cask implements Serializable {
     private Type type;
     private static int no = 0;
-    private int id;
+    private int caskID;
     private double volume; // How big cask
     private Filling filling = null;
     private int timesUsed = 0;
@@ -19,13 +16,13 @@ public class Cask implements Serializable {
         this.type = type;
         this.volume = volume;
         no++;
-        this.id = no;
+        this.caskID = no;
     }
     public String getContentsInfo(){
         String s = "";
         if (filling == null || filling.getLiters() == 0) s += "The cask is empty.";
         else {
-            s = "Casket " + id + " contains the following:\n";
+            s = "Casket " + caskID + " contains the following:\n";
             s += filling.getContentsInfo(LocalDate.now());
         }
         return s;
@@ -69,8 +66,8 @@ public class Cask implements Serializable {
         return timesUsed;
     }
 
-    public int getId() {
-        return id;
+    public int getCaskID() {
+        return caskID;
     }
     public void setTimesUsed(int timesUsed) {
         this.timesUsed = timesUsed;
@@ -86,6 +83,6 @@ public class Cask implements Serializable {
 
     @Override
     public String toString() {
-        return "Cask with ID: " + id + " Type: " + type + " Volume: " + volume;
+        return "Cask with ID: " + caskID + " Type: " + type + " Volume: " + volume;
     }
 }
