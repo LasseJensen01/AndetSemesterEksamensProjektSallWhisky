@@ -234,9 +234,9 @@ class ControllerTest {
         //Setup
 
         //Casks & TimesUsed
-        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100);
-        Cask caskB = Controller.createCask(Type.BOURBON, 150);
-        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120);
+        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100,"Test");
+        Cask caskB = Controller.createCask(Type.BOURBON, 150, "Test");
+        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120, "Test");
 
         caskA.setTimesUsed(1);
         caskB.setTimesUsed(2);
@@ -311,9 +311,9 @@ class ControllerTest {
         Amount amountB = new Amount(newMakeB, 50);
 
         //Casks & Filling
-        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100);
-        Cask caskB = Controller.createCask(Type.BOURBON, 150);
-        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120);
+        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100, "Test");
+        Cask caskB = Controller.createCask(Type.BOURBON, 150, "Test");
+        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120, "Test");
         Filling fillingA = Controller.createFilling(caskA,"test");
         fillingA.setDate(LocalDate.now().minusYears(3));
         Filling fillingB = Controller.createFilling(caskB,"test");
