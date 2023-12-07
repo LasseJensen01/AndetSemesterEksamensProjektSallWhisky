@@ -35,6 +35,8 @@ public class FarmerTabController {
 
     @FXML
     private Label lblOurFarmers;
+    @FXML
+    private Label lblError;
 
 
     @FXML
@@ -49,6 +51,12 @@ public class FarmerTabController {
         if(!name.isEmpty() && !address.isEmpty()) {
             Controller.createFarmer(name, address);
             lwFarmers.getItems().setAll(Controller.getFarmers());
+            txfAddress.clear();
+            txfFarmerName.clear();
+            lblError.setText("");
+
+        } else {
+            lblError.setText("Error: Check data");
         }
     }
 

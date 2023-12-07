@@ -5,15 +5,22 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WhiskyTabController">
    <children>
       <Button id="RigisterNewWhiskey" fx:id="btnRegisterNewWhisky" layoutX="118.0" layoutY="332.0" mnemonicParsing="false" onAction="#openRegistrationWindow" text="Register new whiskey" />
       <ListView id="lvwWhiskyList" fx:id="lvwWhiskyList" layoutX="50.0" layoutY="60.0" prefHeight="200.0" prefWidth="278.0" />
-      <Text layoutX="145.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw" />
+      <Text layoutX="145.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky overveiw">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
       <TextArea id="txfWhiskyInfo" fx:id="txfWhiskyInfo" disable="true" layoutX="387.0" layoutY="60.0" prefHeight="102.0" prefWidth="342.0" />
-      <Text layoutX="527.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky info" />
+      <Text layoutX="527.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whisky info">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
       <Button id="BottleWhisky" fx:id="btnBottleWhisky" layoutX="497.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnBottleWhiskyAction" prefHeight="30.0" prefWidth="142.0" text="Bottle whisky" />
       <TextField id="txfNumberOfBottles" fx:id="txfNumberOfBottles" layoutX="527.0" layoutY="213.0" prefHeight="26.0" prefWidth="82.0" />
       <Text layoutX="387.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of bottles" />

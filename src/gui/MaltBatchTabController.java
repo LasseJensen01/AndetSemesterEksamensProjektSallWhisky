@@ -45,26 +45,43 @@ public class MaltBatchTabController {
 
     @FXML
     private TextField txfSmokingMaterial;
+    @FXML
+    private Label lblError;
 
     @FXML
     public void initialize(){
         lvwMaltBatches.getItems().setAll(Controller.getMaltBatches());
-        cboxField.getItems().setAll(Controller.getAllFields());
+        update();
     }
 
     @FXML
     void addMaltBatchAction(ActionEvent event) {
-        String grain = txfGrain.getText();
-        Field field = cboxField.getSelectionModel().getSelectedItem();
-        String maltery = txfMaltery.getText();
-        if(txfSmokingMaterial.getText().isEmpty()) {
-            MaltBatch maltBatch = Controller.createMaltBatch(maltery, grain, field);
+        try{
+            if(txfGrain.getText().isEmpty() || cboxField.getSelectionModel().isEmpty() || txfMaltery.getText().isEmpty()){
+                throw new IllegalArgumentException();
+            }
+            String grain = txfGrain.getText();
+            Field field = cboxField.getSelectionModel().getSelectedItem();
+            String maltery = txfMaltery.getText();
+            if(txfSmokingMaterial.getText().isEmpty()) {
+                MaltBatch maltBatch = Controller.createMaltBatch(maltery, grain, field);
+                lblError.setText("");
+            }
+            else{
+                String smokeMaterial = txfSmokingMaterial.getText();
+                MaltBatch maltBatch = Controller.createMaltBatch(smokeMaterial, maltery, grain, field);
+                lblError.setText("");
+            }
+            lvwMaltBatches.getItems().setAll(Controller.getMaltBatches());
+        }catch(Exception e) {
+            lblError.setText("Error: Check data");
         }
-        else{
-            String smokeMaterial = txfSmokingMaterial.getText();
-            MaltBatch maltBatch = Controller.createMaltBatch(smokeMaterial, maltery, grain, field);
-        }
-        lvwMaltBatches.getItems().setAll(Controller.getMaltBatches());
+
+    }
+
+    @FXML
+    void update(){
+        cboxField.getItems().setAll(Controller.getAllFields());
     }
 
 }

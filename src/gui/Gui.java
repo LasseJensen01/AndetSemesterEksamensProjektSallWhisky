@@ -45,11 +45,6 @@ public class Gui extends Application {
         maltBatchTab.setClosable(false);
         tabpane.getTabs().add(maltBatchTab);
 
-        //Initializer FXMLAddFarmerGUI
-        URL addFarmerDialog = this.getClass().getResource("resources\\AddFarmerDialog.fxml");
-        if (addFarmerDialog == null) throw new NoSuchElementException("addFarmerDialog not found");
-        FXMLFarmer = addFarmerDialog;
-
         //Pane4 NewMake
         URL newMakePane = this.getClass().getResource("resources\\NewMakeTab.fxml");
         if (newMakePane == null) throw new NoSuchElementException("farmerPane not found");

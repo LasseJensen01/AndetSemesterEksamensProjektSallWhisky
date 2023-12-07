@@ -35,6 +35,8 @@ public class FieldTabController {
 
     @FXML
     private TextField txfFieldName;
+    @FXML
+    private Label lblError;
 
     @FXML
     public void initialize(){
@@ -42,21 +44,37 @@ public class FieldTabController {
     }
 
     @FXML
-    void chooseFarmerAction(ActionEvent event) {
-        Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
-        List<Field> farmersFields = Controller.getFarmersFields(farmer);
-        lvwChosenFarmersFields.getItems().setAll(farmersFields);
+    void chooseFarmerAction() {
+        try {
+            Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
+            List<Field> farmersFields = Controller.getFarmersFields(farmer);
+            lvwChosenFarmersFields.getItems().setAll(farmersFields);
+        }catch (Exception e){
+
+        }
     }
     @FXML
-    void addFieldAction(ActionEvent event) {
-        String fieldName = txfFieldName.getText();
-        Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
-        Field field = Controller.createField(fieldName, farmer);
-        lvwChosenFarmersFields.getItems().setAll(Controller.getFarmersFields(farmer));
+    void addFieldAction() {
+        if(!txfFieldName.getText().isEmpty() && !cboxFarmer.getSelectionModel().isEmpty()){
+            String fieldName = txfFieldName.getText();
+            Farmer farmer = cboxFarmer.getSelectionModel().getSelectedItem();
+            Field field = Controller.createField(fieldName, farmer);
+            lvwChosenFarmersFields.getItems().setAll(Controller.getFarmersFields(farmer));
+            txfFieldName.clear();
+            lblError.setText("");
+        }else{
+            lblError.setText("Error: Check data");
+        }
+
     }
     @FXML
     void update(){
-        cboxFarmer.getItems().setAll(Controller.getFarmers());
+        try {
+            cboxFarmer.getItems().setAll(Controller.getFarmers());
+        }catch (Exception e){
+            System.out.println("err");
+        }
+
     }
 
 }

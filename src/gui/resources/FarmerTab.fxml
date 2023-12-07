@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <GridPane hgap="20.0" prefHeight="470.0" prefWidth="800.0" vgap="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FarmerTabController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.33331298828125" minWidth="0.0" prefWidth="70.6666768391927" />
@@ -30,6 +29,11 @@
       <TextField fx:id="txfFarmerName" prefHeight="25.0" prefWidth="371.0" GridPane.columnIndex="1" />
       <Text fx:id="txtAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
       <TextField fx:id="txfAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="lblError" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="290.0" top="50.0" />
+         </GridPane.margin>
+      </Label>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

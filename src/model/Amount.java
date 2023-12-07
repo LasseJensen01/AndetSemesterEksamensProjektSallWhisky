@@ -21,7 +21,7 @@ public class Amount implements Serializable {
 
     @Override
     public String toString() {
-        return liters + "L of " + newMake.getNewMakeID();
+        return liters + "L of NewMake# " + newMake.getNewMakeID();
     }
     public String getContentInfo(){
         String s = liters + " liters of " + newMake.getContentInfo();

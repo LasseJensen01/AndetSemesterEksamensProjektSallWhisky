@@ -41,7 +41,7 @@
       <DatePicker fx:id="datePickerEnd" prefHeight="25.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Text fx:id="txtEndDate" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <Text fx:id="txtMaltBatch" strokeType="OUTSIDE" strokeWidth="0.0" text="Malt batch" GridPane.rowIndex="3" />
-      <ChoiceBox fx:id="cboxMaltBatch" prefHeight="25.0" prefWidth="246.0" GridPane.rowIndex="4" />
+      <ChoiceBox fx:id="cboxMaltBatch" onKeyPressed="#update" onMouseClicked="#update" prefHeight="25.0" prefWidth="246.0" GridPane.rowIndex="4" />
       <Text fx:id="txtComment" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment" GridPane.columnIndex="2" GridPane.rowIndex="7" />
       <TextArea fx:id="txaComment" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.rowSpan="3" />
       <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#registerAction" text="Register" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="BASELINE" />
@@ -68,6 +68,16 @@
       </Text>
       <TextField fx:id="txfResponsibleEmployee" GridPane.rowIndex="6" />
       <Label fx:id="lblConfirmation" textFill="#40c53d" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="BOTTOM" />
+      <Label fx:id="lblError" textFill="RED" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets left="75.0" top="20.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="lblErrorFinish" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="11">
+         <GridPane.margin>
+            <Insets left="75.0" top="20.0" />
+         </GridPane.margin>
+      </Label>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

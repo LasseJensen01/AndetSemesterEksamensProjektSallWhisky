@@ -74,40 +74,67 @@ public class NewMakeTabController {
 
     @FXML
     private Text txtStartDate;
+    @FXML
+    private Label lblError;
+    @FXML
+    private Label lblErrorFinish;
 
     @FXML
     public void initialize(){
-        cboxMaltBatch.getItems().setAll(Controller.getMaltBatches());
+        update();
         lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
     }
 
     @FXML
     void registerAction(ActionEvent event) {
-        LocalDate startDate = datePickerStart.getValue();
-        MaltBatch maltBatch = cboxMaltBatch.getValue();
-        String respEmp = txfResponsibleEmployee.getText();
+        try {
+            if (txfResponsibleEmployee.getText().isEmpty() || datePickerStart.getValue() == null || cboxMaltBatch.getSelectionModel().isEmpty()){
+                throw new IllegalArgumentException();
+            }
+            LocalDate startDate = datePickerStart.getValue();
+            MaltBatch maltBatch = cboxMaltBatch.getSelectionModel().getSelectedItem();
+            String respEmp = txfResponsibleEmployee.getText();
 
-        NewMake newMake = Controller.createNewMake(startDate,respEmp,maltBatch);
-        lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+            NewMake newMake = Controller.createNewMake(startDate,respEmp,maltBatch);
+            lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+            lblError.setText("");
+
+            txfResponsibleEmployee.clear();
+            datePickerStart.getEditor().clear();
+            cboxMaltBatch.getSelectionModel().clearSelection();
+        }catch (Exception e){
+           lblError.setText("Error: Check data");
+        }
     }
 
     @FXML
     void doneAction(ActionEvent event){
-        NewMake newMake = lvwNewMakeinProgress.getSelectionModel().getSelectedItem();
+        try {
+            NewMake newMake = lvwNewMakeinProgress.getSelectionModel().getSelectedItem();
 
-        LocalDate endDate = datePickerEnd.getValue();
-        double producedAmount = Double.parseDouble(txfProducedAmount.getText());
-        double alcoholdPercent = Double.parseDouble(txfAlcoholPercent.getText());
+            LocalDate endDate = datePickerEnd.getValue();
+            double producedAmount = Double.parseDouble(txfProducedAmount.getText());
+            double alcoholdPercent = Double.parseDouble(txfAlcoholPercent.getText());
 
-        if(txaComment.getText().equals(null)){
-            Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate);
+            if(txaComment.getText().equals(null)){
+                Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate);
+            }
+            else{
+                String comment = txaComment.getText();
+                Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate, comment);
+            }
+
+            lvwNewMakeinProgress.getItems().remove(newMake);
+            lblErrorFinish.setText("");
+            lblConfirmation.setText(newMake.toString() + "is registered");
+        }catch (Exception e){
+            lblConfirmation.setText("");
+            lblErrorFinish.setText("Error: Check data");
         }
-        else{
-            String comment = txaComment.getText();
-            Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate, comment);
-        }
 
-        lvwNewMakeinProgress.getItems().remove(newMake);
-        lblConfirmation.setText(newMake.toString() + "is registered");
+    }
+    @FXML
+    void update(){
+        cboxMaltBatch.getItems().setAll(Controller.getMaltBatches());
     }
 }
