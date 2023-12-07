@@ -12,7 +12,7 @@ class CaskTest {
     void getContentsInfo() {
         // Case 1: The casket is empty because no filling has been added.
         // Arrange
-        Cask cask = new Cask(Type.AMARONE, 50);
+        Cask cask = new Cask(Type.AMARONE, 50,"Big Barrel");
 
         // Act
         String message = cask.getContentsInfo();
@@ -50,14 +50,13 @@ class CaskTest {
     @Test
     void emptyCask() {
         // Arrange
-        Cask cask = new Cask(Type.AMARONE, 50);
+        Cask cask = new Cask(Type.AMARONE, 50, "Big Barrel");
         Filling filling = new Filling(cask, "Jesper");
         filling.setDate(LocalDate.now().minusYears(3));
         cask.emptyCask();
 
         // Act
         int timesUsed = cask.getTimesUsed();
-        int daysUsed = cask.getDaysUsed();
         Filling currentfill = cask.getFilling();
         Location location = cask.getLocation();
 
@@ -65,14 +64,13 @@ class CaskTest {
         assertNull(currentfill);
         assertNull(location);
         assertEquals(1, timesUsed);
-        assertEquals(1095, daysUsed);
     }
 
     @Test
     void containsWhisky() {
         // Case 1: Boundary value of 3 years
         // Arrange
-        Cask cask = new Cask(Type.BORDEAUX, 125);
+        Cask cask = new Cask(Type.BORDEAUX, 125, "Big Barrel");
         Filling filling = new Filling(cask, "Maria");
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
         Field field = new Field("By the river.", farmer);

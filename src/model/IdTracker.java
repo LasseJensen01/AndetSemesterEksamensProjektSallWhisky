@@ -1,14 +1,14 @@
 package model;
 
 
+import java.io.Serializable;
 
-public class IdTracker{
+public class IdTracker implements Serializable {
     private int caskId;
     private int fillingId;
     private int bottleId;
     private int newMakeID;
     private int maltBatchId;
-    private int whiskyProductId;
 
     public int getMaltBatchId() {
         return maltBatchId;
@@ -50,11 +50,5 @@ public class IdTracker{
         return bottleId;
     }
 
-    public int getWhiskyProductId() {
-        return whiskyProductId;
-    }
 
-    public void setWhiskyProductId(int whiskyProductId) {
-        this.whiskyProductId = whiskyProductId;
-    }
 }

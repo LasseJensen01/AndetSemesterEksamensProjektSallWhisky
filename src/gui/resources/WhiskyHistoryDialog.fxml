@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.WhiskyHistoryDialogController">
+   <children>
+      <TextArea id="txaHistory" fx:id="txaHistory" layoutX="300.0" layoutY="15.0" prefHeight="370.0" prefWidth="603.0" promptText="Enter an id and press the button to show product history here. Or select a whisky from the list." />
+      <Text layoutX="24.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bottle Id" />
+      <TextField id="txfBottleId" fx:id="txfBottleId" layoutX="108.0" layoutY="14.0" prefHeight="26.0" prefWidth="78.0" />
+      <Button id="btnShowBottleHistory" fx:id="btnShowBottleHistory" layoutX="223.0" layoutY="14.0" mnemonicParsing="false" onAction="#showBottleHistory" text="Show" />
+      <ListView id="lvwWhiskys" fx:id="lvwWhiskys" layoutX="47.0" layoutY="100.0" prefHeight="284.0" prefWidth="200.0" />
+      <Text layoutX="125.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Whiskys" />
+   </children>
+</AnchorPane>

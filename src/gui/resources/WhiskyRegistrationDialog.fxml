@@ -20,6 +20,8 @@
       <Button id="btnCreateWhisky" fx:id="btnCreateWhisky" layoutX="471.0" layoutY="296.0" mnemonicParsing="false" onAction="#createWhiskyAction" text="Create whisky" />
       <Text layoutX="410.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <TextField id="txfName" fx:id="txfName" layoutX="456.0" layoutY="87.0" prefHeight="26.0" prefWidth="118.0" />
-      <CheckBox fx:id="chbConfirm" layoutX="482.0" layoutY="176.0" mnemonicParsing="false" text="Confirm" />
+      <CheckBox id="chbConfirm" fx:id="chbConfirm" layoutX="488.0" layoutY="176.0" mnemonicParsing="false" text="Water" />
+      <TextField id="txfWaterLiters" fx:id="txfWaterLiters" layoutX="456.0" layoutY="258.0" prefHeight="26.0" prefWidth="118.0" promptText="Liters" />
+      <TextField id="txfSource" fx:id="txfSource" layoutX="456.0" layoutY="214.0" prefHeight="26.0" prefWidth="118.0" promptText="Source" />
    </children>
 </AnchorPane>

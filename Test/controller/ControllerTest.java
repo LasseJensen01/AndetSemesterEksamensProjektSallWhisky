@@ -35,12 +35,12 @@ class ControllerTest {
         NewMake newMake79 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
-        Cask caskA = new Cask(Type.AMARONE, 200);
+        Cask caskA = new Cask(Type.AMARONE, 200,"Big Barrel");
         Filling fillingA = new Filling(caskA, "Jonas");
         Amount amountA = new Amount(newMake77, 100);
         fillingA.addAmount(amountA);
 
-        Cask caskB = new Cask(Type.BAROLO, 200);
+        Cask caskB = new Cask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = new Filling(caskB, "Jonas");
         Amount amountB = new Amount(newMake78, 100);
         fillingB.addAmount(amountB);
@@ -109,12 +109,12 @@ class ControllerTest {
         NewMake newMake79 = new NewMake(LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
-        Cask caskA = new Cask(Type.AMARONE, 200);
+        Cask caskA = new Cask(Type.AMARONE, 200,"Big Barrel");
         Filling fillingA = new Filling(caskA, "Jonas");
         Amount amountA = new Amount(newMake77, 100);
         fillingA.addAmount(amountA);
 
-        Cask caskB = new Cask(Type.BAROLO, 200);
+        Cask caskB = new Cask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = new Filling(caskB, "Jonas");
         Amount amountB = new Amount(newMake78, 100);
         fillingB.addAmount(amountB);
@@ -159,12 +159,12 @@ class ControllerTest {
         NewMake newMake79 = new NewMake( LocalDate.now(), "Jonas", maltBatch);
         newMake79.setAlcPercent(0.60);
 
-        Cask caskA = new Cask(Type.AMARONE, 200);
+        Cask caskA = new Cask(Type.AMARONE, 200,"Big Barrel");
         Filling fillingA = new Filling(caskA, "Jonas");
         Amount amountA = new Amount(newMake77, 100);
         fillingA.addAmount(amountA);
 
-        Cask caskB = new Cask(Type.BAROLO, 200);
+        Cask caskB = new Cask(Type.BAROLO, 200,"Big Barrel");
         Filling fillingB = new Filling(caskB, "Jonas");
         Amount amountB = new Amount(newMake78, 100);
         fillingB.addAmount(amountB);
@@ -211,11 +211,11 @@ class ControllerTest {
     void locateEmptyCask(){
         //This test was made during the coding process
         for (int i = 0; i < 5; i++) {
-            Controller.createCask(Type.VIRGIN_OAK,30);
-            Controller.createCask(Type.BOURBON, 30);
-            Controller.createCask(Type.BOURBON, 45);
+            Controller.createCask(Type.VIRGIN_OAK,30,"Big Barrel");
+            Controller.createCask(Type.BOURBON, 30,"Big Barrel");
+            Controller.createCask(Type.BOURBON, 45,"Big Barrel");
         }
-        Cask cask1 = Controller.createCask(Type.BEER, 55);
+        Cask cask1 = Controller.createCask(Type.BEER, 55,"Big Barrel");
         //Check type
         //Check to see if cask is found
         assertEquals(cask1, Controller.locateEmptyCask(Type.BEER,null,null,null).get(0));

@@ -19,9 +19,9 @@ public class Demo {
         MaltBatch mb = new MaltBatch("NordFyn","Corn",field);
         NewMake nm1 = new NewMake(LocalDate.now(),"LJ",mb);
 
-        Cask cask1 = new Cask(Type.VIRGIN_OAK, 30);
-        Cask cask2 = new Cask(Type.VIRGIN_OAK, 30);
-        Cask cask3 = new Cask(Type.VIRGIN_OAK, 30);
+        Cask cask1 = new Cask(Type.VIRGIN_OAK, 30, "Big Barrel");
+        Cask cask2 = new Cask(Type.VIRGIN_OAK, 30, "Big Barrel");
+        Cask cask3 = new Cask(Type.VIRGIN_OAK, 30, "Big Barrel");
 
         Filling fill1 = new Filling(cask1,"LJ");
         Filling fill2 = new Filling(cask2,"LJ");

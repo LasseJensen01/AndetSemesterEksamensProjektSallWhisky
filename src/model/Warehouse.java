@@ -2,11 +2,12 @@ package model;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Warehouse {
+public class Warehouse implements Serializable {
     private String name;
     private String adress;
     private List<Location> locations = new ArrayList<>();
@@ -34,7 +35,12 @@ public class Warehouse {
                     double volume = c.getVolume();
                     double liters = c.getLiters();
                     String location = l.getLocationID();
-                    writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Location: %6s%n", id, type, volume, liters, location);
+                    String containsWhisky;
+                    if (c.containsWhisky()){
+                        containsWhisky = "Yes";
+                    } else containsWhisky ="No";
+
+                    writer.printf("ID: %3d, Type: %-13s Volume: %1.2f, Liters: %1.2f, Contains whisky: %-3s Location: %6s%n", id, type, volume, liters,containsWhisky, location);
                     writer.printf("     Fillings: %n");
                     Filling f = c.getFilling();
                     int fid = f.getId();

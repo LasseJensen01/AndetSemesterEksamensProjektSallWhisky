@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Filling {
+public class Filling implements Serializable {
     private List<Amount> amounts = new ArrayList<>();
     private Cask cask;
     private double liters;
