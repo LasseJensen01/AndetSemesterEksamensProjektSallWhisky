@@ -8,6 +8,7 @@ import storage.ListStorage;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -208,6 +209,7 @@ class ControllerTest {
 
     @Test
     void locateEmptyCask(){
+        //This test was made during the coding process
         for (int i = 0; i < 5; i++) {
             Controller.createCask(Type.VIRGIN_OAK,30);
             Controller.createCask(Type.BOURBON, 30);
@@ -228,28 +230,161 @@ class ControllerTest {
     }
 
     @Test
-    void locateFullCask(){
-        for (int i = 0; i < 5; i++) {
-            Cask c = Controller.createCask(Type.VIRGIN_OAK,30);
-            c.setFilling(new Filling(c,"LJ"));
-            c.setLiters(10);
-        }
-        Cask cask1 = Controller.createCask(Type.BEER, 55);
-        cask1.setFilling(new Filling(cask1,"LJ"));
-        cask1.setLiters(10);
+    void formalLocateEmptyCask(){
+        //Setup
 
-        //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(false,Type.BEER,null,null,null).get(0));
-        //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(false,Type.BEER,null,null,null).size());
+        //Casks & TimesUsed
+        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100);
+        Cask caskB = Controller.createCask(Type.BOURBON, 150);
+        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120);
 
-        //Check with volume instead of Type
+        caskA.setTimesUsed(1);
+        caskB.setTimesUsed(2);
+        caskC.setTimesUsed(0);
 
-        //Check if cask is correct
-        assertEquals(cask1, Controller.locateFullCask(false,null,55.0,null,null).get(0));
-        //Check to see if non requested casks are returned
-        assertEquals(1, Controller.locateFullCask(false,null,55.0,null,null).size());
+        //Test
 
+        //Test Case 1
+        List<Cask> l = Controller.locateEmptyCask(null, null,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(3,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskA,l.get(0));
+        assertEquals(caskB,l.get(1));
+        assertEquals(caskC,l.get(2));
+
+        //Test Case 2
+        l = Controller.locateEmptyCask(Type.VIRGIN_OAK, null,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(2,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskA,l.get(0));
+        assertEquals(caskC,l.get(1));
+
+        //Test Case 3
+        l = Controller.locateEmptyCask(null, 120.0,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(1,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskC,l.get(0));
+
+        //Test Case 4
+        l = Controller.locateEmptyCask(null, null,2,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(1,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskB,l.get(0));
+
+        //Test Case 5
+        l = Controller.locateEmptyCask(null, null,null,1);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(1,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskA,l.get(0));
+
+        //Test Case 6
+        l = Controller.locateEmptyCask(Type.BOURBON, 150.0,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(1,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskB,l.get(0));
+
+        //Test Case 7
+        l = Controller.locateEmptyCask(Type.TOKAY, 99.0,null,3);
+        //Check if the expected amount of cask are returned by the method
+        assertTrue(l.isEmpty());
+    }
+
+    @Test
+    void formalLocateFullCask(){
+        //Setup
+        //Farmer, Field & Maltbatch
+        Farmer farmerA = new Farmer("Test", "Test");
+        Field fieldA = new Field("Test", farmerA);
+        MaltBatch maltBatchA = new MaltBatch("Test","Test",fieldA);
+
+        //NewMakes & Amounts
+        NewMake newMakeA = new NewMake(LocalDate.now().minusYears(3),"Test", maltBatchA);
+        NewMake newMakeB = new NewMake( LocalDate.now(), "Test", maltBatchA);
+
+        Amount amountA = new Amount(newMakeA, 50);
+        Amount amountB = new Amount(newMakeB, 50);
+
+        //Casks & Filling
+        Cask caskA = Controller.createCask(Type.VIRGIN_OAK,100);
+        Cask caskB = Controller.createCask(Type.BOURBON, 150);
+        Cask caskC = Controller.createCask(Type.VIRGIN_OAK, 120);
+        Filling fillingA = Controller.createFilling(caskA,"test");
+        fillingA.setDate(LocalDate.now().minusYears(3));
+        Filling fillingB = Controller.createFilling(caskB,"test");
+        Filling fillingC = Controller.createFilling(caskC, "test");
+
+        caskA.setTimesUsed(1);
+        caskB.setTimesUsed(2);
+        caskC.setTimesUsed(0);
+
+        Controller.addAmountToFilling(fillingA, amountA);
+        Controller.addAmountToFilling(fillingB, amountB);
+        Controller.addAmountToFilling(fillingC, amountB);
+
+        //Test
+
+        //Test Case 1
+        List<Cask> l = Controller.locateFullCask(true,null, null,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(1,l.size());
+        //Check if the one cask is the expected cask
+        assertEquals(caskA,l.get(0));
+
+        //Test Case 2
+        l = Controller.locateFullCask(false,null, null,null,null);
+        //Check if the expected amount of cask are returned by the method
+        assertEquals(3, l.size());
+        //Check if all casks are there
+        assertEquals(caskA,l.get(0));
+        assertEquals(caskB,l.get(1));
+        assertEquals(caskC,l.get(2));
+
+        //Test Case 3
+        l = Controller.locateFullCask(false,Type.VIRGIN_OAK, null,null,null);
+        //Check if the expected amount of casks are returned by the method
+        assertEquals(2,l.size());
+        //Check if the casks are correct
+        assertEquals(caskA, l.get(0));
+        assertEquals(caskC, l.get(1));
+
+        //Test Case 4
+        l = Controller.locateFullCask(false,null, 120.0,null,null);
+        //Check if the expected amount of casks are returned by the method
+        assertEquals(1,l.size());
+        //Check for if its the right cask
+        assertEquals(caskC, l.get(0));
+
+        //Test Case 5
+        l = Controller.locateFullCask(false,null, null,2,null);
+        //Check if the expected amount of casks are returned by the method
+        assertEquals(1,l.size());
+        //Check for if its the right cask
+        assertEquals(caskB, l.get(0));
+
+        //Test Case 6
+        l = Controller.locateFullCask(false,null, null,null,1);
+        //Check if the expected amount of casks are returned by the method
+        assertEquals(1,l.size());
+        //Check for if its the right cask
+        assertEquals(caskA, l.get(0));
+
+        //Test Case 7
+        l = Controller.locateFullCask(false,Type.BOURBON, 150.0,null,null);
+        //Check if the expected amount of casks are returned by the method
+        assertEquals(1,l.size());
+        //Check for if its the right cask
+        assertEquals(caskB, l.get(0));
+
+        //Test Case 8
+        l = Controller.locateFullCask(false,Type.TOKAY, 99.0,null,3);
+        //Check if the expected amount of cask are returned by the method
+        assertTrue(l.isEmpty());
     }
     @Test
     void createWarehouse(){
