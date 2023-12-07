@@ -230,13 +230,6 @@ public abstract class Controller {
     public static void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
         filling.addAmount(amount);
     }
-    /**
-     * This method gives a string repesentation of the constents of a cask
-     * @param cask a cask.
-     */
-    public static String getCaskContent(Cask cask){
-        return cask.getContentsInfo();
-    }
 
     /**
      * This method creates, stores and returns a cask.
