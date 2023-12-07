@@ -1,7 +1,10 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class WhiskyProduct {
     private Map<Filling,Double> fillings; // Fillings and what percent of the mix they make up.
@@ -9,18 +12,28 @@ public class WhiskyProduct {
     private String whiskyName;
     private double liters;
     private double water = 0; // If this is 0 the product is "cask strength"
+    private String waterSource;
     private double alcoholPercent;
-    private String type;
-    private int numberOfMalts; // Find a better way
     private Cask cask;
+    private Set<MaltBatch> malts;
 
     public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName) {
         this.fillings = fillings;
         this.date = LocalDate.now();
         this.whiskyName = whiskyName;
 
-        // Malts
-        // Loop and getters
+        this.malts = getMalts();
+
+        calcAlcoholPercentage();
+    }
+    public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName, double water, String source) {
+        this.fillings = fillings;
+        this.date = LocalDate.now();
+        this.whiskyName = whiskyName;
+        this.water = water;
+        this.waterSource = source;
+
+        this.malts = getMalts();
 
         calcAlcoholPercentage();
 
@@ -41,18 +54,46 @@ public class WhiskyProduct {
         liters = totalLitersOfWater+totalLitersOfAlcohol;
         alcoholPercent = totalLitersOfAlcohol/(totalLitersOfWater+totalLitersOfAlcohol);
     }
-    public String getLabelText(){
-        String s = "";
-        return s;
-    }
 
     public String getFullProductionHistory(){
         String s = "";
+        s += this.whiskyName + " is a";
+        if (isSingleCask()){
+            s += " single cask,";
+        }
+        if (malts.size() == 1){
+            s += " sigle malt,";
+        }
+        if (isSingleCask()){
+            s += " sigle cask,";
+        }
+        if (water == 0){
+            s += " cask strength,";
+        } else {
+            s += " diluted with " + water + " liters of water from " + waterSource;
+        }
+        s += " with an alcohol percent of " + alcoholPercent*100 + "%.\n" +
+                "With the following production histoy:\n" +
+        "*************************************************\n";
         for (Filling f : fillings.keySet()){
             s += f.getContentsInfo(this.date) + "\n";
-            s+= "---------------------------------------";
+            s+= "-------------------------------------------------\n";
         }
         return s;
+    }
+    private Set<MaltBatch> getMalts(){
+        Set<MaltBatch> malts = new HashSet<>();
+        for (Filling filling : fillings.keySet()){
+            malts.addAll(filling.getMalts());
+        }
+        return malts;
+    }
+    private boolean isSingleCask(){
+        boolean single = false;
+        if (fillings.size() == 1){
+            single = true;
+        }
+        return single;
     }
 
     @Override
@@ -75,13 +116,5 @@ public class WhiskyProduct {
 
     public double getAlcoholPercent() {
         return alcoholPercent;
-    }
-
-    public Cask getCask() {
-        return cask;
-    }
-
-    public void setCask(Cask cask) {
-        this.cask = cask;
     }
 }
