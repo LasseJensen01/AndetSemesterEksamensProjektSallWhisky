@@ -173,7 +173,7 @@ class CaskTest {
         // Only basis data used
 
         // Act
-        int id = cask.getId();
+        int id = cask.getCaskID();
 
         // Assert
         assertEquals(1, id);
