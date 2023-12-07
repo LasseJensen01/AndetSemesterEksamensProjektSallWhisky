@@ -108,7 +108,6 @@ public class Gui extends Application {
 
         Tab temp = tabpane.getTabs().get(tabpane.getTabs().size()-1);
         var t = temp.getContent();
-        System.out.println("Fuck");
     }
 
     public static URL getFXMLFarmer() {
