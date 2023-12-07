@@ -15,7 +15,6 @@ public class WhiskyProduct implements Serializable {
     private double water = 0; // If this is 0 the product is "cask strength"
     private String waterSource;
     private double alcoholPercent;
-    private Cask cask;
     private Set<MaltBatch> malts;
 
     public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName) {
