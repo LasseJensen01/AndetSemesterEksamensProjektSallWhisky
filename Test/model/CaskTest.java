@@ -43,6 +43,18 @@ class CaskTest {
         // Assert
         assertEquals(80, newLiters);
     }
+    @Test
+    void getLiters() {
+        // TC1
+        // Arrange
+        // Only basic data used.
+
+        // Act
+        double liters = cask.getLiters();
+
+        // Assert
+        assertEquals(100, liters);
+    }
 
     @Test
     void setLocation() {
@@ -52,10 +64,33 @@ class CaskTest {
         cask.setLocation(location);
 
         // Act
-        Location caskLocation = cask.getLocation();
+        Location newLocation = cask.getLocation();
 
         // Assert
-        assertEquals(location, caskLocation);
+        assertEquals(location, newLocation);
+    }
+    @Test
+    void getLocation() {
+        // TC1
+        // Arrange
+        // Only basic data used.
+
+        // Act
+        Location caskLocationTC1 = cask.getLocation();
+
+        // Assert
+        assertEquals(null, caskLocationTC1);
+
+        // TC2
+        // Arrange
+        Location location = new Location("1-1-1-1");
+        cask.setLocation(location);
+
+        // Act
+        Location caskLocationTC2 = cask.getLocation();
+
+        // Assert
+        assertEquals(location, caskLocationTC2);
     }
 
     @Test
@@ -82,19 +117,6 @@ class CaskTest {
 
         // Assert
         assertEquals(200, volume);
-    }
-
-    @Test
-    void getLiters() {
-        // TC1
-        // Arrange
-        // Only basic data used.
-
-        // Act
-        double liters = cask.getLiters();
-
-        // Assert
-        assertEquals(100, liters);
     }
 
     @Test
@@ -156,31 +178,6 @@ class CaskTest {
         // Assert
         assertEquals(1, id);
     }
-
-    @Test
-    void getLocation() {
-        // TC1
-        // Arrange
-        // Only basic data used.
-
-        // Act
-        Location caskLocationTC1 = cask.getLocation();
-
-        // Assert
-        assertEquals(null, caskLocationTC1);
-
-        // TC2
-        // Arrange
-        Location location = new Location("1-1-1-1");
-        cask.setLocation(location);
-
-        // Act
-        Location caskLocationTC2 = cask.getLocation();
-
-        // Assert
-        assertEquals(location, caskLocationTC2);
-    }
-
     @Test
     void setNo() {
         // TC1
