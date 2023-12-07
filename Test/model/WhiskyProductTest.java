@@ -52,7 +52,7 @@ class WhiskyProductTest {
 
         //Case 2: Same as case 1, but with water added.
         // Arrange
-        whiskyProduct.addWater(100);
+        // whiskyProduct.addWater(100); Method made obsolete
 
         // Assert
         caskStrength = whiskyProduct.getWater() == 0;

@@ -38,10 +38,6 @@ public class WhiskyProduct {
         calcAlcoholPercentage();
 
     }
-    public void addWater(double liters){
-        water += liters;
-        calcAlcoholPercentage();
-    }
     public void calcAlcoholPercentage(){
         double totalLitersOfWater = water;
         double totalLitersOfAlcohol = 0;

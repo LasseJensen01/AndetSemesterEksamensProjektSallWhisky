@@ -12,7 +12,6 @@ public class Cask {
     private double volume; // How big cask
     private Filling filling = null;
     private int timesUsed = 0;
-    private int daysUsed = 0; // Consider deleting this.
     private Location location = null;
 
     public Cask(Type type, double volume) {
@@ -31,7 +30,6 @@ public class Cask {
         return s;
     }
     public void emptyCask(){
-        daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); // positive int minus a negative long
         filling.setLiters(0);
         this.filling = null;
         //this.location.setCask(null);
@@ -75,14 +73,6 @@ public class Cask {
     }
     public void setTimesUsed(int timesUsed) {
         this.timesUsed = timesUsed;
-    }
-
-    public int getDaysUsed() {
-        return daysUsed;
-    }
-
-    public void setDaysUsed(int daysUsed) {
-        this.daysUsed = daysUsed;
     }
 
     public Location getLocation() {

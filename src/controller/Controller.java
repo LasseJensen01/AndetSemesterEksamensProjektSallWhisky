@@ -413,12 +413,32 @@ public abstract class Controller {
         return whiskyProduct;
     }
     /**
-     * Adds water to a whisky.
-     * @param whiskyProduct the whisky.
-     * @param liters how much water.
+     * This method creates a finished whisky.
+     * @param casks a map of cask objects as keys and the desired amount to be taped as values.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * @param whiskyName the name of the finished whisky.
+     * @param water liters of water.
+     * @param souce
+     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
      */
-    public static void addWaterToWhisky(WhiskyProduct whiskyProduct, double liters){
-        whiskyProduct.addWater(liters);
+    public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName, double water, String souce){
+        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+
+        HashMap<Filling, Double> fillings = new HashMap<>();
+
+        for (Cask cask : casks.keySet()){
+            fillings.put(cask.getFilling(),(casks.get(cask)));
+
+            if (cask.getLiters() == casks.get(cask)){
+                cask.emptyCask();
+            } else {
+                cask.setLiters(cask.getLiters()-casks.get(cask));
+            }
+        }
+
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        storage.storeWhiskyProduct(whiskyProduct);
+        return whiskyProduct;
     }
     /**
      * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.

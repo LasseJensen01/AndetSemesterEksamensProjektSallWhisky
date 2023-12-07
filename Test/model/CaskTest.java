@@ -57,7 +57,6 @@ class CaskTest {
 
         // Act
         int timesUsed = cask.getTimesUsed();
-        int daysUsed = cask.getDaysUsed();
         Filling currentfill = cask.getFilling();
         Location location = cask.getLocation();
 
@@ -65,7 +64,6 @@ class CaskTest {
         assertNull(currentfill);
         assertNull(location);
         assertEquals(1, timesUsed);
-        assertEquals(1095, daysUsed);
     }
 
     @Test
