@@ -30,7 +30,9 @@
             <TextField id="txfVolume" fx:id="txfVolume" layoutX="126.0" layoutY="108.0" promptText="In liters" />
             <TextField id="txtNumber" fx:id="txtNumber" layoutX="126.0" layoutY="154.0" promptText="How many" />
             <Text layoutX="141.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register new casks" />
-            <Button id="btnRegisterCasks" fx:id="btnRegisterCasks" layoutX="126.0" layoutY="272.0" mnemonicParsing="false" onAction="#registerCasks" prefHeight="30.0" prefWidth="157.0" text="Register casks" />
+            <Button id="btnRegisterCasks" fx:id="btnRegisterCasks" layoutX="126.0" layoutY="272.0" mnemonicParsing="false" onAction="#registerCasks" prefHeight="30.0" prefWidth="150.0" text="Register casks" />
+            <Text layoutX="22.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier" />
+            <TextField id="txfSupplier" fx:id="txfSupplier" layoutX="127.0" layoutY="202.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -41,15 +43,12 @@
             <Text layoutX="238.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current values" />
             <Text fx:id="lblLiters" layoutX="266.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters" />
             <Text fx:id="lblALC" layoutX="264.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alc.%" />
-            <Text fx:id="lblLocation" layoutX="257.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation" />
             <Text layoutX="103.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New values" />
             <TextField id="txfLiters" fx:id="txfLiters" layoutX="98.0" layoutY="150.0" prefHeight="26.0" prefWidth="77.0" />
-            <TextField id="txfLokation" fx:id="txfLokation" layoutX="98.0" layoutY="247.0" prefHeight="26.0" prefWidth="77.0" />
             <TextField id="txfAlc" fx:id="txfAlc" layoutX="98.0" layoutY="199.0" prefHeight="26.0" prefWidth="77.0" />
             <Text layoutX="25.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liters:" />
             <Text layoutX="23.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ALC.%:" />
-            <Text layoutX="25.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokation:" />
-            <Button id="btnUpdate" fx:id="btnUpdate" layoutX="121.0" layoutY="359.0" mnemonicParsing="false" onAction="#updateCask" prefHeight="30.0" prefWidth="157.0" text="Update" />
+            <Button id="btnUpdate" fx:id="btnUpdate" layoutX="116.0" layoutY="263.0" mnemonicParsing="false" onAction="#updateCask" prefHeight="30.0" prefWidth="157.0" text="Update" />
             <Button id="btnSelect" fx:id="btnSelect" layoutX="254.0" layoutY="55.0" mnemonicParsing="false" onAction="#selectCask" text="Select" />
          </children>
       </AnchorPane>
