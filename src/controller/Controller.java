@@ -325,9 +325,9 @@ public abstract class Controller {
     //Business logic
 
     /**
-     * This method will take paramterts type and volume, both nullable, and search storgage for elligible
-     * casks matching the paramters and return them in a list
-     * Will only sort the casks currently in use
+     * This method takes a multitude of parameters, all nullable except for isWhisky, in order to search for
+     * casks in the system. If a parameter is null, it will not be a factor in the search
+     * This method will only sort the casks currently in use
      * @param isWhisky whether not content has aged 3 years
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
@@ -350,18 +350,20 @@ public abstract class Controller {
                 .filter(cask -> ID == null || cask.getCaskID() == ID)
                 //Check parameter timesUsed
                 .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
-                //Check if isWhisky is Enabled
+                //Check if isWhisky is Enabled, if yes filters only the casks with isWhisky == true
                 .filter(cask -> isWhisky == false || cask.containsWhisky() == true)
                 // Converts Stream to list
                 .collect(Collectors.toList());
         return goodCasks;
     }
     /**
-     * This method will take paramterts type and volume, both nullable, and search storgage for elligible
-     * casks matching the paramters and return them in a list
-     * Will only sort the casks currently NOT in use
+     * This method takes a multitude of parameters, all nullable, in order to search for
+     * casks in the system. If a parameter is null, it will not be a factor in the search
+     * This method will only sort the casks currently NOT in use
      * @param type type of the cask
      * @param volume the amount of liquid the cask can hold
+     * @param ID cask ID
+     * @param timesUsed times casked has been used
      * @return a list of cask meeting the criteria
      */
     public static List<Cask> locateEmptyCask(Type type, Double volume, Integer ID, Integer timesUsed){
