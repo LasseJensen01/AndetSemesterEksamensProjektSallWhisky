@@ -251,7 +251,7 @@ class CaskTest {
     void containsWhisky() {
         // TC1
         // Arrange
-        // Only basic data used here
+        filling.setDate(LocalDate.now().minusYears(3).plusDays(1));
 
         // Act
         boolean containsWhisky = cask.containsWhisky();
@@ -261,16 +261,6 @@ class CaskTest {
 
         // TC2
         // Arrange
-        filling.setDate(LocalDate.now().minusYears(3).plusDays(1));
-
-        // Act
-        containsWhisky = cask.containsWhisky();
-
-        // Assert
-        assertFalse(containsWhisky);
-
-        // TC3
-        // Arrange
         filling.setDate(LocalDate.now().minusYears(3));
 
         // Act
@@ -279,7 +269,7 @@ class CaskTest {
         // Assert
         assertTrue(containsWhisky);
 
-        // TC4
+        // TC3
         // Arrange
         filling.setDate(LocalDate.now().minusYears(3).minusDays(1));
 
