@@ -1,8 +1,9 @@
 package model;
 
 
+import java.io.Serializable;
 
-public class IdTracker{
+public class IdTracker implements Serializable {
     private int caskId;
     private int fillingId;
     private int bottleId;

@@ -1,6 +1,8 @@
 package model;
 
-public class MaltBatch {
+import java.io.Serializable;
+
+public class MaltBatch implements Serializable {
     private int batchID;
     private static int no = 0;
     private String rygeMateriale;

@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cask {
+public class Cask implements Serializable {
     private Type type;
     private static int no = 0;
     private int id;

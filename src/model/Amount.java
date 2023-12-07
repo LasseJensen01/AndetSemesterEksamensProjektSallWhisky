@@ -1,6 +1,8 @@
 package model;
 
-public class Amount {
+import java.io.Serializable;
+
+public class Amount implements Serializable {
     private NewMake newMake;
     private int liters;
 

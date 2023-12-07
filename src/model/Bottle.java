@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Bottle {
+public class Bottle implements Serializable {
     private int id;
     private static int no = 0;
     private double size; // Expresed in liters fx: 70cl = 0.7L
