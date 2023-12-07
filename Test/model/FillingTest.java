@@ -13,7 +13,7 @@ class FillingTest {
     void addAmount() {
         // Case 1: Adding the first amount
         // Assert
-        Cask cask = new Cask(Type.BORDEAUX, 200);
+        Cask cask = new Cask(Type.BORDEAUX, 200, "Big Barrel");
         Filling filling = new Filling(cask, "Steven");
         Farmer farmer = new Farmer("Lars T", "Hvor kragerne vender.");
         Field field = new Field("By the river.", farmer);

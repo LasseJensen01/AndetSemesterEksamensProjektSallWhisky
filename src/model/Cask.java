@@ -1,21 +1,21 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cask {
+public class Cask implements Serializable {
     private Type type;
     private static int no = 0;
     private int id;
     private double volume; // How big cask
     private Filling filling = null;
     private int timesUsed = 0;
-    private int daysUsed = 0; // Consider deleting this.
     private Location location = null;
 
-    public Cask(Type type, double volume) {
+    public Cask(Type type, double volume, String supplier) {
         this.type = type;
         this.volume = volume;
         no++;
@@ -31,10 +31,9 @@ public class Cask {
         return s;
     }
     public void emptyCask(){
-        daysUsed -= filling.getDate().toEpochDay()-LocalDate.now().toEpochDay(); // positive int minus a negative long
         filling.setLiters(0);
         this.filling = null;
-        this.location.setCask(null);
+        //this.location.setCask(null);
         this.location = null;
     }
     public boolean containsWhisky(){
@@ -75,14 +74,6 @@ public class Cask {
     }
     public void setTimesUsed(int timesUsed) {
         this.timesUsed = timesUsed;
-    }
-
-    public int getDaysUsed() {
-        return daysUsed;
-    }
-
-    public void setDaysUsed(int daysUsed) {
-        this.daysUsed = daysUsed;
     }
 
     public Location getLocation() {

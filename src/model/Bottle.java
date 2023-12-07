@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Bottle {
+public class Bottle implements Serializable {
     private int id;
-    private static int no = 0; // Maybe connet to the product.
+    private static int no = 0;
     private double size; // Expresed in liters fx: 70cl = 0.7L
     private LocalDate filledDate;
     private  WhiskyProduct whiskyProduct;
@@ -17,7 +18,16 @@ public class Bottle {
         no++;
         id = no;
     }
+    public String getFullProductionHistory(){
+        String s = "This is a " + size + " of the following whisky:\n";
+        s += whiskyProduct.getFullProductionHistory();
+        return s;
+    }
     public static void setNo(int no) {
         Bottle.no = no;
+    }
+
+    public int getId() {
+        return id;
     }
 }

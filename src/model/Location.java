@@ -1,6 +1,8 @@
 package model;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private Cask cask = null;
     private String locationID; // LocationID functions as follows,
     //The first two numbers symbolises what Row

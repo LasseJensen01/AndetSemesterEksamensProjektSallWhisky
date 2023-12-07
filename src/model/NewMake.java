@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-public class NewMake {
+public class NewMake implements Serializable {
     private int newMakeID;
     private static int no = 0;
     private boolean isDone = false;

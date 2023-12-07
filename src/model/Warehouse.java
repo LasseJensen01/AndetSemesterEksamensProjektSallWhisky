@@ -2,11 +2,12 @@ package model;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Warehouse {
+public class Warehouse implements Serializable {
     private String name;
     private String adress;
     private List<Location> locations = new ArrayList<>();

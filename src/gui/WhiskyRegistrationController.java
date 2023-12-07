@@ -28,7 +28,10 @@ public class WhiskyRegistrationController {
 
     @FXML
     private TextField txfName;
-
+    @FXML
+    private TextField txfWaterLiters;
+    @FXML
+    private TextField txfSource;
     @FXML
     private TextField txfcaskID;
 
@@ -65,18 +68,37 @@ public class WhiskyRegistrationController {
     @FXML
     void createWhiskyAction(ActionEvent event) {
         try {
-            WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
-            txachosenCasks.clear();
-            txfcaskID.clear();
-            txfcaskID.clear();
-            txfName.clear();
+            if (chbConfirm.isSelected()){
+                double litersOfWater = Double.parseDouble(txfWaterLiters.getText());
+                String Source = txfSource.getText();
 
-            Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setResizable(true);
-            info.setTitle("Sucess");
-            info.setHeaderText("The following whisky has been created:");
-            info.setContentText(newWhisky.toString());
-            info.show();
+                WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+                txachosenCasks.clear();
+                txfcaskID.clear();
+                txfcaskID.clear();
+                txfName.clear();
+
+
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setResizable(true);
+                info.setTitle("Sucess");
+                info.setHeaderText("The following whisky has been created:");
+                info.setContentText(newWhisky.toString());
+                info.show();
+            } else {
+                WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+                txachosenCasks.clear();
+                txfcaskID.clear();
+                txfcaskID.clear();
+                txfName.clear();
+
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setResizable(true);
+                info.setTitle("Sucess");
+                info.setHeaderText("The following whisky has been created:");
+                info.setContentText(newWhisky.toString());
+                info.show();
+            }
         } catch (Exception e) {
             Alert err = new Alert(Alert.AlertType.ERROR);
             err.setTitle("An error has occured");

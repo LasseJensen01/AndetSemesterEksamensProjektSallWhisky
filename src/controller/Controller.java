@@ -236,8 +236,8 @@ public abstract class Controller {
      * @param volume how many liters the cask can contain.
      * @pre employee not "".
      */
-    public static Cask createCask(Type type, double volume){
-        Cask cask = new Cask(type, volume);
+    public static Cask createCask(Type type, double volume, String supplier){
+        Cask cask = new Cask(type, volume, supplier);
         storage.storeCask(cask);
         storage.getIdTracker().setCaskId(cask.getId());
         return cask;
@@ -248,7 +248,12 @@ public abstract class Controller {
         }
         return null;
     }
-
+    public static Bottle getBottleById(int id){
+        for (Bottle bottle : storage.getBottles()){
+            if (bottle.getId() == id) return bottle;
+        }
+        return null;
+    }
     public static List<Warehouse> getWarehouses(){
         return storage.getWarehouses();
     }
@@ -377,6 +382,7 @@ public abstract class Controller {
         Cask.setNo(idTracker.getCaskId());
         NewMake.setNo(idTracker.getNewMakeID());
         MaltBatch.setNo(idTracker.getMaltBatchId());
+
     }
 
     /**
@@ -407,12 +413,32 @@ public abstract class Controller {
         return whiskyProduct;
     }
     /**
-     * Adds water to a whisky.
-     * @param whiskyProduct the whisky.
-     * @param liters how much water.
+     * This method creates a finished whisky.
+     * @param casks a map of cask objects as keys and the desired amount to be taped as values.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * @param whiskyName the name of the finished whisky.
+     * @param water liters of water.
+     * @param souce
+     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
      */
-    public static void addWaterToWhisky(WhiskyProduct whiskyProduct, double liters){
-        whiskyProduct.addWater(liters);
+    public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName, double water, String souce){
+        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+
+        HashMap<Filling, Double> fillings = new HashMap<>();
+
+        for (Cask cask : casks.keySet()){
+            fillings.put(cask.getFilling(),(casks.get(cask)));
+
+            if (cask.getLiters() == casks.get(cask)){
+                cask.emptyCask();
+            } else {
+                cask.setLiters(cask.getLiters()-casks.get(cask));
+            }
+        }
+
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        storage.storeWhiskyProduct(whiskyProduct);
+        return whiskyProduct;
     }
     /**
      * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
@@ -451,14 +477,14 @@ public abstract class Controller {
         Warehouse warehouse = Controller.createWarehouse("Storage", "Storage Street");
         Controller.createLocationsInWarehouse(warehouse,10,4,3,3);
 
-        Cask caskA = Controller.createCask(Type.AMARONE, 200);
+        Cask caskA = Controller.createCask(Type.AMARONE, 200, "Big Barrel");
         Filling fillingA = Controller.createFilling(caskA, "Jonas");
         Amount amountA = Controller.createAmount(newMake77, 120);
         Controller.addAmountToFilling(fillingA,amountA);
         Location locationA = new Location("1-1-1-1");
         caskA.setLocation(locationA);
 
-        Cask caskB = Controller.createCask(Type.BAROLO, 200);
+        Cask caskB = Controller.createCask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = Controller.createFilling(caskB, "Jonas");
         Amount amountB = Controller.createAmount(newMake78, 80);
         Controller.addAmountToFilling(fillingB,amountB);
@@ -467,14 +493,14 @@ public abstract class Controller {
         Location locationB = new Location("1-1-1-2");
         caskA.setLocation(locationB);
 
-        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200);
+        Cask caskC = Controller.createCask(Type.CHARDONNAY, 200, "Big Barrel");
         Filling fillingC = Controller.createFilling(caskC, "Jonas");
         Amount amountC1 = Controller.createAmount(newMake79, 175);
         Controller.addAmountToFilling(fillingC,amountC1);
         Location locationC = new Location("1-1-1-3");
         caskA.setLocation(locationC);
 
-        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200);
+        Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200, "Big Barrel");
         Filling fillingD = Controller.createFilling(caskD, "Jonas");
         Amount amountD = Controller.createAmount(newMake78, 50);
         Amount amountD1 = Controller.createAmount(newMake77, 150);
@@ -483,9 +509,9 @@ public abstract class Controller {
         Location locationD = new Location("1-1-2-1");
         caskA.setLocation(locationD);
 
-        Cask caskE = Controller.createCask(Type.SAUTERNES, 200);
+        Cask caskE = Controller.createCask(Type.SAUTERNES, 200, "Big Barrel");
 
-        Cask caskF = Controller.createCask(Type.FINO, 200);
+        Cask caskF = Controller.createCask(Type.FINO, 200, "Big Barrel");
         Controller.storeCask(warehouse, caskA);
         Controller.storeCask(warehouse, caskC);
         Controller.storeCask(warehouse, caskD);

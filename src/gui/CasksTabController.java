@@ -35,9 +35,6 @@ public class CasksTabController {
     private Text lblLiters;
 
     @FXML
-    private Text lblLocation;
-
-    @FXML
     private TextField txfAlc;
 
     @FXML
@@ -54,6 +51,8 @@ public class CasksTabController {
 
     @FXML
     private TextField txtNumber;
+    @FXML
+    private TextField txfSupplier;
 
 
     @FXML
@@ -67,11 +66,13 @@ public class CasksTabController {
         try {
             int numberOfCasks = Integer.parseInt(txtNumber.getText());
             double caskVolume = Double.parseDouble(txfVolume.getText());
+            if (txfSupplier.getText().isEmpty()) throw new IllegalArgumentException();
+            String supplier = txfSupplier.getText();
 
             Type type = cbType.getValue();
 
             for (int i = 0; i < numberOfCasks; i++){
-                Controller.createCask(type,caskVolume);
+                Controller.createCask(type,caskVolume,supplier);
             }
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
@@ -110,9 +111,6 @@ public class CasksTabController {
                 chosenCask.getFilling().setAlcoholPercent(newAlcPercent);
                 lblALC.setText(newAlcPercent + "");
             }
-            if (!txfLokation.getText().equals("")){
-                //How to do this
-            }
 
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
@@ -144,11 +142,9 @@ public class CasksTabController {
                 errorMessage = "Cask not found.";
                 lblLiters.setText("Liters");
                 lblALC.setText("Alc.%");
-                lblLocation.setText("Lokation");
 
                 txfLiters.setEditable(false);
                 txfAlc.setEditable(false);
-                txfLokation.setEditable(false);
 
                 throw new IllegalArgumentException();
             }
@@ -157,21 +153,18 @@ public class CasksTabController {
                 errorMessage = "Cask is empty";
                 lblLiters.setText("Liters");
                 lblALC.setText("Alc.%");
-                lblLocation.setText("Lokation");
 
                 txfLiters.setEditable(false);
                 txfAlc.setEditable(false);
-                txfLokation.setEditable(false);
+
                 throw new IllegalArgumentException();
             }
 
             lblLiters.setText(cask.getLiters() + "");
             lblALC.setText(cask.getFilling().getAlcoholPercent() + "");
-            lblLocation.setText(cask.getLocation().toString());
 
             txfLiters.setEditable(true);
             txfAlc.setEditable(true);
-            txfLokation.setEditable(true);
 
             chosenCask = cask;
         } catch (Exception e){
