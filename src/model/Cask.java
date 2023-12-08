@@ -92,6 +92,10 @@ public class Cask implements Serializable {
         Cask.no = no;
     }
 
+    public void setTimesUsed(int timesUsed) {
+        this.timesUsed = timesUsed;
+    }
+
     /**
      * @returns a string with the format:
      * "Cask with ID: " + this.id + " Type: " + this.type + " Volume: " + this.volume
