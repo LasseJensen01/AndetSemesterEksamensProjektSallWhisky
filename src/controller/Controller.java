@@ -215,9 +215,12 @@ public abstract class Controller {
         return filling;
     }
     /**
-     * Left for later... need newmake
+     * Creates a new Amount
+     * @throws  IllegalArgumentException if there is not enough new make available.
      */
     public static Amount createAmount(NewMake newMake, double liters){
+        if (newMake.getVolume() < liters) throw new IllegalArgumentException();
+        newMake.setVolume(newMake.getVolume() - liters);
         Amount amount = new Amount(newMake, liters);
         return amount;
     }
@@ -471,17 +474,18 @@ public abstract class Controller {
         MaltBatch maltBatchOne = Controller.createMaltBatch("Søren Ryge","Nord Jylland","Byg", fieldOne);
         MaltBatch maltBatchTwo = Controller.createMaltBatch("Søren Ryge","Syd Jylland","Byg", fieldTwo);
         NewMake newMake77 = Controller.createNewMake(LocalDate.now(), "Jonas", maltBatchOne);
-        newMake77.setAlcPercent(0.80);
+        Controller.finishNewMakeProcess(newMake77,800,80,LocalDate.now());
         NewMake newMake78 = Controller.createNewMake(LocalDate.now(), "Maria", maltBatchOne);
-        newMake78.setAlcPercent(0.70);
+        Controller.finishNewMakeProcess(newMake78, 1200, 70, LocalDate.now());
         NewMake newMake79 = Controller.createNewMake(LocalDate.now(), "Ashley", maltBatchTwo);
-        newMake79.setAlcPercent(0.60);
+        Controller.finishNewMakeProcess(newMake79, 1000, 60, LocalDate.now());
 
         Warehouse warehouse = Controller.createWarehouse("Storage", "Storage Street");
         Controller.createLocationsInWarehouse(warehouse,10,4,3,3);
 
         Cask caskA = Controller.createCask(Type.AMARONE, 200, "Big Barrel");
         Filling fillingA = Controller.createFilling(caskA, "Jonas");
+        fillingA.setDate(LocalDate.now().minusYears(3));
         Amount amountA = Controller.createAmount(newMake77, 120);
         Controller.addAmountToFilling(fillingA,amountA);
         Location locationA = new Location("1-1-1-1");
@@ -489,6 +493,7 @@ public abstract class Controller {
 
         Cask caskB = Controller.createCask(Type.BAROLO, 200, "Big Barrel");
         Filling fillingB = Controller.createFilling(caskB, "Jonas");
+        fillingB.setDate(LocalDate.now().minusYears(4));
         Amount amountB = Controller.createAmount(newMake78, 80);
         Controller.addAmountToFilling(fillingB,amountB);
         Amount amountB1 = new Amount(newMake79, 120);
@@ -498,6 +503,7 @@ public abstract class Controller {
 
         Cask caskC = Controller.createCask(Type.CHARDONNAY, 200, "Big Barrel");
         Filling fillingC = Controller.createFilling(caskC, "Jonas");
+        fillingC.setDate(LocalDate.now().minusYears(3));
         Amount amountC1 = Controller.createAmount(newMake79, 175);
         Controller.addAmountToFilling(fillingC,amountC1);
         Location locationC = new Location("1-1-1-3");
@@ -505,6 +511,7 @@ public abstract class Controller {
 
         Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200, "Big Barrel");
         Filling fillingD = Controller.createFilling(caskD, "Jonas");
+        fillingD.setDate(LocalDate.now().minusYears(3));
         Amount amountD = Controller.createAmount(newMake78, 50);
         Amount amountD1 = Controller.createAmount(newMake77, 150);
         Controller.addAmountToFilling(fillingD,amountD);

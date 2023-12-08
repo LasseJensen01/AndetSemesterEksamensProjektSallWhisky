@@ -82,7 +82,9 @@ public class NewMakeTabController {
     @FXML
     public void initialize(){
         update();
-        lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+        lvwNewMakeinProgress.getItems().setAll(
+                Controller.getNewMakes().stream().filter(newMake -> !newMake.isDone()).toList()
+        );
     }
 
     @FXML
@@ -96,7 +98,9 @@ public class NewMakeTabController {
             String respEmp = txfResponsibleEmployee.getText();
 
             NewMake newMake = Controller.createNewMake(startDate,respEmp,maltBatch);
-            lvwNewMakeinProgress.getItems().setAll(Controller.getNewMakes());
+            lvwNewMakeinProgress.getItems().setAll(
+                    Controller.getNewMakes().stream().filter(nW -> !nW.isDone()).toList()
+            );
             lblError.setText("");
 
             txfResponsibleEmployee.clear();
