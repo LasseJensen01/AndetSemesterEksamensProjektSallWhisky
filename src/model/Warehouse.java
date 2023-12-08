@@ -1,6 +1,7 @@
 package model;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -57,7 +58,13 @@ public class Warehouse implements Serializable {
                 }
                 writer.println();
             }
+            //feat Duffy honorable mention
+            writer.close();
+            ProcessBuilder pb = new ProcessBuilder("Notepad.exe","src\\model\\WarehouseOverview.txt");
+            pb.start();
         } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
