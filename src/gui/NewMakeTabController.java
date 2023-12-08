@@ -135,6 +135,8 @@ public class NewMakeTabController {
     }
     @FXML
     void update(){
-        cboxMaltBatch.getItems().setAll(Controller.getMaltBatches());
+        try {
+            cboxMaltBatch.getItems().setAll(Controller.getMaltBatches());
+        }catch (Exception e){}
     }
 }

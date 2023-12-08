@@ -71,9 +71,7 @@ public class FieldTabController {
     void update(){
         try {
             cboxFarmer.getItems().setAll(Controller.getFarmers());
-        }catch (Exception e){
-            System.out.println("err");
-        }
+        }catch (Exception e){}
 
     }
 

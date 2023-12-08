@@ -4,6 +4,7 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import model.Cask;
 import model.WhiskyProduct;
 
@@ -33,22 +34,31 @@ public class WhiskyRegistrationController {
     @FXML
     private TextField txfSource;
     @FXML
-    private TextField txfcaskID;
+    private ComboBox<Cask> cbCask;
 
     @FXML
     private TextField txfcaskLiters;
 
     @FXML
+    private void initialize(){
+        update();
+        if (cbCask.getItems().isEmpty()){
+            cbCask.setPlaceholder(new Text("No eligible whisky in system"));
+        }
+    }
+
+    @FXML
     void addWhiskyAction(ActionEvent event) {
         try {
-            int id = Integer.parseInt(txfcaskID.getText());
+            Cask cask = cbCask.getSelectionModel().getSelectedItem();
+            if (cask == null) throw new IllegalArgumentException();
             Double liters = Double.parseDouble(txfcaskLiters.getText());
 
-            Cask cask = Controller.getCaskByID(id);
-            if (cask == null) throw new IllegalArgumentException();
-
             this.chosen.put(cask, liters);
-            txachosenCasks.appendText("ID: " + id + " Liters " + liters + "\n");
+            txachosenCasks.appendText("ID: " + cask.getCaskID() + " Liters " + liters + "\n");
+
+            cbCask.getSelectionModel().clearSelection();
+            txfcaskLiters.clear();
 
         } catch (Exception e) {
             Alert err = new Alert(Alert.AlertType.ERROR);
@@ -74,8 +84,7 @@ public class WhiskyRegistrationController {
 
                 WhiskyProduct newWhisky = Controller.createWhiskyProduct(this.chosen,this.txfName.getText());
                 txachosenCasks.clear();
-                txfcaskID.clear();
-                txfcaskID.clear();
+                cbCask.getSelectionModel().clearSelection();
                 txfName.clear();
 
 
@@ -88,8 +97,7 @@ public class WhiskyRegistrationController {
             } else {
                 WhiskyProduct newWhisky = Controller.createWhiskyProduct(this.chosen,this.txfName.getText());
                 txachosenCasks.clear();
-                txfcaskID.clear();
-                txfcaskID.clear();
+                cbCask.getSelectionModel().clearSelection();
                 txfName.clear();
 
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
@@ -106,5 +114,12 @@ public class WhiskyRegistrationController {
             err.setContentText("One or more of the chosen casks does not contain a large enough filling.");
             err.show();
         }
+    }
+
+    @FXML
+    void update(){
+        try {
+            cbCask.getItems().setAll(Controller.locateFullCask(false,null,null,null,null));
+        }catch (Exception e ){}
     }
 }
