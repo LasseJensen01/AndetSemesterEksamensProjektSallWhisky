@@ -76,6 +76,13 @@ public class FillingsTabController {
                 Controller.addAmountToFilling(filling, a);
             }
 
+            undoAmounts();
+            txaFillingContent.clear();
+            txfCaskID.clear();
+            txfEmployeeSignature.clear();
+            txfLitersOfNewMake.clear();
+            txfCaskID.clear();
+
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
             info.setTitle("Sucess");
@@ -95,10 +102,11 @@ public class FillingsTabController {
 
     @FXML
     void addNewmake(ActionEvent event) {
-        String errorMessage = "";
+        String errorMessage = "Illegal values. Please cheek inputs";
         try {
             int liters = Integer.parseInt(txfLitersOfNewMake.getText());
             NewMake selected = chbNewMakes.getValue();
+
             Amount amount = Controller.createAmount(selected, liters);
 
             double totalLiters = 0;
@@ -126,10 +134,13 @@ public class FillingsTabController {
     @FXML
     void clearChoices(ActionEvent event) {
         txaFillingContent.clear();
-        this.amounts.clear();
+        undoAmounts();
     }
     @FXML
     void caskConfimation(ActionEvent event) {
+        txaFillingContent.clear();
+        undoAmounts();
+
         String errorMessage = "";
         try {
             int id = Integer.parseInt(txfCaskID.getText());
@@ -161,6 +172,15 @@ public class FillingsTabController {
     void update(){
         List<NewMake> list = Controller.getNewMakes().stream().filter(NewMake -> NewMake.isDone()).toList();
         chbNewMakes.getItems().setAll(list);
+    }
+    @FXML
+    void undoAmounts(){
+        for (Amount amount : amounts){
+            NewMake newMake = amount.getNewMake();
+            double volume = newMake.getVolume();
+            newMake.setVolume(volume + amount.getLiters());
+        }
+        amounts.clear();
     }
 }
 
