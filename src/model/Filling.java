@@ -41,10 +41,10 @@ public class Filling implements Serializable {
     public void addAmount(Amount amount){
         if ((liters + amount.getLiters()) > cask.getVolume()) throw new IllegalArgumentException();
         if (amounts.isEmpty()) {
-            this.alcoholPercent = amount.getNewMake().getAlcPercent();
+            this.alcoholPercent = amount.getNewMake().getAlcPercent()/100;
         } else {
             this.alcoholPercent = calcAlcPercent(this.liters, this.alcoholPercent ,
-                    amount.getLiters(), amount.getNewMake().getAlcPercent());
+                    amount.getLiters(), amount.getNewMake().getAlcPercent()/100);
         }
 
         amounts.add(amount);
@@ -130,6 +130,6 @@ public class Filling implements Serializable {
     }
 
     public void setAlcoholPercent(double alcoholPercent) {
-        this.alcoholPercent = alcoholPercent;
+        this.alcoholPercent = alcoholPercent/100;
     }
 }

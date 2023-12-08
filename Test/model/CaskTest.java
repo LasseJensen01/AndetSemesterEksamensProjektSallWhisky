@@ -244,7 +244,6 @@ class CaskTest {
         assertNull(caskLokation);
         assertNull(caskFill);
         assertEquals(0, litersInCask);
-
     }
 
     @Test
