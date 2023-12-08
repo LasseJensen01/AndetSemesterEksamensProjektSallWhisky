@@ -131,6 +131,12 @@ public class NewMakeTabController {
             lvwNewMakeinProgress.getItems().remove(newMake);
             lblErrorFinish.setText("");
             lblConfirmation.setText(newMake.toString() + "is registered");
+
+            datePickerEnd.getEditor().clear();
+            txfProducedAmount.clear();
+            txfAlcoholPercent.clear();
+            txaComment.clear();
+            lblConfirmation.setText("");
         }catch (Exception e){
             lblConfirmation.setText("");
             lblErrorFinish.setText("Error: Check data");
