@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 public class NewMake implements Serializable {
     private int newMakeID;
@@ -11,18 +10,18 @@ public class NewMake implements Serializable {
     private LocalDate startDate;
     private LocalDate endDate;
     private double volume;
-    private String workerID;
+    private String employee;
     private String comment;
     private double alcPercent;
 
     //----------------
     private MaltBatch maltBatch;
 
-    public NewMake(LocalDate startDate, String workerID, MaltBatch maltBatch) {
+    public NewMake(LocalDate startDate, String employee, MaltBatch maltBatch) {
         no++;
         this.newMakeID = no;
         this.startDate = startDate;
-        this.workerID = workerID;
+        this.employee = employee;
         this.maltBatch = maltBatch;
     }
 
@@ -46,8 +45,8 @@ public class NewMake implements Serializable {
         return volume;
     }
 
-    public String getWorkerID() {
-        return workerID;
+    public String getEmployee() {
+        return employee;
     }
 
     public String getComment() {

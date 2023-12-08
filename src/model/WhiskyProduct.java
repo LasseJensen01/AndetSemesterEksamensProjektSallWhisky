@@ -3,7 +3,6 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,7 +11,7 @@ public class WhiskyProduct implements Serializable {
     private LocalDate date;
     private String whiskyName;
     private double liters;
-    private double water = 0; // If this is 0 the product is "cask strength"
+    private double waterAmount = 0; // If this is 0 the product is "cask strength"
     private String waterSource;
     private double alcoholPercent;
     private Set<MaltBatch> malts;
@@ -26,11 +25,11 @@ public class WhiskyProduct implements Serializable {
 
         calcAlcoholPercentage();
     }
-    public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName, double water, String source) {
+    public WhiskyProduct(Map<Filling, Double> fillings, String whiskyName, double waterAmount, String source) {
         this.fillings = fillings;
         this.date = LocalDate.now();
         this.whiskyName = whiskyName;
-        this.water = water;
+        this.waterAmount = waterAmount;
         this.waterSource = source;
 
         this.malts = getMalts();
@@ -39,7 +38,7 @@ public class WhiskyProduct implements Serializable {
 
     }
     public void calcAlcoholPercentage(){
-        double totalLitersOfWater = water;
+        double totalLitersOfWater = waterAmount;
         double totalLitersOfAlcohol = 0;
         for (Filling filling : fillings.keySet()){
             double fillingLitersOfAlcohol = fillings.get(filling) * filling.getAlcoholPercent();
@@ -63,10 +62,10 @@ public class WhiskyProduct implements Serializable {
         if (isSingleCask()){
             s += " sigle cask,";
         }
-        if (water == 0){
+        if (waterAmount == 0){
             s += " cask strength,";
         } else {
-            s += " diluted with " + water + " liters of water from " + waterSource;
+            s += " diluted with " + waterAmount + " liters of water from " + waterSource;
         }
         s += " with an alcohol percent of " + alcoholPercent*100 + "%.\n" +
                 "With the following production histoy:\n" +
@@ -106,8 +105,8 @@ public class WhiskyProduct implements Serializable {
         this.liters = liters;
     }
 
-    public double getWater() {
-        return water;
+    public double getWaterAmount() {
+        return waterAmount;
     }
 
     public double getAlcoholPercent() {

@@ -1,6 +1,5 @@
 package model;
 
-import controller.Controller;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -43,7 +42,7 @@ class WhiskyProductTest {
         WhiskyProduct whiskyProduct = new WhiskyProduct(fillings,"Wiskers");
 
         // Assert
-        boolean caskStrength = whiskyProduct.getWater() == 0;
+        boolean caskStrength = whiskyProduct.getWaterAmount() == 0;
         double alcPercent = whiskyProduct.getAlcoholPercent();
 
         // Act
@@ -55,7 +54,7 @@ class WhiskyProductTest {
         // whiskyProduct.addWater(100); Method made obsolete
 
         // Assert
-        caskStrength = whiskyProduct.getWater() == 0;
+        caskStrength = whiskyProduct.getWaterAmount() == 0;
         alcPercent = whiskyProduct.getAlcoholPercent();
 
         // Act

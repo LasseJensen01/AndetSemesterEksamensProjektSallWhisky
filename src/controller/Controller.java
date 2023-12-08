@@ -42,7 +42,7 @@ public abstract class Controller {
      * @param farmer a Farmer object
      * @param field a Field objects
      */
-    public static void addFieldsToFarmer(Farmer farmer, Field field){
+    public static void addFieldToFarmer(Farmer farmer, Field field){
         farmer.addField(field);
     }
 
@@ -66,6 +66,11 @@ public abstract class Controller {
         return field;
     }
 
+    /**
+     *
+     * @param farmer a Farmer object
+     * @return a list of all Field objects connected to the Farmer object
+     */
     public static List<Field> getFarmersFields(Farmer farmer){
         List<Farmer> allFarmers = storage.getFarmers();
         for (Farmer f : allFarmers){
@@ -76,34 +81,37 @@ public abstract class Controller {
         return null;
     }
 
+    /**
+     * @return all Field objects in storage
+     */
     public static List<Field> getAllFields(){
         return new ArrayList<>(storage.getFields());
     }
 
     /**
      * Creates a MaltBatch object and sets its smoke material. The MaltBatch object is stored in storage.
-     * @param rygeMateriale material used to smoke the grain
-     * @param malteri place that malted the grain
+     * @param smokeMaterial material used to smoke the grain
+     * @param maltery place that malted the grain
      * @param grain grain used in the MaltBatch
      * @param field which field the grain came from
      * @return the created MaltBatch object
      */
-    public static MaltBatch createMaltBatch(String rygeMateriale, String malteri, String grain, Field field){
-        MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
-        maltBatch.setRygeMateriale(rygeMateriale);
+    public static MaltBatch createMaltBatch(String smokeMaterial, String maltery, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(maltery, grain, field);
+        maltBatch.setSmokeMaterial(smokeMaterial);
         storage.storeMaltBatch(maltBatch);
         return maltBatch;
     }
 
     /**
      * Creates a MaltBatch object without smoke material. The MaltBatch object is stored in storage.
-     * @param malteri place that malted the grain
+     * @param maltery place that malted the grain
      * @param grain grain used in the MaltBatch
      * @param field which field the grain came from
      * @return the created MaltBatch object
      */
-    public static MaltBatch createMaltBatch(String malteri, String grain, Field field){
-        MaltBatch maltBatch = new MaltBatch(malteri, grain, field);
+    public static MaltBatch createMaltBatch(String maltery, String grain, Field field){
+        MaltBatch maltBatch = new MaltBatch(maltery, grain, field);
         storage.storeMaltBatch(maltBatch);
         return maltBatch;
     }
@@ -118,13 +126,13 @@ public abstract class Controller {
     /**
      * This method creates, stores and returns a newmake
      * @param startDate day production started
-     * @param workerID id of responsible worker
+     * @param employee id of responsible worker
      * @param maltBatch the malt batch involved in making the new make
      * @pre name not "", volume > 0
      * @return the NewMake object
      */
-    public static NewMake createNewMake(LocalDate startDate, String workerID, MaltBatch maltBatch){
-        NewMake newMake = new NewMake(startDate, workerID, maltBatch);
+    public static NewMake createNewMake(LocalDate startDate, String employee, MaltBatch maltBatch){
+        NewMake newMake = new NewMake(startDate, employee, maltBatch);
         storage.storeNewMakes(newMake);
         return newMake;
     }
@@ -209,7 +217,7 @@ public abstract class Controller {
     /**
      * Left for later... need newmake
      */
-    public static Amount createAmount(NewMake newMake, int liters){
+    public static Amount createAmount(NewMake newMake, double liters){
         Amount amount = new Amount(newMake, liters);
         return amount;
     }
@@ -222,13 +230,6 @@ public abstract class Controller {
     public static void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
         filling.addAmount(amount);
     }
-    /**
-     * This method gives a string repesentation of the constents of a cask
-     * @param cask a cask.
-     */
-    public static String getCaskContent(Cask cask){
-        return cask.getContentsInfo();
-    }
 
     /**
      * This method creates, stores and returns a cask.
@@ -239,23 +240,78 @@ public abstract class Controller {
     public static Cask createCask(Type type, double volume, String supplier){
         Cask cask = new Cask(type, volume, supplier);
         storage.storeCask(cask);
-        storage.getIdTracker().setCaskId(cask.getId());
+        storage.getIdTracker().setCaskId(cask.getCaskID());
         return cask;
     }
     public static Cask getCaskByID(int id){
         for (Cask cask : storage.getCasks()){
-            if (cask.getId() == id) return cask;
+            if (cask.getCaskID() == id) return cask;
         }
         return null;
     }
     public static Bottle getBottleById(int id){
         for (Bottle bottle : storage.getBottles()){
-            if (bottle.getId() == id) return bottle;
+            if (bottle.getBottleID() == id) return bottle;
         }
         return null;
     }
     public static List<Warehouse> getWarehouses(){
         return storage.getWarehouses();
+    }
+    /**
+     * This method creates a finished whisky.
+     * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * @pram whiskyName the name of the finished whisky.
+     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
+     */
+    public static WhiskyProduct createWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
+        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+
+        HashMap<Filling, Double> fillings = new HashMap<>();
+
+        for (Cask cask : casks.keySet()){
+            fillings.put(cask.getFilling(),(casks.get(cask)));
+
+            if (cask.getLiters() == casks.get(cask)){
+                cask.emptyCask();
+            } else {
+                cask.setLiters(cask.getLiters()-casks.get(cask));
+            }
+            //Should a cask be empty if it is below a threshold?
+        }
+
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        storage.storeWhiskyProduct(whiskyProduct);
+        return whiskyProduct;
+    }
+    /**
+     * This method creates a finished whisky.
+     * @param casks a map of cask objects as keys and the desired amount to be taped as values.
+     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * @param whiskyName the name of the finished whisky.
+     * @param water liters of water.
+     * @param souce
+     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
+     */
+    public static WhiskyProduct createWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName, double water, String souce){
+        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
+
+        HashMap<Filling, Double> fillings = new HashMap<>();
+
+        for (Cask cask : casks.keySet()){
+            fillings.put(cask.getFilling(),(casks.get(cask)));
+
+            if (cask.getLiters() == casks.get(cask)){
+                cask.emptyCask();
+            } else {
+                cask.setLiters(cask.getLiters()-casks.get(cask));
+            }
+        }
+
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        storage.storeWhiskyProduct(whiskyProduct);
+        return whiskyProduct;
     }
 
     //---------------------------------------------------------
@@ -284,7 +340,7 @@ public abstract class Controller {
                 // Checks parameter volume
                 .filter(cask -> volume == null || cask.getVolume() == volume)
                 // Check parameter ID
-                .filter(cask -> ID == null || cask.getId() == ID)
+                .filter(cask -> ID == null || cask.getCaskID() == ID)
                 //Check parameter timesUsed
                 .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
                 //Check if isWhisky is Enabled, if yes filters only the casks with isWhisky == true
@@ -315,7 +371,7 @@ public abstract class Controller {
                 // Checks parameter volume
                 .filter(cask -> volume == null || cask.getVolume() == volume)
                 // Check parameter ID
-                .filter(cask -> ID == null || cask.getId() == ID)
+                .filter(cask -> ID == null || cask.getCaskID() == ID)
                 //Check parameter timesUsed
                 .filter(cask -> timesUsed == null || cask.getTimesUsed() == timesUsed)
                 // Converts Stream to list
@@ -387,61 +443,6 @@ public abstract class Controller {
 
     }
 
-    /**
-     * This method creates a finished whisky.
-     * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
-     * If a cask is emptied it will have its lokation and filling removed when this method is called.
-     * @pram whiskyName the name of the finished whisky.
-     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
-     */
-    public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName){
-        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
-
-        HashMap<Filling, Double> fillings = new HashMap<>();
-
-        for (Cask cask : casks.keySet()){
-            fillings.put(cask.getFilling(),(casks.get(cask)));
-
-            if (cask.getLiters() == casks.get(cask)){
-                cask.emptyCask();
-            } else {
-                cask.setLiters(cask.getLiters()-casks.get(cask));
-            }
-            //Should a cask be empty if it is below a threshold?
-        }
-
-        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
-        storage.storeWhiskyProduct(whiskyProduct);
-        return whiskyProduct;
-    }
-    /**
-     * This method creates a finished whisky.
-     * @param casks a map of cask objects as keys and the desired amount to be taped as values.
-     * If a cask is emptied it will have its lokation and filling removed when this method is called.
-     * @param whiskyName the name of the finished whisky.
-     * @param water liters of water.
-     * @param souce
-     * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
-     */
-    public static WhiskyProduct CreateWhiskyProduct(HashMap<Cask, Double> casks, String whiskyName, double water, String souce){
-        if (!validateCaskSet(casks)) throw new IllegalArgumentException();
-
-        HashMap<Filling, Double> fillings = new HashMap<>();
-
-        for (Cask cask : casks.keySet()){
-            fillings.put(cask.getFilling(),(casks.get(cask)));
-
-            if (cask.getLiters() == casks.get(cask)){
-                cask.emptyCask();
-            } else {
-                cask.setLiters(cask.getLiters()-casks.get(cask));
-            }
-        }
-
-        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
-        storage.storeWhiskyProduct(whiskyProduct);
-        return whiskyProduct;
-    }
     /**
      * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
      * @param casks a set of casks with a double representing the number of liter to be tapped for each cask.
@@ -521,12 +522,12 @@ public abstract class Controller {
         HashMap<Cask, Double> whiskersCasks = new HashMap<>();
         whiskersCasks.put(caskA,Double.valueOf(80));
         whiskersCasks.put(caskB,Double.valueOf(200));
-        WhiskyProduct whiskyProduct1 = Controller.CreateWhiskyProduct(whiskersCasks,"Whiskers whisky");
+        WhiskyProduct whiskyProduct1 = Controller.createWhiskyProduct(whiskersCasks,"Whiskers whisky");
 
 
         HashMap<Cask, Double> whimsyWhiskyCasks = new HashMap<>();
         whimsyWhiskyCasks.put(caskC,Double.valueOf(75));
         whimsyWhiskyCasks.put(caskD,Double.valueOf(100));
-        WhiskyProduct whiskyProduct2 = Controller.CreateWhiskyProduct(whimsyWhiskyCasks,"Whimsy whisky");
+        WhiskyProduct whiskyProduct2 = Controller.createWhiskyProduct(whimsyWhiskyCasks,"Whimsy whisky");
     }
 }

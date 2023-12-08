@@ -72,7 +72,7 @@ public class WhiskyRegistrationController {
                 double litersOfWater = Double.parseDouble(txfWaterLiters.getText());
                 String Source = txfSource.getText();
 
-                WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+                WhiskyProduct newWhisky = Controller.createWhiskyProduct(this.chosen,this.txfName.getText());
                 txachosenCasks.clear();
                 txfcaskID.clear();
                 txfcaskID.clear();
@@ -86,7 +86,7 @@ public class WhiskyRegistrationController {
                 info.setContentText(newWhisky.toString());
                 info.show();
             } else {
-                WhiskyProduct newWhisky = Controller.CreateWhiskyProduct(this.chosen,this.txfName.getText());
+                WhiskyProduct newWhisky = Controller.createWhiskyProduct(this.chosen,this.txfName.getText());
                 txachosenCasks.clear();
                 txfcaskID.clear();
                 txfcaskID.clear();

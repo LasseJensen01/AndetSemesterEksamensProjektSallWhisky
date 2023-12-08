@@ -1,7 +1,6 @@
 package controller;
 
 import model.*;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.ListStorage;
@@ -53,7 +52,7 @@ class ControllerTest {
 
         // Act & Assert
         Exception tc1 = assertThrows(IllegalArgumentException.class, () ->
-                Controller.CreateWhiskyProduct(testParam1,"Test Whiskey"));
+                Controller.createWhiskyProduct(testParam1,"Test Whiskey"));
         assertEquals(IllegalArgumentException.class, tc1.getClass());
 
 
@@ -64,7 +63,7 @@ class ControllerTest {
 
         // Act & Assert
         Exception tc2 = assertThrows(IllegalArgumentException.class, () ->
-                Controller.CreateWhiskyProduct(testParam1,"Test Whiskey"));
+                Controller.createWhiskyProduct(testParam1,"Test Whiskey"));
         assertEquals(IllegalArgumentException.class, tc2.getClass());
 
 
@@ -74,7 +73,7 @@ class ControllerTest {
         casks.put(caskA,Double.valueOf(80));
         casks.put(caskB,Double.valueOf(200));
 
-        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+        WhiskyProduct whiskyProduct = Controller.createWhiskyProduct(casks,"Whiskers");
 
         // Act
         boolean isStored = Controller.getWhiskyProducts().contains(whiskyProduct);
@@ -125,11 +124,11 @@ class ControllerTest {
         casks.put(caskA,Double.valueOf(80));
         casks.put(caskB,Double.valueOf(200));
 
-        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+        WhiskyProduct whiskyProduct = Controller.createWhiskyProduct(casks,"Whiskers");
 
         // Act
         boolean isStored = Controller.getWhiskyProducts().contains(whiskyProduct);
-        boolean caskStrength = whiskyProduct.getWater() == 0;
+        boolean caskStrength = whiskyProduct.getWaterAmount() == 0;
         double alcPercent = whiskyProduct.getAlcoholPercent();
         double totalLiters = whiskyProduct.getLiters();
 
@@ -175,7 +174,7 @@ class ControllerTest {
         casks.put(caskA,Double.valueOf(80));
         casks.put(caskB,Double.valueOf(200));
 
-        WhiskyProduct whiskyProduct = Controller.CreateWhiskyProduct(casks,"Whiskers");
+        WhiskyProduct whiskyProduct = Controller.createWhiskyProduct(casks,"Whiskers");
 
         Controller.putOnBottle(whiskyProduct,400,0.7);
 
