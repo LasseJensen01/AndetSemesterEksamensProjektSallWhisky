@@ -16,14 +16,12 @@ import java.util.stream.Collectors;
 public abstract class Controller {
     private static Storage storage;
 
+    /**
+     * Sets the storage field.
+     */
     public static void setStorage(Storage listStorage) {
         storage = listStorage;
     }
-
-    //hej
-    //hi
-
-    //CRUD
 
     /**
      * Creates Farmer object and stores it in storage.
@@ -246,18 +244,31 @@ public abstract class Controller {
         storage.getIdTracker().setCaskId(cask.getCaskID());
         return cask;
     }
+    /**
+     * This method finds a cask by its id.
+     * @Returns null if there is no cask with that id.
+     * @param id the id of the cask.
+     */
     public static Cask getCaskByID(int id){
         for (Cask cask : storage.getCasks()){
             if (cask.getCaskID() == id) return cask;
         }
         return null;
     }
+    /**
+     * This method finds a bottle by its id.
+     * @Returns null if there is no bottle with that id.
+     * @param id the id of the bottle.
+     */
     public static Bottle getBottleById(int id){
         for (Bottle bottle : storage.getBottles()){
             if (bottle.getBottleID() == id) return bottle;
         }
         return null;
     }
+    /**
+     *
+     */
     public static List<Warehouse> getWarehouses(){
         return storage.getWarehouses();
     }
@@ -433,7 +444,7 @@ public abstract class Controller {
     }
     /**
      * This method loads the Ids from the the storage via the tracker.
-     * @throws IllegalStateException if storage has not been loaded from a local file.
+     * @throws IllegalStateException if storage is null.
      */
     public static void loadIdsFromTracker(){
         if (storage == null) throw new IllegalStateException();
@@ -457,6 +468,12 @@ public abstract class Controller {
         }
         return valid;
     }
+    /**
+     * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
+     * @param whiskyProduct the product that is going into the bottles.
+     * @param noOfBottels the desired number og bottles.
+     * @param bottleSize the size of the bottles.
+     */
     public static void putOnBottle(WhiskyProduct whiskyProduct, int noOfBottels, double bottleSize){
         if (noOfBottels*bottleSize > whiskyProduct.getLiters()) throw new IllegalArgumentException();
         for (int i = 0; i < noOfBottels; i++){
@@ -466,7 +483,9 @@ public abstract class Controller {
         whiskyProduct.setLiters(whiskyProduct.getLiters() - noOfBottels * bottleSize);
     }
 
-    //Update this as the last few CRUD details are added to the controler
+    /**
+     * Initializer for storage. Only used for testing.
+     */
     public static void initTestStorage(){
         Farmer Lars = Controller.createFarmer("Lars T", "Hvor kragerne vender.");
         Field fieldOne = Controller.createField("By the hill", Lars);

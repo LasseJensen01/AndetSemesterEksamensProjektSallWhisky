@@ -18,6 +18,9 @@ public class Bottle implements Serializable {
         no++;
         bottleID = no;
     }
+    /**
+     * @returns a String with a complete description of the bottle and its contents.
+     */
     public String getFullProductionHistory(){
         String s = "This is a " + size + " of the following whisky:\n";
         s += whiskyProduct.getFullProductionHistory();

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class WhiskyProduct implements Serializable {
-    private Map<Filling,Double> fillings; // Fillings and what percent of the mix they make up.
+    private Map<Filling,Double> fillings;
     private LocalDate date;
     private String whiskyName;
     private double liters;
@@ -37,6 +37,9 @@ public class WhiskyProduct implements Serializable {
         calcAlcoholPercentage();
 
     }
+    /**
+     * Helper method that calculates the Alcohol Percentage of the whisky.
+     */
     public void calcAlcoholPercentage(){
         double totalLitersOfWater = waterAmount;
         double totalLitersOfAlcohol = 0;
@@ -49,7 +52,9 @@ public class WhiskyProduct implements Serializable {
         liters = totalLitersOfWater+totalLitersOfAlcohol;
         alcoholPercent = totalLitersOfAlcohol/(totalLitersOfWater+totalLitersOfAlcohol);
     }
-
+    /**
+     * @returns a String with a complete description of the whisky.
+     */
     public String getFullProductionHistory(){
         String s = "";
         s += this.whiskyName + " is a";
