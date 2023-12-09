@@ -18,22 +18,22 @@
       <Label layoutX="51.0" layoutY="143.0" text="Adress:" />
       <TextField fx:id="txtName" layoutX="101.0" layoutY="102.0" />
       <TextField fx:id="txtAdress" layoutX="101.0" layoutY="139.0" />
+      <TextField fx:id="txtRows" layoutX="100.0" layoutY="172.0" />
+      <TextField fx:id="txtShelfUnits" layoutX="100.0" layoutY="208.0" />
+      <TextField fx:id="txtShelfs" layoutX="100.0" layoutY="240.0" />
+      <TextField fx:id="txtPallets" layoutX="100.0" layoutY="272.0" />
+      <Button fx:id="btnCreateWarehouse" layoutX="118.0" layoutY="312.0" mnemonicParsing="false" onAction="#setBtnCreateWarehouse" text="Create Warehouse" />
+      <ListView fx:id="lwWarehouses" layoutX="273.0" layoutY="70.0" prefHeight="325.0" prefWidth="489.0" />
+      <Button fx:id="btnExtractOverview" layoutX="470.0" layoutY="409.0" mnemonicParsing="false" onAction="#setBtnExtractOverview" text="Extract overview" />
+      <Label layoutX="50.0" layoutY="276.0" text="Pallets:" textAlignment="RIGHT" />
       <Label layoutX="465.0" layoutY="44.0" text="Warehouse Overview">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="btnCreateWarehouse" layoutX="118.0" layoutY="312.0" mnemonicParsing="false" onAction="#setBtnCreateWarehouse" text="Create Warehouse" />
-      <Button fx:id="btnExtractOverview" layoutX="470.0" layoutY="409.0" mnemonicParsing="false" onAction="#setBtnExtractOverview" text="Extract overview" />
-      <ListView fx:id="lwWarehouses" layoutX="273.0" layoutY="70.0" prefHeight="325.0" prefWidth="489.0" />
       <Label layoutX="56.0" layoutY="176.0" text="Rows:" textAlignment="RIGHT" />
       <Label layoutX="26.0" layoutY="212.0" text="Shelf Units:" textAlignment="RIGHT" />
       <Label layoutX="54.0" layoutY="244.0" text="Shelfs:" textAlignment="RIGHT" />
-      <Label layoutX="50.0" layoutY="276.0" text="Pallets:" textAlignment="RIGHT" />
-      <TextField fx:id="txtRows" layoutX="100.0" layoutY="172.0" />
-      <TextField fx:id="txtShelfUnits" layoutX="100.0" layoutY="208.0" />
-      <TextField fx:id="txtShelfs" layoutX="100.0" layoutY="240.0" />
-      <TextField fx:id="txtPallets" layoutX="100.0" layoutY="272.0" />
       <Label fx:id="lblError" layoutX="113.0" layoutY="347.0" textFill="RED" />
    </children>
 </AnchorPane>

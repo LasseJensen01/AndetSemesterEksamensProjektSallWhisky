@@ -26,8 +26,6 @@ public class FillingsTabController {
     private Button btnClear;
 
     @FXML
-    private Button btnConfirmCask;
-    @FXML
     private Button btnFillCask;
 
     @FXML
@@ -39,11 +37,12 @@ public class FillingsTabController {
     @FXML
     private TextField txfEmployeeSignature;
     @FXML
-    private TextField txfCaskID;
-    @FXML
     private TextField txfLitersOfNewMake;
     @FXML
     private TextField txfCaskInfo;
+
+    @FXML
+    private ComboBox<Cask> cbCask;
     @FXML
     public void initialize(){
         update();
@@ -78,10 +77,9 @@ public class FillingsTabController {
 
             undoAmounts();
             txaFillingContent.clear();
-            txfCaskID.clear();
             txfEmployeeSignature.clear();
             txfLitersOfNewMake.clear();
-            txfCaskID.clear();
+            cbCask.getSelectionModel().clearSelection();
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
@@ -104,7 +102,8 @@ public class FillingsTabController {
     void addNewmake(ActionEvent event) {
         String errorMessage = "Illegal values. Please cheek inputs";
         try {
-            int liters = Integer.parseInt(txfLitersOfNewMake.getText());
+            cask = cbCask.getSelectionModel().getSelectedItem();
+            double liters = Double.parseDouble(txfLitersOfNewMake.getText());
             NewMake selected = chbNewMakes.getValue();
 
             Amount amount = Controller.createAmount(selected, liters);
@@ -143,8 +142,7 @@ public class FillingsTabController {
 
         String errorMessage = "";
         try {
-            int id = Integer.parseInt(txfCaskID.getText());
-            this.cask = Controller.getCaskByID(id);
+            this.cask = cbCask.getSelectionModel().getSelectedItem();
 
             if (cask == null){
                 errorMessage = "Cask not found.";
@@ -156,8 +154,6 @@ public class FillingsTabController {
                 cask = null;
                 throw new IllegalArgumentException();
             }
-
-            txfCaskInfo.setText(cask.toString());
 
         } catch (Exception e){
             System.out.println("problem here");
@@ -172,6 +168,11 @@ public class FillingsTabController {
     void update(){
         List<NewMake> list = Controller.getNewMakes().stream().filter(NewMake -> NewMake.isDone()).toList();
         chbNewMakes.getItems().setAll(list);
+
+    }
+    @FXML
+    void updateCbCask(){
+        cbCask.getItems().setAll(Controller.locateEmptyCask(null, null, null, null));
     }
     @FXML
     void undoAmounts(){

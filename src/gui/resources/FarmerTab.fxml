@@ -22,13 +22,13 @@
       <RowConstraints maxHeight="300.33334859212243" minHeight="10.0" prefHeight="186.66666666666669" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+      <TextField fx:id="txfFarmerName" prefHeight="25.0" prefWidth="371.0" GridPane.columnIndex="1" />
+      <TextField fx:id="txfAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button fx:id="btnAddFarmer" mnemonicParsing="false" onAction="#addFarmerAction" text="Add Farmer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <ListView fx:id="lwFarmers" prefHeight="269.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label fx:id="lblOurFarmers" text="Our farmers" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-      <Button fx:id="btnAddFarmer" mnemonicParsing="false" onAction="#addFarmerAction" text="Add Farmer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <Text fx:id="txtFarmerName" strokeType="OUTSIDE" strokeWidth="0.0" text="Farmer name" GridPane.halignment="LEFT" />
-      <TextField fx:id="txfFarmerName" prefHeight="25.0" prefWidth="371.0" GridPane.columnIndex="1" />
       <Text fx:id="txtAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-      <TextField fx:id="txfAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label fx:id="lblError" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="290.0" top="50.0" />

@@ -18,8 +18,8 @@
       <ComboBox fx:id="cbCask" layoutX="47.0" layoutY="87.0" onKeyPressed="#update" onMouseClicked="#update" prefHeight="25.0" prefWidth="138.0" />
       <TextField id="txfcaskLiters" fx:id="txfcaskLiters" layoutX="47.0" layoutY="145.0" prefHeight="26.0" prefWidth="138.0" />
       <Button id="btnAdd" fx:id="btnAdd" layoutX="97.0" layoutY="180.0" mnemonicParsing="false" onAction="#addWhiskyAction" text="Add" />
-      <Button id="btnClear" fx:id="btnClear" layoutX="278.0" layoutY="296.0" mnemonicParsing="false" onAction="#clearChoicesAction" text="Clear" />
       <TextArea id="txachosenCasks" fx:id="txachosenCasks" editable="false" layoutX="200.0" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button id="btnClear" fx:id="btnClear" layoutX="278.0" layoutY="296.0" mnemonicParsing="false" onAction="#clearChoicesAction" text="Clear" />
       <TextField id="txfName" fx:id="txfName" layoutX="456.0" layoutY="87.0" prefHeight="26.0" prefWidth="118.0" />
       <Text layoutX="410.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
       <CheckBox id="chbConfirm" fx:id="chbConfirm" layoutX="488.0" layoutY="176.0" mnemonicParsing="false" text="Water" />

@@ -32,9 +32,8 @@ public class WhiskyHistoryDialogController {
         ChangeListener<Object> listener = (ov, o, n) -> this.listViewSelected();
         lvwWhiskys.getSelectionModel().selectedItemProperty().addListener(listener);
         lvwWhiskys.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        lvwWhiskys.getItems().setAll(
-                Controller.getWhiskyProducts()
-        );
+        lvwWhiskys.getItems().setAll(Controller.getWhiskyProducts());
+        txaHistory.setEditable(false);
     }
 
     private void listViewSelected() {

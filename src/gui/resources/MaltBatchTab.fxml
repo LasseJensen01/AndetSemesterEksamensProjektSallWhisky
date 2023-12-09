@@ -26,21 +26,21 @@
       <RowConstraints maxHeight="281.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+      <TextField fx:id="txfGrain" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ComboBox fx:id="cboxField" onKeyPressed="#update" onMouseClicked="#update" prefHeight="25.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="txfMaltery" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="txfSmokingMaterial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="btnAddMaltBatch" mnemonicParsing="false" onAction="#addMaltBatchAction" text="Add malt batch" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <ListView fx:id="lvwMaltBatches" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
       <Label fx:id="lblMaltBatches" text="Malt batches" GridPane.columnIndex="2">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ListView fx:id="lvwMaltBatches" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
       <Label fx:id="lblGrain" text="Grain" GridPane.rowIndex="1" />
       <Label fx:id="lblField" text="Field" GridPane.rowIndex="2" />
       <Label fx:id="lblMaltery" text="Maltery" GridPane.rowIndex="3" />
       <Label fx:id="lblSmokingMaterial" text="Smoking material" GridPane.rowIndex="4" />
-      <TextField fx:id="txfGrain" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="txfSmokingMaterial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <ComboBox fx:id="cboxField" onKeyPressed="#update" onMouseClicked="#update" prefHeight="25.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="txfMaltery" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Button fx:id="btnAddMaltBatch" mnemonicParsing="false" onAction="#addMaltBatchAction" text="Add malt batch" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
       <Label fx:id="lblError" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <opaqueInsets>
             <Insets />
