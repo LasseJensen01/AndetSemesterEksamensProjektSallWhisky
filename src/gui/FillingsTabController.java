@@ -80,11 +80,12 @@ public class FillingsTabController {
             txfEmployeeSignature.clear();
             txfLitersOfNewMake.clear();
             cbCask.getSelectionModel().clearSelection();
+            chbNewMakes.getSelectionModel().clearSelection();
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
             info.setTitle("Sucess");
-            info.setHeaderText("The cask has recived a new filling, by" + name);
+            info.setHeaderText("The cask has recived a new filling, by " + name);
             info.setContentText("The cask now contains " + cask.getLiters() + " liters.");
             info.show();
 
