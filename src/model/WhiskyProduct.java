@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Map;
@@ -72,7 +73,8 @@ public class WhiskyProduct implements Serializable {
         } else {
             s += " diluted with " + waterAmount + " liters of water from " + waterSource;
         }
-        s += " with an alcohol percent of " + alcoholPercent*100 + "%.\n" +
+        DecimalFormat format = new DecimalFormat("#.##");
+        s += " with an alcohol percent of " + format.format(alcoholPercent*100) + "%.\n" +
                 "With the following production histoy:\n" +
         "*************************************************\n";
         for (Filling f : fillings.keySet()){

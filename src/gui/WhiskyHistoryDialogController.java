@@ -44,14 +44,13 @@ public class WhiskyHistoryDialogController {
 
     @FXML
     void showBottleHistory(ActionEvent event) {
-        txfBottleId.clear();
         String errorMessage = "Bottle with that id not found.";
         try {
             int id = Integer.parseInt(txfBottleId.getText());
             Bottle bottle = Controller.getBottleById(id);
             txaHistory.clear();
             txaHistory.setText(bottle.getFullProductionHistory());
-
+            txfBottleId.clear();
         } catch (Exception e){
             Alert err = new Alert(Alert.AlertType.ERROR);
             err.setTitle("An error has occured");
