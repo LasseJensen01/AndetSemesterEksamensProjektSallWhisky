@@ -323,7 +323,7 @@ public abstract class Controller {
             }
         }
 
-        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName);
+        WhiskyProduct whiskyProduct = new WhiskyProduct(fillings, whiskyName, water, souce);
         storage.storeWhiskyProduct(whiskyProduct);
         return whiskyProduct;
     }
@@ -518,7 +518,7 @@ public abstract class Controller {
         Amount amountB1 = new Amount(newMake79, 120);
         Controller.addAmountToFilling(fillingB,amountB1);
         Location locationB = new Location("1-1-1-2");
-        caskA.setLocation(locationB);
+        caskB.setLocation(locationB);
 
         Cask caskC = Controller.createCask(Type.CHARDONNAY, 200, "Big Barrel");
         Filling fillingC = Controller.createFilling(caskC, "Jonas");
@@ -526,7 +526,7 @@ public abstract class Controller {
         Amount amountC1 = Controller.createAmount(newMake79, 175);
         Controller.addAmountToFilling(fillingC,amountC1);
         Location locationC = new Location("1-1-1-3");
-        caskA.setLocation(locationC);
+        caskC.setLocation(locationC);
 
         Cask caskD = Controller.createCask(Type.PALO_CORTADO, 200, "Big Barrel");
         Filling fillingD = Controller.createFilling(caskD, "Jonas");
@@ -536,7 +536,7 @@ public abstract class Controller {
         Controller.addAmountToFilling(fillingD,amountD);
         Controller.addAmountToFilling(fillingD,amountD1);
         Location locationD = new Location("1-1-2-1");
-        caskA.setLocation(locationD);
+        caskD.setLocation(locationD);
 
         Cask caskE = Controller.createCask(Type.SAUTERNES, 200, "Big Barrel");
 
@@ -555,5 +555,10 @@ public abstract class Controller {
         whimsyWhiskyCasks.put(caskC,Double.valueOf(75));
         whimsyWhiskyCasks.put(caskD,Double.valueOf(100));
         WhiskyProduct whiskyProduct2 = Controller.createWhiskyProduct(whimsyWhiskyCasks,"Whimsy whisky");
+
+        HashMap<Cask, Double> SingleMaltWhiskyCasks = new HashMap<>();
+        SingleMaltWhiskyCasks.put(caskC,Double.valueOf(75));
+        WhiskyProduct SingleMaltWhisky = Controller.createWhiskyProduct(SingleMaltWhiskyCasks,"Wet whisky",30,"below the distillery");
+        System.out.println(SingleMaltWhisky.getWaterAmount());
     }
 }

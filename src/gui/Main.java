@@ -13,10 +13,10 @@ public class Main {
         if (storage == null)storage = new ListStorage();
         Controller.setStorage(storage);
         Controller.loadIdsFromTracker();
-        //Controller.initTestStorage();
+        Controller.initTestStorage();
 
         Application.launch(Gui.class);
 
-        ListStorage.saveStorage(storage);
+        //ListStorage.saveStorage(storage);
     }
 }

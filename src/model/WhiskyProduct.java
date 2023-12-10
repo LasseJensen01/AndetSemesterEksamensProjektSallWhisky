@@ -12,7 +12,7 @@ public class WhiskyProduct implements Serializable {
     private LocalDate date;
     private String whiskyName;
     private double liters;
-    private double waterAmount = 0; // If this is 0 the product is "cask strength"
+    private double waterAmount; // If this is 0 the product is "cask strength"
     private String waterSource;
     private double alcoholPercent;
     private Set<MaltBatch> malts;
@@ -21,7 +21,7 @@ public class WhiskyProduct implements Serializable {
         this.fillings = fillings;
         this.date = LocalDate.now();
         this.whiskyName = whiskyName;
-
+        this.waterAmount = 0;
         this.malts = getMalts();
 
         calcAlcoholPercentage();
@@ -42,7 +42,7 @@ public class WhiskyProduct implements Serializable {
      * Helper method that calculates the Alcohol Percentage of the whisky.
      */
     public void calcAlcoholPercentage(){
-        double totalLitersOfWater = waterAmount;
+        double totalLitersOfWater = this.waterAmount;
         double totalLitersOfAlcohol = 0;
         for (Filling filling : fillings.keySet()){
             double fillingLitersOfAlcohol = fillings.get(filling) * filling.getAlcoholPercent();
@@ -64,20 +64,20 @@ public class WhiskyProduct implements Serializable {
         }
         if (malts.size() == 1){
             s += " sigle malt,";
+        } else {
+            s += " blended,";
         }
-        if (isSingleCask()){
-            s += " sigle cask,";
-        }
-        if (waterAmount == 0){
+        if (this.waterAmount == 0){
             s += " cask strength,";
         } else {
-            s += " diluted with " + waterAmount + " liters of water from " + waterSource;
+            s += " whisky diluted with " + waterAmount + " liters of water from " + waterSource;
         }
         DecimalFormat format = new DecimalFormat("#.##");
         s += " with an alcohol percent of " + format.format(alcoholPercent*100) + "%.\n" +
                 "With the following production histoy:\n" +
         "*************************************************\n";
         for (Filling f : fillings.keySet()){
+            s += fillings.get(f) + " liters of:\n";
             s += f.getContentsInfo(this.date) + "\n";
             s+= "-------------------------------------------------\n";
         }
