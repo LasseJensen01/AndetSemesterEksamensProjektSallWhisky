@@ -60,9 +60,12 @@ public class WhiskyTabController{
     }
 
     private void listViewSelected() {
-        txfWhiskyInfo.clear();
-        String s = lvwWhiskyList.getSelectionModel().getSelectedItem().toString();
-        txfWhiskyInfo.setText(s);
+        try {
+            txfWhiskyInfo.clear();
+            String s = lvwWhiskyList.getSelectionModel().getSelectedItem().toString();
+            txfWhiskyInfo.setText(s);
+        }catch(Exception e){}
+
     }
     @FXML
     void btnBottleWhiskyAction(ActionEvent event) {
