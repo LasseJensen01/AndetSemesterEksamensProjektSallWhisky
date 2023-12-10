@@ -22,7 +22,7 @@ public class Bottle implements Serializable {
      * @returns a String with a complete description of the bottle and its contents.
      */
     public String getFullProductionHistory(){
-        String s = "This is a " + size + " of the following whisky:\n";
+        String s = "This is a " + size + " bottle of the following whisky:\n";
         s += whiskyProduct.getFullProductionHistory();
         return s;
     }
