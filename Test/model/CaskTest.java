@@ -217,7 +217,7 @@ class CaskTest {
     void testToString() {
         // TC1
         // Arrange
-        String expected = "Cask with ID: 1 Type: TOKAY Volume: 200.0";
+        String expected = "Cask with ID: 1 Type: TOKAY Volume: 200.0 Supplier: Supplier";
 
         // Act
         String toString = cask.toString();

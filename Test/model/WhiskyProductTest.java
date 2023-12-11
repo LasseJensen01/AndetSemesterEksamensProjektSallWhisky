@@ -47,12 +47,12 @@ class WhiskyProductTest {
 
         // Act
         assertTrue(caskStrength);
-        assertEquals(0.7,alcPercent);
+        assertEquals(0.7,alcPercent*100,0.01);
 
         //Case 2: Same as case 1, but with water added.
         // Arrange
         // whiskyProduct.addWater(100); Method made obsolete
-
+        //Test made obsolete
         // Assert
         caskStrength = whiskyProduct.getWaterAmount() == 0;
         alcPercent = whiskyProduct.getAlcoholPercent();

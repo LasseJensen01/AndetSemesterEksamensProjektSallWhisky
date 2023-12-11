@@ -138,7 +138,7 @@ class ControllerTest {
         // Assert
         assertTrue(isStored);
         assertTrue(caskStrength);
-        assertEquals(0.692,alcPercent,0.001);
+        assertEquals(0.692,alcPercent*100,0.01);
         assertEquals(280,totalLiters);
         assertEquals(20, caskALiters);
         assertEquals(0, caskBLiters);
@@ -360,7 +360,7 @@ class ControllerTest {
         assertEquals(caskC, l.get(0));
 
         //Test Case 5
-        l = Controller.locateFullCask(false,null, null,2,null);
+        l = Controller.locateFullCask(false,null, null,caskB.getCaskID(),null);
         //Check if the expected amount of casks are returned by the method
         assertEquals(1,l.size());
         //Check for if it is the right cask

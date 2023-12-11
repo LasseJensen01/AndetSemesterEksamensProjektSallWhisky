@@ -32,7 +32,7 @@ class FillingTest {
 
         // Assert
         assertEquals(100,liters);
-        assertEquals(0.8,alcPercentage);
+        assertEquals(0.8,alcPercentage*100);
         assertEquals(1,noOfAmonts);
         assertEquals(1,noOfNewMakes);
 
@@ -53,7 +53,7 @@ class FillingTest {
 
         // Assert
         assertEquals(200,liters);
-        assertEquals(0.7,alcPercentage);
+        assertEquals(0.7,alcPercentage*100);
         assertEquals(2,noOfAmonts);
         assertEquals(2,noOfNewMakes);
     }
