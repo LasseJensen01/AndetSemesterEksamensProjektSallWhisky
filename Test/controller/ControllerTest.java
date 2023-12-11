@@ -63,7 +63,7 @@ class ControllerTest {
 
         // Act & Assert
         Exception tc2 = assertThrows(IllegalArgumentException.class, () ->
-                Controller.createWhiskyProduct(testParam1,"Test Whiskey"));
+                Controller.createWhiskyProduct(testParam2,"Test Whiskey"));
         assertEquals(IllegalArgumentException.class, tc2.getClass());
 
 
@@ -356,28 +356,28 @@ class ControllerTest {
         l = Controller.locateFullCask(false,null, 120.0,null,null);
         //Check if the expected amount of casks are returned by the method
         assertEquals(1,l.size());
-        //Check for if its the right cask
+        //Check for if it is the right cask
         assertEquals(caskC, l.get(0));
 
         //Test Case 5
         l = Controller.locateFullCask(false,null, null,2,null);
         //Check if the expected amount of casks are returned by the method
         assertEquals(1,l.size());
-        //Check for if its the right cask
+        //Check for if it is the right cask
         assertEquals(caskB, l.get(0));
 
         //Test Case 6
         l = Controller.locateFullCask(false,null, null,null,1);
         //Check if the expected amount of casks are returned by the method
         assertEquals(1,l.size());
-        //Check for if its the right cask
+        //Check for if it is the right cask
         assertEquals(caskA, l.get(0));
 
         //Test Case 7
         l = Controller.locateFullCask(false,Type.BOURBON, 150.0,null,null);
         //Check if the expected amount of casks are returned by the method
         assertEquals(1,l.size());
-        //Check for if its the right cask
+        //Check for if it is the right cask
         assertEquals(caskB, l.get(0));
 
         //Test Case 8

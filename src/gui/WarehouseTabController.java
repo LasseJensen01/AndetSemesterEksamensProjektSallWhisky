@@ -6,10 +6,6 @@ import javafx.scene.control.*;
 import model.Warehouse;
 
 
-import java.util.Arrays;
-import java.util.List;
-
-
 public class WarehouseTabController {
     @FXML
     private Button btnCreateWarehouse;

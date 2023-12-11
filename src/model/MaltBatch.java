@@ -3,14 +3,14 @@ package model;
 import java.io.Serializable;
 
 public class MaltBatch implements Serializable {
-    private int batchID;
+    private final int batchID;
     private static int no = 0;
     private String smokeMaterial;
-    private String maltery;
-    private String grain;
+    private final String maltery;
+    private final String grain;
 
     //---------------
-    private Field field;
+    private final Field field;
 
     public MaltBatch(String maltery, String grain, Field field) {
         no++;

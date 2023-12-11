@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import storage.ListStorage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -72,7 +70,7 @@ public class WarehouseTest {
     void warehouseMoveCask(){
         Warehouse wh = Controller.createWarehouse("Sall", "Sall");
         Controller.createLocationsInWarehouse(wh,10,6,3,3);
-        //Check that all locations dont have a cask
+        //Check that all locations don't have a cask
         List<Location> locations = wh.getLocations();
         for (Location l : locations){
             assertTrue(l.getCask() == null);

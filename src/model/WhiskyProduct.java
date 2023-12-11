@@ -54,7 +54,7 @@ public class WhiskyProduct implements Serializable {
         alcoholPercent = totalLitersOfAlcohol/(totalLitersOfWater+totalLitersOfAlcohol);
     }
     /**
-     * @returns a String with a complete description of the whisky.
+     * @return a String with a complete description of the whisky.
      */
     public String getFullProductionHistory(){
         String s = "";
@@ -63,7 +63,7 @@ public class WhiskyProduct implements Serializable {
             s += " single cask,";
         }
         if (malts.size() == 1){
-            s += " sigle malt,";
+            s += " single malt,";
         } else {
             s += " blended,";
         }

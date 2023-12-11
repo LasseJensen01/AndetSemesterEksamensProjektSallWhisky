@@ -1,18 +1,13 @@
 package gui;
 
 import controller.Controller;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import model.Amount;
 import model.Cask;
-import model.NewMake;
 import model.Type;
 
-import java.net.URL;
-import java.util.NoSuchElementException;
 
 public class CasksTabController {
     private Cask chosenCask;
@@ -42,9 +37,6 @@ public class CasksTabController {
 
     @FXML
     private TextField txfLiters;
-
-    @FXML
-    private TextField txfLokation;
 
     @FXML
     private TextField txfVolume;
@@ -77,7 +69,7 @@ public class CasksTabController {
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
-            info.setTitle("Sucess");
+            info.setTitle("Success");
             info.setHeaderText("The casks have been registered");
             info.setContentText(numberOfCasks + " " + type.toString() + " casks with volume " + caskVolume);
             info.show();
@@ -115,7 +107,7 @@ public class CasksTabController {
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
-            info.setTitle("Sucess");
+            info.setTitle("Success");
             info.setHeaderText("The cask contents have been updated.");
             info.setContentText(chosenCask.toString());
             info.show();

@@ -90,7 +90,7 @@ public class WhiskyRegistrationController {
 
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
                 info.setResizable(true);
-                info.setTitle("Sucess");
+                info.setTitle("Success");
                 info.setHeaderText("The following whisky has been created:");
                 info.setContentText(newWhisky.toString());
                 info.show();
@@ -102,7 +102,7 @@ public class WhiskyRegistrationController {
 
                 Alert info = new Alert(Alert.AlertType.INFORMATION);
                 info.setResizable(true);
-                info.setTitle("Sucess");
+                info.setTitle("Success");
                 info.setHeaderText("The following whisky has been created:");
                 info.setContentText(newWhisky.toString());
                 info.show();

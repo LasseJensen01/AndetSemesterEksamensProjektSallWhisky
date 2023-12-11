@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class NewMake implements Serializable {
-    private int newMakeID;
+    private final int newMakeID;
     private static int no = 0;
     private boolean isDone = false;
-    private LocalDate startDate;
+    private final LocalDate startDate;
     private LocalDate endDate;
     private double volume;
     private String employee;

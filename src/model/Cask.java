@@ -1,16 +1,16 @@
 package model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class Cask implements Serializable {
-    private Type type;
+    private final Type type;
     private static int no = 0;
-    private int caskID;
-    private double volume; // How big cask
+    private final int caskID;
+    private final double volume; // How big cask
     private Filling filling = null;
     private int timesUsed = 0;
     private Location location = null;
+    private final String supplier;
     /**
      * This method creates a cask.
      * @param type the type of the cask.
@@ -22,6 +22,7 @@ public class Cask implements Serializable {
         this.volume = volume;
         no++;
         this.caskID = no;
+        this.supplier = supplier;
     }
     /**
      * This method empties a cask, and sets it filling, liters and location to null.
@@ -33,16 +34,16 @@ public class Cask implements Serializable {
         this.location = null;
     }
     /**
-     * Calls the fillings isWisky() method to check if the filling is 3 or more years old.
+     * Calls the fillings isWhisky() method to check if the filling is 3 or more years old.
      * @return false if filling is null.
      */
     public boolean containsWhisky(){
         if (this.filling == null) return false;
-        return filling.isWisky();
+        return filling.isWhisky();
     }
     //-----------------------------------------------------------------------
     /**
-     * Sets the amount of filling in the cask. Used incase of spills or evaporation.
+     * Sets the amount of filling in the cask. Used in case of spills or evaporation.
      */
     public void setLiters(double liters){filling.setLiters(liters);}
     public void setLocation(Location location) {
@@ -97,12 +98,12 @@ public class Cask implements Serializable {
     }
 
     /**
-     * @returns a string with the format:
      * "Cask with ID: " + this.id + " Type: " + this.type + " Volume: " + this.volume
+     * @return string with the format:
      */
     @Override
     public String toString() {
-        return "Cask with ID: " + caskID + " Type: " + type + " Volume: " + volume;
+        return "Cask with ID: " + caskID + " Type: " + type + " Volume: " + volume + " Supplier: " + supplier ;
     }
 
     public static int getNo() {

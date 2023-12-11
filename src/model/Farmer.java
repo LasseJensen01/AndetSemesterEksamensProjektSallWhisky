@@ -5,23 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Farmer implements Serializable {
-    private String name;
-    private String address;
+    private final String name;
+    private final String address;
 
     //-------------
-    private List<Field> fields = new ArrayList<>();
+    private final List<Field> fields = new ArrayList<>();
 
     public Farmer(String name, String address) {
         this.name = name;
         this.address = address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public List<Field> getFields() {
@@ -34,6 +26,6 @@ public class Farmer implements Serializable {
 
     @Override
     public String toString(){
-        return String.format("%s", name);
+        return String.format("%s, %s", name, address);
     }
 }

@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Set;
 
 public class Filling implements Serializable {
-    private List<Amount> amounts = new ArrayList<>();
-    private Cask cask;
+    private final List<Amount> amounts = new ArrayList<>();
+    private final Cask cask;
     private double liters;
     private static int no = 0;
-    private int id;
+    private final int id;
     private LocalDate date;
-    private String employee;
+    private final String employee;
     private double alcoholPercent;
-    private int fillNo;
+    private final int fillNo;
 
     /**
-     * Creats a filling and sets its relation to its cask
+     * Creates a filling and sets its relation to its cask
      * @param cask an empty cask
      * @param employee the name of the employee
      */
@@ -51,7 +51,7 @@ public class Filling implements Serializable {
         liters += amount.getLiters();
     }
     /**
-     * @returns a string representation of the content.
+     * @return a string representation of the content.
      * @pre amounts have been added.
      */
     public String getContentsInfo(LocalDate periodEndDate){
@@ -72,9 +72,9 @@ public class Filling implements Serializable {
         return Period.between(this.date, date);
     }
     /**
-     * @returns a boolean value representing if filling can legaly be considered whisky.
+     * @return a boolean value representing if filling can legally be considered whisky.
      */
-    public boolean isWisky(){
+    public boolean isWhisky(){
         return calcMaturiy(LocalDate.now()).getYears() >= 3;
     }
     /**
@@ -104,10 +104,6 @@ public class Filling implements Serializable {
 
     public double getLiters() {
         return liters;
-    }
-
-    public Cask getCask() {
-        return cask;
     }
 
     public int getId() {
