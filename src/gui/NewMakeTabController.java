@@ -121,10 +121,12 @@ public class NewMakeTabController {
             double alcoholdPercent = Double.parseDouble(txfAlcoholPercent.getText());
 
             if(txaComment.getText().isEmpty()){
+                if (newMake.getStartDate().isAfter(endDate)) throw new IllegalArgumentException();
                 Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate);
             }
             else{
                 String comment = txaComment.getText();
+                if (newMake.getStartDate().isAfter(endDate)) throw new IllegalArgumentException();
                 Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate, comment);
             }
 
@@ -137,7 +139,14 @@ public class NewMakeTabController {
             txfAlcoholPercent.clear();
             txaComment.clear();
             lblConfirmation.setText("");
-        }catch (Exception e){
+        }
+        catch (IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error in data");
+            alert.setContentText("Start date is after end date");
+            alert.showAndWait();
+        }
+        catch (Exception e){
             lblConfirmation.setText("");
             lblErrorFinish.setText("Error: Check data");
         }

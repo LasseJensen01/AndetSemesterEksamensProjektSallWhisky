@@ -71,6 +71,8 @@ public class WhiskyTabController{
             int numberOfBottles = Integer.parseInt(txfNumberOfBottles.getText());
             double bottleSize = Double.parseDouble(txfBottleSize.getText());
 
+            if(numberOfBottles < 0 || bottleSize < 0) throw new IllegalArgumentException();
+
             WhiskyProduct selected = lvwWhiskyList.getSelectionModel().getSelectedItem();
             Controller.putOnBottle(selected,numberOfBottles,bottleSize);
 

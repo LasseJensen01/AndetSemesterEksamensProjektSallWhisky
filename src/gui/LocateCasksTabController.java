@@ -113,7 +113,17 @@ public class LocateCasksTabController {
             Warehouse warehouse = cbNewWarehouse.getSelectionModel().getSelectedItem();
 
             Controller.moveCask(warehouse, cask, location);
-        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Cask Moved");
+            alert.setContentText("Cask Succesfully moved");
+            alert.showAndWait();
+        } catch (IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error in data");
+            alert.setContentText("Start date is after end date");
+            alert.showAndWait();
+        }
+        catch (Exception e){
             System.err.println("error when moveing cask" + e.getMessage());
         }
     }

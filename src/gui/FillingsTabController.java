@@ -98,6 +98,7 @@ public class FillingsTabController {
         try {
             cask = cbCask.getSelectionModel().getSelectedItem();
             double liters = Double.parseDouble(txfLitersOfNewMake.getText());
+            if (liters < 0 || cask.getVolume() < liters) throw new IllegalArgumentException();
             NewMake selected = chbNewMakes.getValue();
 
             Amount amount = Controller.createAmount(selected, liters);
@@ -128,35 +129,6 @@ public class FillingsTabController {
     void clearChoices(ActionEvent event) {
         txaFillingContent.clear();
         undoAmounts();
-    }
-    @FXML
-    void caskConfimation() {
-        txaFillingContent.clear();
-        undoAmounts();
-
-        String errorMessage = "";
-        try {
-            this.cask = cbCask.getSelectionModel().getSelectedItem();
-
-            if (cask == null){
-                errorMessage = "Cask not found.";
-                throw new IllegalArgumentException();
-            }
-
-            if (cask.getFilling() != null){
-                errorMessage = "The cask is not empty.";
-                cask = null;
-                throw new IllegalArgumentException();
-            }
-
-        } catch (Exception e){
-            System.out.println("problem here");
-            Alert err = new Alert(Alert.AlertType.ERROR);
-            err.setTitle("An error has occured");
-            err.setHeaderText("The following issues have been detected");
-            err.setContentText(errorMessage);
-            err.show();
-        }
     }
     @FXML
     void update(){
