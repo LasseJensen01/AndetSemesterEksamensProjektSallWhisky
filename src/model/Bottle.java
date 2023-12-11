@@ -33,4 +33,8 @@ public class Bottle implements Serializable {
     public int getBottleID() {
         return bottleID;
     }
+
+    public static int getNo() {
+        return no;
+    }
 }

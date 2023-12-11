@@ -456,7 +456,19 @@ public abstract class Controller {
         MaltBatch.setNo(idTracker.getMaltBatchId());
 
     }
-
+    /**
+     * This method saves the Ids to the tracker.
+     * @throws IllegalStateException if storage is null.
+     */
+    public static void saveIdsToTracker(){
+        if (storage == null) throw new IllegalStateException();
+        IdTracker idTracker = storage.getIdTracker();
+        idTracker.setBottleId(Bottle.getNo());
+        idTracker.setFillingId(Filling.getNo());
+        idTracker.setCaskId(Cask.getNo());
+        idTracker.setMaltBatchId(MaltBatch.getNo());
+        idTracker.setNewMakeID(NewMake.getNo());
+    }
     /**
      * Helpermethod. It checks if the individual casks contain enought liters for the desired tap.
      * @param casks a set of casks with a double representing the number of liter to be tapped for each cask.

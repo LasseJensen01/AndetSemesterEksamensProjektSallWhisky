@@ -132,4 +132,8 @@ public class Filling implements Serializable {
     public void setAlcoholPercent(double alcoholPercent) {
         this.alcoholPercent = alcoholPercent/100;
     }
+
+    public static int getNo() {
+        return no;
+    }
 }

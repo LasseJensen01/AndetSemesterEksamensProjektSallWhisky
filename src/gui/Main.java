@@ -17,6 +17,7 @@ public class Main {
 
         Application.launch(Gui.class);
 
+        Controller.saveIdsToTracker();
         //ListStorage.saveStorage(storage);
     }
 }

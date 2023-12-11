@@ -85,6 +85,10 @@ public class NewMake implements Serializable {
         NewMake.no = no;
     }
 
+    public static int getNo() {
+        return no;
+    }
+
     @Override
     public String toString(){
         return String.format("New make #%d", newMakeID);

@@ -48,6 +48,10 @@ public class MaltBatch implements Serializable {
         return field;
     }
 
+    public static int getNo() {
+        return no;
+    }
+
     @Override
     public String toString(){
         if(smokeMaterial != null){
