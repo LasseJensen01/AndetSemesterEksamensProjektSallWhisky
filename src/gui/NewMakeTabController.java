@@ -120,7 +120,7 @@ public class NewMakeTabController {
             double producedAmount = Double.parseDouble(txfProducedAmount.getText());
             double alcoholdPercent = Double.parseDouble(txfAlcoholPercent.getText());
 
-            if(txaComment.getText().equals(null)){
+            if(txaComment.getText().isEmpty()){
                 Controller.finishNewMakeProcess(newMake,producedAmount,alcoholdPercent,endDate);
             }
             else{

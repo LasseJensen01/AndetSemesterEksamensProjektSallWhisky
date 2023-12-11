@@ -4,10 +4,6 @@ import model.*;
 
 import java.util.*;
 
-import model.Filling;
-import model.NewMake;
-import model.Amount;
-import model.Cask;
 
 import java.time.LocalDate;
 
@@ -33,15 +29,6 @@ public abstract class Controller {
         Farmer farmer = new Farmer(name, address);
         storage.storeFarmer(farmer);
         return farmer;
-    }
-
-    /**
-     * Adds a Field object to a Farmer object
-     * @param farmer a Farmer object
-     * @param field a Field objects
-     */
-    public static void addFieldToFarmer(Farmer farmer, Field field){
-        farmer.addField(field);
     }
 
     /**
@@ -168,10 +155,6 @@ public abstract class Controller {
         newMake.setDone(true);
     }
 
-    public static void setCaskLiters(Cask cask, double liters){
-        if (liters > cask.getVolume() || liters < 0) throw new IllegalArgumentException();
-        cask.setLiters(liters); //Used to edit the cask incase of spills
-    }
     public static List<Bottle> getBottels(){
         return storage.getBottles();
     }
@@ -189,10 +172,10 @@ public abstract class Controller {
         return storage.getWhiskyProducts();
     }
     /**
-     * Creates a warehouse. Will have an Id assigned.
+     * Creates a warehouse. Will have an ID assigned.
      * @param name - Name of the warehouse
      * @param adress - Adress for the warehouse
-     * @return
+     * @return created warehouse
      */
     public static Warehouse createWarehouse(String name, String adress){
         Warehouse wh = new Warehouse(name, adress);
@@ -225,7 +208,7 @@ public abstract class Controller {
     /**
      * This method adds an amount to a filling
      * @param filling the filling that the amount is to be added to.
-     * @param Amount the amount to be added.
+     * @param amount the amount to be added.
      * @throws IllegalArgumentException if the cask does not have enough volume left to contain the amount.
      */
     public static void addAmountToFilling(Filling filling, Amount amount) throws IllegalArgumentException{
@@ -246,7 +229,7 @@ public abstract class Controller {
     }
     /**
      * This method finds a cask by its id.
-     * @Returns null if there is no cask with that id.
+     * @return  null if there is no cask with that id.
      * @param id the id of the cask.
      */
     public static Cask getCaskByID(int id){
@@ -257,7 +240,7 @@ public abstract class Controller {
     }
     /**
      * This method finds a bottle by its id.
-     * @Returns null if there is no bottle with that id.
+     * @return  null if there is no bottle with that id.
      * @param id the id of the bottle.
      */
     public static Bottle getBottleById(int id){
@@ -275,7 +258,7 @@ public abstract class Controller {
     /**
      * This method creates a finished whisky.
      * @pram casks a map of cask objects as keys and the desired amount to be taped as values.
-     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * If a cask is emptied it will have its location and filling removed when this method is called.
      * @pram whiskyName the name of the finished whisky.
      * @throws IllegalArgumentException if a cask does not have the requested amount of filling or if the HashMap is empty.
      */
@@ -302,7 +285,7 @@ public abstract class Controller {
     /**
      * This method creates a finished whisky.
      * @param casks a map of cask objects as keys and the desired amount to be taped as values.
-     * If a cask is emptied it will have its lokation and filling removed when this method is called.
+     * If a cask is emptied it will have its location and filling removed when this method is called.
      * @param whiskyName the name of the finished whisky.
      * @param water liters of water.
      * @param souce
@@ -443,7 +426,7 @@ public abstract class Controller {
         }
     }
     /**
-     * This method loads the Ids from the the storage via the tracker.
+     * This method loads the Ids from the storage via the tracker.
      * @throws IllegalStateException if storage is null.
      */
     public static void loadIdsFromTracker(){

@@ -5,13 +5,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.Amount;
 import model.Bottle;
-import model.NewMake;
 import model.WhiskyProduct;
-
-import java.net.URL;
-import java.util.NoSuchElementException;
 
 public class WhiskyHistoryDialogController {
 

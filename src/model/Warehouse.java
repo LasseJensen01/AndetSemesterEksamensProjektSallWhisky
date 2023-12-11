@@ -20,7 +20,7 @@ public class Warehouse implements Serializable {
 
     /**
      * This method print an overview of the repectable Warehouse object and the cask
-     * which it has stored. It wont print locations with empty casks.
+     * which it has stored. It won't print locations with empty casks.
      * The ouput of the method is the WarehouseOver
      */
     public void extractOverview(){

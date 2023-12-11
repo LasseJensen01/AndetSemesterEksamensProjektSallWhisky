@@ -5,7 +5,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,7 +13,6 @@ import model.WhiskyProduct;
 
 import java.net.URL;
 import java.util.NoSuchElementException;
-import java.util.ResourceBundle;
 
 public class WhiskyTabController{
     private static URL FXMLWhiskyRegistration;
@@ -85,7 +83,7 @@ public class WhiskyTabController{
 
             Alert info = new Alert(Alert.AlertType.INFORMATION);
             info.setResizable(true);
-            info.setTitle("Sucess");
+            info.setTitle("Success");
             info.setHeaderText("The whisky has been taped on to bottles.");
             info.setContentText(numberOfBottles + " registered");
             info.show();
@@ -93,7 +91,7 @@ public class WhiskyTabController{
             Alert err = new Alert(Alert.AlertType.ERROR);
             err.setTitle("An error has occured");
             err.setHeaderText("The following issues have been detected");
-            err.setContentText("Please cheek number of bottle and bottle size feilds.");
+            err.setContentText("Please cheek number of bottle and bottle size fields.");
             err.show();
         }
     }

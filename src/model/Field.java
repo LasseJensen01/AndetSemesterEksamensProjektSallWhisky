@@ -3,21 +3,14 @@ package model;
 import java.io.Serializable;
 
 public class Field implements Serializable {
-    private String name;
+    private final String name;
 
     //-----------
-    private Farmer farmer;
+    private final Farmer farmer;
 
     public Field(String name, Farmer farmer) {
         this.name = name;
         this.farmer = farmer;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public Farmer getSupplier() {
-        return farmer;
     }
 
     @Override

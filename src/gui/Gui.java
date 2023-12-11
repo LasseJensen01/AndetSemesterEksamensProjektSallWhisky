@@ -14,8 +14,6 @@ import java.util.NoSuchElementException;
 
 public class Gui extends Application {
 
-   private static URL FXMLFarmer;
-
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -103,9 +101,5 @@ public class Gui extends Application {
 
         Tab temp = tabpane.getTabs().get(tabpane.getTabs().size()-1);
         var t = temp.getContent();
-    }
-
-    public static URL getFXMLFarmer() {
-        return FXMLFarmer;
     }
 }

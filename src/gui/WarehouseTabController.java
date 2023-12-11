@@ -6,10 +6,6 @@ import javafx.scene.control.*;
 import model.Warehouse;
 
 
-import java.util.Arrays;
-import java.util.List;
-
-
 public class WarehouseTabController {
     @FXML
     private Button btnCreateWarehouse;
@@ -58,6 +54,7 @@ public class WarehouseTabController {
                 int shelfUnits = Integer.parseInt(txtShelfUnits.getText());
                 int shelfs = Integer.parseInt(txtShelfs.getText());
                 int pallets = Integer.parseInt(txtPallets.getText());
+                if (rows > 20 ||shelfUnits > 10 || shelfs > 10 || pallets > 10) throw new IllegalArgumentException();
                 Warehouse wh = Controller.createWarehouse(name,adress);
                 Controller.createLocationsInWarehouse(wh,rows,shelfUnits,shelfs,pallets);
                 updateLWWarehouseOverview();
@@ -68,7 +65,13 @@ public class WarehouseTabController {
                 txtShelfs.clear();
                 txtPallets.clear();
             }
-        }catch (Exception e){
+        }catch (IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error in data");
+            alert.setContentText("Reduce amount of Storage");
+            alert.showAndWait();
+        }
+        catch (Exception e){
             lblError.setText("Error: Check Data for errors");
             System.err.println("error when creating warehouse " + e.getMessage());
         }

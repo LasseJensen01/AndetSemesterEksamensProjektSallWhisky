@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Bottle implements Serializable {
-    private int bottleID;
+    private final int bottleID;
     private static int no = 0;
-    private double size; // Expresed in liters fx: 70cl = 0.7L
-    private LocalDate filledDate;
-    private  WhiskyProduct whiskyProduct;
+    private final double size; // Expressed in liters fx: 70cl = 0.7L
+    private final LocalDate filledDate;
+    private final  WhiskyProduct whiskyProduct;
 
 
     public Bottle(double size, WhiskyProduct whiskyProduct) {
@@ -18,8 +18,9 @@ public class Bottle implements Serializable {
         no++;
         bottleID = no;
     }
+
     /**
-     * @returns a String with a complete description of the bottle and its contents.
+     * @return String - String with a complete description of the bottle and its contents.
      */
     public String getFullProductionHistory(){
         String s = "This is a " + size + " liter bottle of the following whisky:\n";

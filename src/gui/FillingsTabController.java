@@ -1,7 +1,6 @@
 package gui;
 
 import controller.Controller;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,15 +9,12 @@ import model.Cask;
 import model.Filling;
 import model.NewMake;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class FillingsTabController {
     private Cask cask;
-    private List<Amount> amounts = new ArrayList<>();
+    private final List<Amount> amounts = new ArrayList<>();
     @FXML
     private Button btnAddNewMake;
 
@@ -38,9 +34,6 @@ public class FillingsTabController {
     private TextField txfEmployeeSignature;
     @FXML
     private TextField txfLitersOfNewMake;
-    @FXML
-    private TextField txfCaskInfo;
-
     @FXML
     private ComboBox<Cask> cbCask;
     @FXML
@@ -137,7 +130,7 @@ public class FillingsTabController {
         undoAmounts();
     }
     @FXML
-    void caskConfimation(ActionEvent event) {
+    void caskConfimation() {
         txaFillingContent.clear();
         undoAmounts();
 

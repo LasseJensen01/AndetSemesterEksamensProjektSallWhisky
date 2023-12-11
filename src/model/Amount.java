@@ -3,8 +3,8 @@ package model;
 import java.io.Serializable;
 
 public class Amount implements Serializable {
-    private NewMake newMake;
-    private double liters;
+    private final NewMake newMake;
+    private final double liters;
 
     public Amount(NewMake newMake, double liters) {
         this.newMake = newMake;

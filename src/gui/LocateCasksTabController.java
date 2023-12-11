@@ -1,15 +1,12 @@
 package gui;
 
 import controller.Controller;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import model.Cask;
 import model.Location;
 import model.Type;
 import model.Warehouse;
-
-import java.util.List;
 
 public class LocateCasksTabController {
     @FXML
@@ -59,9 +56,8 @@ public class LocateCasksTabController {
 
     @FXML
     private void updateCBLocationBox(){
-        Warehouse wh = null;
         try{
-            wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
+            Warehouse wh = cbNewWarehouse.getSelectionModel().getSelectedItem();
             cbNewLocation.getItems().setAll(wh.getLocations());
         }catch (Exception e){
             System.err.println(e.getMessage());
@@ -70,7 +66,7 @@ public class LocateCasksTabController {
 
     @FXML
     private void setBtnSearch(){
-        boolean iswhisky = cbIsWhisky.isSelected();
+        boolean isWhisky = cbIsWhisky.isSelected();
         boolean caskInUse = cbCaskIsInUse.isSelected();
 
         Integer ID = null;
@@ -106,7 +102,7 @@ public class LocateCasksTabController {
             lblErrorLabel.setText("Times used skal være et helt tal");
         }
         if (caskInUse){
-            lwCasks.getItems().setAll(Controller.locateFullCask(iswhisky,type,volume,ID,timesUsed));
+            lwCasks.getItems().setAll(Controller.locateFullCask(isWhisky,type,volume,ID,timesUsed));
         } else lwCasks.getItems().setAll(Controller.locateEmptyCask(type,volume,ID, timesUsed));
     }
     @FXML
