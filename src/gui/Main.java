@@ -10,14 +10,18 @@ public class Main {
     public static void main(String[] args) {
 
         Storage storage = ListStorage.loadStorage();
-        if (storage == null)storage = new ListStorage();
-        Controller.setStorage(storage);
-        Controller.loadIdsFromTracker();
-        Controller.initTestStorage();
-
+        if (storage == null){
+            storage = new ListStorage();
+            Controller.setStorage(storage);
+            Controller.loadIdsFromTracker();
+            Controller.initTestStorage();
+        } else{
+            Controller.setStorage(storage);
+            Controller.loadIdsFromTracker();
+        }
         Application.launch(Gui.class);
 
         Controller.saveIdsToTracker();
-        //ListStorage.saveStorage(storage);
+        ListStorage.saveStorage(storage);
     }
 }
