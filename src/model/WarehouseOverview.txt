@@ -1,16 +1,282 @@
-Warehouse extract for: Lasse's lager for god Whisky
+Warehouse extract for: Storage
 -------------------------------------
 
-ID:   4, Type: PALO_CORTADO  Volume: 200,00, Liters: 100,00, Contains whisky: Yes Location: 1-1-1-1
+ID:   1, Type: AMARONE       Volume: 200,00, Liters: 40,00, Contains whisky: Yes Location: 1-1-1-1
+     Fillings: 
+            ID:   1, Liters left: 40,00, Employee: Jonas         Date: 2020-12-11
+            NewMakeID:   1, Liters: 120,00
+
+ID:   3, Type: CHARDONNAY    Volume: 200,00, Liters: 25,00, Contains whisky: Yes Location: 1-1-1-2
+     Fillings: 
+            ID:   3, Liters left: 25,00, Employee: Jonas         Date: 2020-12-11
+            NewMakeID:   3, Liters: 175,00
+
+ID:   4, Type: PALO_CORTADO  Volume: 200,00, Liters: 100,00, Contains whisky: Yes Location: 1-1-1-3
      Fillings: 
             ID:   4, Liters left: 100,00, Employee: Jonas         Date: 2020-12-11
             NewMakeID:   2, Liters: 50,00
             NewMakeID:   1, Liters: 150,00
 
-ID:   7, Type: VIRGIN_OAK    Volume: 200,00, Liters: 120,00, Contains whisky: No  Location: 1-1-1-2
+
+
+ID:   7, Type: BOURBON       Volume: 999999999,00, Liters: 999,00, Contains whisky: No  Location: 1-1-2-3
      Fillings: 
-            ID:   5, Liters left: 120,00, Employee: Lasse         Date: 2023-12-11
-            NewMakeID:   4, Liters: 120,00
+            ID:   5, Liters left: 999,00, Employee: sædlkf33      Date: 2023-12-11
+            NewMakeID:   2, Liters: -9999999,00
+            NewMakeID:   2, Liters: 9999999,00
+            NewMakeID:   2, Liters: 999,00
+
+ID:   8, Type: BOURBON       Volume: 999999999,00, Liters: 4,00, Contains whisky: No  Location: 1-1-3-1
+     Fillings: 
+            ID:   6, Liters left: 4,00, Employee: 45            Date: 2023-12-11
+            NewMakeID:   2, Liters: 4,00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
