@@ -53,6 +53,7 @@ public class WhiskyRegistrationController {
             Cask cask = cbCask.getSelectionModel().getSelectedItem();
             if (cask == null) throw new IllegalArgumentException();
             Double liters = Double.parseDouble(txfcaskLiters.getText());
+            if (liters > cask.getLiters() || liters < 0) throw new IllegalArgumentException();
 
             this.chosen.put(cask, liters);
             txachosenCasks.appendText("ID: " + cask.getCaskID() + " Liters " + liters + "\n");
@@ -81,6 +82,7 @@ public class WhiskyRegistrationController {
             if (chbConfirm.isSelected()){
                 double litersOfWater = Double.parseDouble(txfWaterLiters.getText());
                 String Source = txfSource.getText();
+                if (litersOfWater < 0) throw new IllegalArgumentException();
 
                 WhiskyProduct newWhisky = Controller.createWhiskyProduct(this.chosen,this.txfName.getText());
                 txachosenCasks.clear();

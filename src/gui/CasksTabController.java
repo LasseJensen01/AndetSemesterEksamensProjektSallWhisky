@@ -63,6 +63,7 @@ public class CasksTabController {
 
             Type type = cbType.getValue();
 
+            if (numberOfCasks < 1 || caskVolume < 0) throw new IllegalArgumentException();
             for (int i = 0; i < numberOfCasks; i++){
                 Controller.createCask(type,caskVolume,supplier);
             }
@@ -95,13 +96,15 @@ public class CasksTabController {
 
             if (!txfLiters.getText().equals("")){
                 double newLiters = Double.parseDouble(txfLiters.getText());
+                if (newLiters < 0 || newLiters > chosenCask.getVolume()) throw new IllegalArgumentException();
                 chosenCask.setLiters(newLiters);
                 lblLiters.setText(newLiters + "");
             }
             if (!txfAlc.getText().equals("")){
                 double newAlcPercent = Double.parseDouble(txfAlc.getText());
+                if (newAlcPercent < 0 || newAlcPercent > 100) throw new IllegalArgumentException();
                 chosenCask.getFilling().setAlcoholPercent(newAlcPercent);
-                lblALC.setText(newAlcPercent + "");
+                lblALC.setText(newAlcPercent/100 + "");
             }
 
 
