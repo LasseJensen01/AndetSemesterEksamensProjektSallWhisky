@@ -461,6 +461,7 @@ public abstract class Controller {
         for (Cask cask : casks.keySet()){
             if (cask.getLiters() < casks.get(cask)) valid = false;
         }
+        if (casks.isEmpty()) valid = false;
         return valid;
     }
     /**

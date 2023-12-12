@@ -117,7 +117,7 @@ public class WhiskyProduct implements Serializable {
     }
 
     public double getAlcoholPercent() {
-        return alcoholPercent;
+        return alcoholPercent*100;
     }
 
 }
